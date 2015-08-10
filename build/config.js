@@ -38,42 +38,46 @@ network = require('./network');
 
 
 /**
- * @summary Get an application device configuration
+ * @summary Get a device configuration object
  * @public
  * @function
  *
- * @param {String} name - application name
+ * @param {String} uuid - device uuid
  * @param {Object} [options={}] - options
  * @param {String} [options.wifiSsid] - wifi ssid
  * @param {String} [options.wifiKey] - wifi key
  *
- * @returns {Promise<Object>} application configuration
+ * @returns {Promise<Object>} device configuration
  *
  * @example
- * deviceConfig.get 'MyApp',
+ * deviceConfig.get '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9',
  * 	wifiSsid: 'foobar'
  * 	wifiKey: 'hello'
  * .then (configuration) ->
  * 	console.log(configuration)
  */
 
-exports.get = function(name, options) {
+exports.get = function(uuid, options) {
   if (options == null) {
     options = {};
   }
-  return Promise.all([resin.models.application.get(name), resin.models.application.getApiKey(name), resin.auth.getUserId(), resin.auth.whoami()]).spread(function(application, apiKey, userId, username) {
-    if (username == null) {
-      throw new errors.ResinNotLoggedIn();
-    }
-    return {
-      applicationId: String(application.id),
-      apiKey: apiKey,
-      deviceType: application.device_type,
-      userId: String(userId),
-      username: username,
-      wifiSsid: options.wifiSsid,
-      wifiKey: options.wifiKey,
-      files: network.getFiles(options)
-    };
+  return resin.models.device.get(uuid).then(function(device) {
+    return Promise.all([resin.models.application.get(device.application_name), resin.models.application.getApiKey(device.application_name), resin.auth.getUserId(), resin.auth.whoami()]).spread(function(application, apiKey, userId, username) {
+      if (username == null) {
+        throw new errors.ResinNotLoggedIn();
+      }
+      return {
+        applicationId: String(application.id),
+        apiKey: apiKey,
+        deviceType: device.device_type,
+        userId: String(userId),
+        username: username,
+        wifiSsid: options.wifiSsid,
+        wifiKey: options.wifiKey,
+        files: network.getFiles(options),
+        deviceId: device.id,
+        uuid: device.uuid
+      };
+    });
   });
 };

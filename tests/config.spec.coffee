@@ -11,13 +11,21 @@ describe 'Device Config:', ->
 		describe 'given succesful responses', ->
 
 			beforeEach ->
+				@deviceGetStub = m.sinon.stub(resin.models.device, 'get')
+				@deviceGetStub.returns Promise.resolve
+					id: 3
+					application_name: 'App1'
+					device_type: 'raspberry-pi'
+					uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
+
 				@applicationGetApiKeyStub = m.sinon.stub(resin.models.application, 'getApiKey')
-				@applicationGetApiKeyStub.returns(Promise.resolve('1234'))
+				@applicationGetApiKeyStub.withArgs('App1').returns(Promise.resolve('1234'))
 
 				@authGetUserIdStub = m.sinon.stub(resin.auth, 'getUserId')
 				@authGetUserIdStub.returns(Promise.resolve(13))
 
 			afterEach ->
+				@deviceGetStub.restore()
 				@applicationGetApiKeyStub.restore()
 				@authGetUserIdStub.restore()
 
@@ -34,39 +42,26 @@ describe 'Device Config:', ->
 
 					beforeEach ->
 						@applicationGetStub = m.sinon.stub(resin.models.application, 'get')
-						@applicationGetStub.returns(Promise.reject(new errors.ResinApplicationNotFound('foo')))
+						@applicationGetStub.withArgs('App1').returns(Promise.reject(new errors.ResinApplicationNotFound('foo')))
 
 					afterEach ->
 						@applicationGetStub.restore()
 
 					it 'should reject with the error', ->
-						promise = deviceConfig.get('MyApp', {})
+						promise = deviceConfig.get('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', {})
 						m.chai.expect(promise).to.be.rejectedWith(errors.ResinApplicationNotFound)
 
 			describe 'given a valid application', ->
 
 				beforeEach ->
 					@applicationGetStub = m.sinon.stub(resin.models.application, 'get')
-					@applicationGetStub.returns Promise.resolve
+					@applicationGetStub.withArgs('App1').returns Promise.resolve
 						id: 999
 						app_name: 'App1'
 						device_type: 'raspberry-pi'
 
 				afterEach ->
 					@applicationGetStub.restore()
-
-				describe 'given no username', ->
-
-					beforeEach ->
-						@authWhoamiStub = m.sinon.stub(resin.auth, 'whoami')
-						@authWhoamiStub.returns(Promise.resolve(undefined))
-
-					afterEach ->
-						@authWhoamiStub.restore()
-
-					it 'should be rejected', ->
-						promise = deviceConfig.get('MyApp', {})
-						m.chai.expect(promise).to.be.rejectedWith(errors.ResinNotLoggedIn)
 
 				describe 'given a username', ->
 
@@ -78,9 +73,11 @@ describe 'Device Config:', ->
 						@authWhoamiStub.restore()
 
 					it 'should eventually become a valid configuration', ->
-						promise = deviceConfig.get('MyApp', {})
+						promise = deviceConfig.get('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', {})
 						m.chai.expect(promise).to.eventually.become
 							applicationId: '999'
+							deviceId: 3
+							uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
 							apiKey: '1234'
 							deviceType: 'raspberry-pi'
 							userId: '13'
@@ -111,12 +108,14 @@ describe 'Device Config:', ->
 								'''
 
 					it 'should eventually become a valid wifi configuration', ->
-						promise = deviceConfig.get 'MyApp',
+						promise = deviceConfig.get '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9',
 							wifiSsid: 'foo'
 							wifiKey: 'bar'
 
 						m.chai.expect(promise).to.eventually.become
 							applicationId: '999'
+							deviceId: 3
+							uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
 							apiKey: '1234'
 							deviceType: 'raspberry-pi'
 							userId: '13'

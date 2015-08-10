@@ -28,22 +28,22 @@ Documentation
 -------------
 
 <a name="module_deviceConfig.get"></a>
-### deviceConfig.get(name, [options]) ⇒ <code>Promise.&lt;Object&gt;</code>
+### deviceConfig.get(uuid, [options]) ⇒ <code>Promise.&lt;Object&gt;</code>
 **Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
-**Summary**: Get an application device configuration  
-**Returns**: <code>Promise.&lt;Object&gt;</code> - application configuration  
+**Summary**: Get a device configuration object  
+**Returns**: <code>Promise.&lt;Object&gt;</code> - device configuration  
 **Access:** public  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| name | <code>String</code> |  | application name |
+| uuid | <code>String</code> |  | device uuid |
 | [options] | <code>Object</code> | <code>{}</code> | options |
 | [options.wifiSsid] | <code>String</code> |  | wifi ssid |
 | [options.wifiKey] | <code>String</code> |  | wifi key |
 
 **Example**  
 ```js
-deviceConfig.get 'MyApp',
+deviceConfig.get '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9',
 	wifiSsid: 'foobar'
 	wifiKey: 'hello'
 .then (configuration) ->

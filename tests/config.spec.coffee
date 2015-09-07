@@ -76,6 +76,7 @@ describe 'Device Config:', ->
 						promise = deviceConfig.get('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', {})
 						m.chai.expect(promise).to.eventually.become
 							applicationId: '999'
+							apiEndpoint: 'https://api.resin.io/'
 							deviceId: 3
 							uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
 							apiKey: '1234'
@@ -114,6 +115,7 @@ describe 'Device Config:', ->
 
 						m.chai.expect(promise).to.eventually.become
 							applicationId: '999'
+							apiEndpoint: 'https://api.resin.io/'
 							deviceId: 3
 							uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
 							apiKey: '1234'

@@ -40,6 +40,7 @@
     "bluebird": "^2.9.32",
     "lodash": "^3.10.0",
     "resin-errors": "^1.0.2",
-    "resin-sdk": "^2.2.0"
+    "resin-sdk": "^2.7.2",
+    "resin-settings-client": "^3.0.0"
   }
 }

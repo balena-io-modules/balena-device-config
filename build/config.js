@@ -62,13 +62,14 @@ exports.get = function(uuid, options) {
     options = {};
   }
   return resin.models.device.get(uuid).then(function(device) {
-    return Promise.all([resin.models.application.get(device.application_name), resin.models.application.getApiKey(device.application_name), resin.auth.getUserId(), resin.auth.whoami()]).spread(function(application, apiKey, userId, username) {
+    return Promise.all([resin.models.application.get(device.application_name), resin.models.application.getApiKey(device.application_name), resin.auth.getUserId(), resin.auth.whoami(), resin.settings.get('apiUrl')]).spread(function(application, apiKey, userId, username, apiUrl) {
       if (username == null) {
         throw new errors.ResinNotLoggedIn();
       }
       return {
         applicationId: String(application.id),
         apiKey: apiKey,
+        apiEndpoint: apiUrl,
         deviceType: device.device_type,
         userId: String(userId),
         username: username,

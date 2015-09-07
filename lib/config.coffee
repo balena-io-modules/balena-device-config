@@ -58,13 +58,17 @@ exports.get = (uuid, options = {}) ->
 			resin.auth.getUserId()
 			resin.auth.whoami()
 			resin.settings.get('apiUrl')
-		]).spread (application, apiKey, userId, username, apiUrl) ->
+			resin.settings.get('vpnUrl')
+			resin.settings.get('registryUrl')
+		]).spread (application, apiKey, userId, username, apiUrl, vpnUrl, registryUrl) ->
 			throw new errors.ResinNotLoggedIn() if not username?
 
 			return {
 				applicationId: String(application.id)
 				apiKey: apiKey
 				apiEndpoint: apiUrl
+				vpnEndpoint: vpnUrl
+				registryEndpoint: registryUrl
 				deviceType: device.device_type
 				userId: String(userId)
 				username: username

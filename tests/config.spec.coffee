@@ -96,6 +96,7 @@ describe 'Device Config:', ->
 								username: 'johndoe'
 								wifiSsid: undefined
 								wifiKey: undefined
+								appUpdatePollInterval: '60000'
 								files:
 									'network/settings': '''
 										[global]
@@ -136,6 +137,7 @@ describe 'Device Config:', ->
 								username: 'johndoe'
 								wifiSsid: 'foo'
 								wifiKey: 'bar'
+								appUpdatePollInterval: '60000'
 								files:
 									'network/settings': '''
 										[global]

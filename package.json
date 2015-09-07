@@ -1,6 +1,6 @@
 {
   "name": "resin-device-config",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Get device config.json configuration",
   "main": "build/config.js",
   "homepage": "https://github.com/resin-io/resin-device-config",

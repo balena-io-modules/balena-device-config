@@ -71,6 +71,7 @@ exports.get = (uuid, options = {}) ->
 				wifiSsid: options.wifiSsid
 				wifiKey: options.wifiKey
 				files: network.getFiles(options)
+				registered_at: Math.floor(Date.now() / 1000)
 
 				# Associate a device, to prevent the supervisor
 				# from creating another one on it's own.

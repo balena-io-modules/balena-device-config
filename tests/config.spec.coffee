@@ -1,5 +1,6 @@
 m = require('mochainon')
 Promise = require('bluebird')
+timekeeper = require('timekeeper')
 resin = require('resin-sdk')
 errors = require('resin-errors')
 deviceConfig = require('../lib/config')
@@ -72,83 +73,94 @@ describe 'Device Config:', ->
 					afterEach ->
 						@authWhoamiStub.restore()
 
-					it 'should eventually become a valid configuration', ->
-						promise = deviceConfig.get('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', {})
-						m.chai.expect(promise).to.eventually.become
-							applicationId: '999'
-							apiEndpoint: 'https://api.resin.io/'
-							deviceId: 3
-							uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
-							apiKey: '1234'
-							deviceType: 'raspberry-pi'
-							userId: '13'
-							username: 'johndoe'
-							wifiSsid: undefined
-							wifiKey: undefined
-							files:
-								'network/settings': '''
-									[global]
-									OfflineMode=false
+					describe 'given a fixed time', ->
 
-									[WiFi]
-									Enable=true
-									Tethering=false
+						beforeEach ->
+							@currentTime = new Date(15000000)
+							timekeeper.freeze(@currentTime)
 
-									[Wired]
-									Enable=true
-									Tethering=false
+						afterEach ->
+							timekeeper.reset()
 
-									[Bluetooth]
-									Enable=true
-									Tethering=false
-								'''
-								'network/network.config': '''
-									[service_home_ethernet]
-									Type = ethernet
-									Nameservers = 8.8.8.8,8.8.4.4
-								'''
+						it 'should eventually become a valid configuration', ->
+							promise = deviceConfig.get('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', {})
+							m.chai.expect(promise).to.eventually.become
+								applicationId: '999'
+								apiEndpoint: 'https://api.resin.io/'
+								deviceId: 3
+								uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
+								apiKey: '1234'
+								deviceType: 'raspberry-pi'
+								userId: '13'
+								registered_at: 15000
+								username: 'johndoe'
+								wifiSsid: undefined
+								wifiKey: undefined
+								files:
+									'network/settings': '''
+										[global]
+										OfflineMode=false
 
-					it 'should eventually become a valid wifi configuration', ->
-						promise = deviceConfig.get '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9',
-							wifiSsid: 'foo'
-							wifiKey: 'bar'
+										[WiFi]
+										Enable=true
+										Tethering=false
 
-						m.chai.expect(promise).to.eventually.become
-							applicationId: '999'
-							apiEndpoint: 'https://api.resin.io/'
-							deviceId: 3
-							uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
-							apiKey: '1234'
-							deviceType: 'raspberry-pi'
-							userId: '13'
-							username: 'johndoe'
-							wifiSsid: 'foo'
-							wifiKey: 'bar'
-							files:
-								'network/settings': '''
-									[global]
-									OfflineMode=false
+										[Wired]
+										Enable=true
+										Tethering=false
 
-									[WiFi]
-									Enable=true
-									Tethering=false
+										[Bluetooth]
+										Enable=true
+										Tethering=false
+									'''
+									'network/network.config': '''
+										[service_home_ethernet]
+										Type = ethernet
+										Nameservers = 8.8.8.8,8.8.4.4
+									'''
 
-									[Wired]
-									Enable=true
-									Tethering=false
+						it 'should eventually become a valid wifi configuration', ->
+							promise = deviceConfig.get '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9',
+								wifiSsid: 'foo'
+								wifiKey: 'bar'
 
-									[Bluetooth]
-									Enable=true
-									Tethering=false
-								'''
-								'network/network.config': '''
-									[service_home_ethernet]
-									Type = ethernet
-									Nameservers = 8.8.8.8,8.8.4.4
+							m.chai.expect(promise).to.eventually.become
+								applicationId: '999'
+								apiEndpoint: 'https://api.resin.io/'
+								deviceId: 3
+								uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
+								apiKey: '1234'
+								deviceType: 'raspberry-pi'
+								userId: '13'
+								registered_at: 15000
+								username: 'johndoe'
+								wifiSsid: 'foo'
+								wifiKey: 'bar'
+								files:
+									'network/settings': '''
+										[global]
+										OfflineMode=false
 
-									[service_home_wifi]
-									Type = wifi
-									Name = foo
-									Passphrase = bar
-									Nameservers = 8.8.8.8,8.8.4.4
-								'''
+										[WiFi]
+										Enable=true
+										Tethering=false
+
+										[Wired]
+										Enable=true
+										Tethering=false
+
+										[Bluetooth]
+										Enable=true
+										Tethering=false
+									'''
+									'network/network.config': '''
+										[service_home_ethernet]
+										Type = ethernet
+										Nameservers = 8.8.8.8,8.8.4.4
+
+										[service_home_wifi]
+										Type = wifi
+										Name = foo
+										Passphrase = bar
+										Nameservers = 8.8.8.8,8.8.4.4
+									'''

@@ -72,8 +72,6 @@ exports.get = (uuid, options = {}) ->
 				deviceType: device.device_type
 				userId: String(userId)
 				username: username
-				wifiSsid: options.wifiSsid
-				wifiKey: options.wifiKey
 				files: network.getFiles(options)
 				registered_at: Math.floor(Date.now() / 1000)
 				appUpdatePollInterval: '60000'

@@ -76,6 +76,7 @@ exports.get = function(uuid, options) {
         wifiSsid: options.wifiSsid,
         wifiKey: options.wifiKey,
         files: network.getFiles(options),
+        registered_at: Math.floor(Date.now() / 1000),
         deviceId: device.id,
         uuid: device.uuid
       };

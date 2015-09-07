@@ -57,12 +57,14 @@ exports.get = (uuid, options = {}) ->
 			resin.models.application.getApiKey(device.application_name)
 			resin.auth.getUserId()
 			resin.auth.whoami()
-		]).spread (application, apiKey, userId, username) ->
+			resin.settings.get('apiUrl')
+		]).spread (application, apiKey, userId, username, apiUrl) ->
 			throw new errors.ResinNotLoggedIn() if not username?
 
 			return {
 				applicationId: String(application.id)
 				apiKey: apiKey
+				apiEndpoint: apiUrl
 				deviceType: device.device_type
 				userId: String(userId)
 				username: username

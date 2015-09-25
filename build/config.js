@@ -78,6 +78,7 @@ exports.get = function(uuid, options) {
         files: network.getFiles(options),
         registered_at: Math.floor(Date.now() / 1000),
         appUpdatePollInterval: '60000',
+        listenPort: 48484,
         deviceId: device.id,
         uuid: device.uuid
       };

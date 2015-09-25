@@ -94,6 +94,7 @@ describe 'Device Config:', ->
 								apiKey: '1234'
 								deviceType: 'raspberry-pi'
 								userId: '13'
+								listenPort: 48484
 								registered_at: 15000
 								username: 'johndoe'
 								appUpdatePollInterval: '60000'
@@ -135,6 +136,7 @@ describe 'Device Config:', ->
 								apiKey: '1234'
 								deviceType: 'raspberry-pi'
 								userId: '13'
+								listenPort: 48484
 								registered_at: 15000
 								username: 'johndoe'
 								appUpdatePollInterval: '60000'

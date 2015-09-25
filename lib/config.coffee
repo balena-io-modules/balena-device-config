@@ -75,6 +75,7 @@ exports.get = (uuid, options = {}) ->
 				files: network.getFiles(options)
 				registered_at: Math.floor(Date.now() / 1000)
 				appUpdatePollInterval: '60000'
+				listenPort: 48484
 
 				# Associate a device, to prevent the supervisor
 				# from creating another one on it's own.

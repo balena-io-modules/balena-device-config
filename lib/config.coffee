@@ -52,29 +52,36 @@ network = require('./network')
 ###
 exports.get = (uuid, options = {}) ->
 	resin.models.device.get(uuid).then (device) ->
-		Promise.all([
-			resin.models.application.get(device.application_name)
-			resin.models.application.getApiKey(device.application_name)
-			resin.auth.getUserId()
-			resin.auth.whoami()
-			resin.settings.get('apiUrl')
-			resin.settings.get('vpnUrl')
-			resin.settings.get('registryUrl')
-		]).spread (application, apiKey, userId, username, apiUrl, vpnUrl, registryUrl) ->
-			throw new errors.ResinNotLoggedIn() if not username?
+		Promise.props
+			application: resin.models.application.get(device.application_name)
+			apiKey: resin.models.application.getApiKey(device.application_name)
+			userId: resin.auth.getUserId()
+			username: resin.auth.whoami()
+			apiUrl: resin.settings.get('apiUrl')
+			vpnUrl: resin.settings.get('vpnUrl')
+			registryUrl: resin.settings.get('registryUrl')
+			pubNubKeys: resin.models.config.getPubNubKeys()
+			mixpanelToken: resin.models.config.getMixpanelToken()
+		.then (results) ->
+			throw new errors.ResinNotLoggedIn() if not results.username?
 
 			return {
-				applicationId: String(application.id)
-				apiKey: apiKey
-				apiEndpoint: apiUrl
-				vpnEndpoint: vpnUrl
-				registryEndpoint: registryUrl
+				applicationId: String(results.application.id)
+				apiKey: results.apiKey
+				apiEndpoint: results.apiUrl
+				vpnEndpoint: results.vpnUrl
+				registryEndpoint: results.registryUrl
 				deviceType: device.device_type
-				userId: String(userId)
-				username: username
+				userId: String(results.userId)
+				username: results.username
 				files: network.getFiles(options)
 				registered_at: Math.floor(Date.now() / 1000)
 				appUpdatePollInterval: '60000'
+				listenPort: 48484
+
+				pubnubSubscribeKey: results.pubNubKeys.subscribe_key
+				pubnubPublishKey: results.pubNubKeys.publish_key
+				mixpanelToken: results.mixpanelToken
 
 				# Associate a device, to prevent the supervisor
 				# from creating another one on it's own.

@@ -62,26 +62,36 @@ exports.get = function(uuid, options) {
     options = {};
   }
   return resin.models.device.get(uuid).then(function(device) {
-    return Promise.all([resin.models.application.get(device.application_name), resin.models.application.getApiKey(device.application_name), resin.auth.getUserId(), resin.auth.whoami(), resin.settings.get('apiUrl'), resin.settings.get('vpnUrl'), resin.settings.get('registryUrl'), resin.models.config.getPubNubKeys(), resin.models.config.getMixpanelToken()]).spread(function(application, apiKey, userId, username, apiUrl, vpnUrl, registryUrl, pubNubKeys, mixpanelToken) {
-      if (username == null) {
+    return Promise.props({
+      application: resin.models.application.get(device.application_name),
+      apiKey: resin.models.application.getApiKey(device.application_name),
+      userId: resin.auth.getUserId(),
+      username: resin.auth.whoami(),
+      apiUrl: resin.settings.get('apiUrl'),
+      vpnUrl: resin.settings.get('vpnUrl'),
+      registryUrl: resin.settings.get('registryUrl'),
+      pubNubKeys: resin.models.config.getPubNubKeys(),
+      mixpanelToken: resin.models.config.getMixpanelToken()
+    }).then(function(results) {
+      if (results.username == null) {
         throw new errors.ResinNotLoggedIn();
       }
       return {
-        applicationId: String(application.id),
-        apiKey: apiKey,
-        apiEndpoint: apiUrl,
-        vpnEndpoint: vpnUrl,
-        registryEndpoint: registryUrl,
+        applicationId: String(results.application.id),
+        apiKey: results.apiKey,
+        apiEndpoint: results.apiUrl,
+        vpnEndpoint: results.vpnUrl,
+        registryEndpoint: results.registryUrl,
         deviceType: device.device_type,
-        userId: String(userId),
-        username: username,
+        userId: String(results.userId),
+        username: results.username,
         files: network.getFiles(options),
         registered_at: Math.floor(Date.now() / 1000),
         appUpdatePollInterval: '60000',
         listenPort: 48484,
-        pubnubSubscribeKey: pubNubKeys.subscribe_key,
-        pubnubPublishKey: pubNubKeys.publish_key,
-        mixpanelToken: mixpanelToken,
+        pubnubSubscribeKey: results.pubNubKeys.subscribe_key,
+        pubnubPublishKey: results.pubNubKeys.publish_key,
+        mixpanelToken: results.mixpanelToken,
         deviceId: device.id,
         uuid: device.uuid
       };

@@ -25,10 +25,16 @@ describe 'Device Config:', ->
 				@authGetUserIdStub = m.sinon.stub(resin.auth, 'getUserId')
 				@authGetUserIdStub.returns(Promise.resolve(13))
 
+				@configGetPubNubKeysStub = m.sinon.stub(resin.models.config, 'getPubNubKeys')
+				@configGetPubNubKeysStub.returns Promise.resolve
+					publish_key: '1234'
+					subscribe_key: '5678'
+
 			afterEach ->
 				@deviceGetStub.restore()
 				@applicationGetApiKeyStub.restore()
 				@authGetUserIdStub.restore()
+				@configGetPubNubKeysStub.restore()
 
 			describe 'given a username', ->
 
@@ -95,6 +101,8 @@ describe 'Device Config:', ->
 								deviceType: 'raspberry-pi'
 								userId: '13'
 								listenPort: 48484
+								pubnubSubscribeKey: '5678'
+								pubnubPublishKey: '1234'
 								registered_at: 15000
 								username: 'johndoe'
 								appUpdatePollInterval: '60000'
@@ -137,6 +145,8 @@ describe 'Device Config:', ->
 								deviceType: 'raspberry-pi'
 								userId: '13'
 								listenPort: 48484
+								pubnubSubscribeKey: '5678'
+								pubnubPublishKey: '1234'
 								registered_at: 15000
 								username: 'johndoe'
 								appUpdatePollInterval: '60000'

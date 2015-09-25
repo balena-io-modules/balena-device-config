@@ -60,7 +60,8 @@ exports.get = (uuid, options = {}) ->
 			resin.settings.get('apiUrl')
 			resin.settings.get('vpnUrl')
 			resin.settings.get('registryUrl')
-		]).spread (application, apiKey, userId, username, apiUrl, vpnUrl, registryUrl) ->
+			resin.models.config.getPubNubKeys()
+		]).spread (application, apiKey, userId, username, apiUrl, vpnUrl, registryUrl, pubNubKeys) ->
 			throw new errors.ResinNotLoggedIn() if not username?
 
 			return {
@@ -76,6 +77,9 @@ exports.get = (uuid, options = {}) ->
 				registered_at: Math.floor(Date.now() / 1000)
 				appUpdatePollInterval: '60000'
 				listenPort: 48484
+
+				pubnubSubscribeKey: pubNubKeys.subscribe_key
+				pubnubPublishKey: pubNubKeys.publish_key
 
 				# Associate a device, to prevent the supervisor
 				# from creating another one on it's own.

@@ -30,11 +30,15 @@ describe 'Device Config:', ->
 					publish_key: '1234'
 					subscribe_key: '5678'
 
+				@configGetMixpanelToken = m.sinon.stub(resin.models.config, 'getMixpanelToken')
+				@configGetMixpanelToken.returns(Promise.resolve('asdf'))
+
 			afterEach ->
 				@deviceGetStub.restore()
 				@applicationGetApiKeyStub.restore()
 				@authGetUserIdStub.restore()
 				@configGetPubNubKeysStub.restore()
+				@configGetMixpanelToken.restore()
 
 			describe 'given a username', ->
 
@@ -103,6 +107,7 @@ describe 'Device Config:', ->
 								listenPort: 48484
 								pubnubSubscribeKey: '5678'
 								pubnubPublishKey: '1234'
+								mixpanelToken: 'asdf'
 								registered_at: 15000
 								username: 'johndoe'
 								appUpdatePollInterval: '60000'
@@ -147,6 +152,7 @@ describe 'Device Config:', ->
 								listenPort: 48484
 								pubnubSubscribeKey: '5678'
 								pubnubPublishKey: '1234'
+								mixpanelToken: 'asdf'
 								registered_at: 15000
 								username: 'johndoe'
 								appUpdatePollInterval: '60000'

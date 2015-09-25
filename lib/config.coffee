@@ -61,7 +61,8 @@ exports.get = (uuid, options = {}) ->
 			resin.settings.get('vpnUrl')
 			resin.settings.get('registryUrl')
 			resin.models.config.getPubNubKeys()
-		]).spread (application, apiKey, userId, username, apiUrl, vpnUrl, registryUrl, pubNubKeys) ->
+			resin.models.config.getMixpanelToken()
+		]).spread (application, apiKey, userId, username, apiUrl, vpnUrl, registryUrl, pubNubKeys, mixpanelToken) ->
 			throw new errors.ResinNotLoggedIn() if not username?
 
 			return {
@@ -80,6 +81,7 @@ exports.get = (uuid, options = {}) ->
 
 				pubnubSubscribeKey: pubNubKeys.subscribe_key
 				pubnubPublishKey: pubNubKeys.publish_key
+				mixpanelToken: mixpanelToken
 
 				# Associate a device, to prevent the supervisor
 				# from creating another one on it's own.

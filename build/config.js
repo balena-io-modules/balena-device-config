@@ -62,7 +62,7 @@ exports.get = function(uuid, options) {
     options = {};
   }
   return resin.models.device.get(uuid).then(function(device) {
-    return Promise.all([resin.models.application.get(device.application_name), resin.models.application.getApiKey(device.application_name), resin.auth.getUserId(), resin.auth.whoami(), resin.settings.get('apiUrl'), resin.settings.get('vpnUrl'), resin.settings.get('registryUrl'), resin.models.config.getPubNubKeys()]).spread(function(application, apiKey, userId, username, apiUrl, vpnUrl, registryUrl, pubNubKeys) {
+    return Promise.all([resin.models.application.get(device.application_name), resin.models.application.getApiKey(device.application_name), resin.auth.getUserId(), resin.auth.whoami(), resin.settings.get('apiUrl'), resin.settings.get('vpnUrl'), resin.settings.get('registryUrl'), resin.models.config.getPubNubKeys(), resin.models.config.getMixpanelToken()]).spread(function(application, apiKey, userId, username, apiUrl, vpnUrl, registryUrl, pubNubKeys, mixpanelToken) {
       if (username == null) {
         throw new errors.ResinNotLoggedIn();
       }
@@ -81,6 +81,7 @@ exports.get = function(uuid, options) {
         listenPort: 48484,
         pubnubSubscribeKey: pubNubKeys.subscribe_key,
         pubnubPublishKey: pubNubKeys.publish_key,
+        mixpanelToken: mixpanelToken,
         deviceId: device.id,
         uuid: device.uuid
       };

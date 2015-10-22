@@ -27,12 +27,102 @@ $ npm install --save resin-device-config
 Documentation
 -------------
 
+
+* [deviceConfig](#module_deviceConfig)
+  * [.generate(options, params)](#module_deviceConfig.generate) ⇒ <code>Object</code>
+  * [.validate(config)](#module_deviceConfig.validate)
+  * [.get(uuid, [options])](#module_deviceConfig.get) ⇒ <code>Promise.&lt;Object&gt;</code>
+
+<a name="module_deviceConfig.generate"></a>
+### deviceConfig.generate(options, params) ⇒ <code>Object</code>
+**Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
+**Summary**: Generate a basic config.json object  
+**Returns**: <code>Object</code> - config.json  
+**Access:** public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | options |
+| params | <code>Object</code> | user params |
+
+**Example**  
+```js
+config = deviceConfig.generate
+	application:
+		app_name: 'HelloWorldApp'
+		id: 18
+		device_type: 'raspberry-pi'
+	user:
+		id: 7
+		username: 'johndoe'
+	pubnub:
+		subscribe_key: 'demo'
+		publish_key: 'demo'
+	mixpanel:
+		token: 'e3bc4100330c35722740fb8c6f5abddc'
+	apiKey: 'asdf'
+	vpnPort: 1723
+	endpoints:
+		api: 'https://api.resin.io'
+		vpn: 'vpn.resin.io'
+		registry: 'registry.resin.io'
+,
+	network: 'ethernet'
+	appUpdatePollInterval: 50000
+
+console.log(config)
+```
+<a name="module_deviceConfig.validate"></a>
+### deviceConfig.validate(config)
+**Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
+**Summary**: Validate a generated config.json object  
+**Throws**:
+
+- Will throw if there is a validation error
+
+**Access:** public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| config | <code>Object</code> | generated config object |
+
+**Example**  
+```js
+config = deviceConfig.generate
+	application:
+		app_name: 'HelloWorldApp'
+		id: 18
+		device_type: 'raspberry-pi'
+	user:
+		id: 7
+		username: 'johndoe'
+	pubnub:
+		subscribe_key: 'demo'
+		publish_key: 'demo'
+	mixpanel:
+		token: 'e3bc4100330c35722740fb8c6f5abddc'
+	apiKey: 'asdf'
+	vpnPort: 1723
+	endpoints:
+		api: 'https://api.resin.io'
+		vpn: 'vpn.resin.io'
+		registry: 'registry.resin.io'
+,
+	network: 'ethernet'
+	appUpdatePollInterval: 50000
+
+deviceConfig.validate(config)
+```
 <a name="module_deviceConfig.get"></a>
 ### deviceConfig.get(uuid, [options]) ⇒ <code>Promise.&lt;Object&gt;</code>
 **Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
 **Summary**: Get a device configuration object  
 **Returns**: <code>Promise.&lt;Object&gt;</code> - device configuration  
 **Access:** public  
+**Todo**
+
+- [ ] Move this to the SDK
+
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |

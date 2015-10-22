@@ -7,6 +7,141 @@ deviceConfig = require('../lib/config')
 
 describe 'Device Config:', ->
 
+	describe '.generate()', ->
+
+		it 'should pass validation', ->
+			config = deviceConfig.generate
+				application:
+					app_name: 'HelloWorldApp'
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				vpnPort: 1723
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+			,
+				network: 'ethernet'
+				appUpdatePollInterval: 50000
+
+			m.chai.expect ->
+				deviceConfig.validate(config)
+			.to.not.throw(Error)
+
+		it 'should default appUpdatePollInterval to 1 second', ->
+			config = deviceConfig.generate
+				application:
+					app_name: 'HelloWorldApp'
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				vpnPort: 1723
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+			,
+				network: 'ethernet'
+
+			m.chai.expect(config.appUpdatePollInterval).to.equal(60000)
+
+		it 'should default vpnPort to 1723', ->
+			config = deviceConfig.generate
+				application:
+					app_name: 'HelloWorldApp'
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+			,
+				network: 'ethernet'
+
+			m.chai.expect(config.vpnPort).to.equal(1723)
+
+	describe '.validate()', ->
+
+		it 'should throw an error for an invalid property', ->
+			config = deviceConfig.generate
+				application:
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+			,
+				network: 'ethernet'
+
+			m.chai.expect ->
+				deviceConfig.validate(config)
+			.to.throw('Validation: applicationName is required')
+
+		it 'should throw an error if the config json contains extra properties', ->
+			config = deviceConfig.generate
+				application:
+					app_name: 'HelloWorldApp'
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				vpnPort: 1723
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+			,
+				network: 'ethernet'
+
+			config.foo = 'bar'
+
+			m.chai.expect ->
+				deviceConfig.validate(config)
+			.to.throw('Validation: foo not recognized')
+
 	describe '.get()', ->
 
 		describe 'given succesful responses', ->
@@ -95,22 +230,24 @@ describe 'Device Config:', ->
 						it 'should eventually become a valid configuration', ->
 							promise = deviceConfig.get('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', {})
 							m.chai.expect(promise).to.eventually.become
-								applicationId: '999'
+								applicationId: 999
+								applicationName: 'App1'
 								apiEndpoint: 'https://api.resin.io'
+								vpnPort: 1723
 								vpnEndpoint: 'vpn.resin.io'
 								registryEndpoint: 'registry.resin.io'
 								deviceId: 3
 								uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
 								apiKey: '1234'
 								deviceType: 'raspberry-pi'
-								userId: '13'
+								userId: 13
 								listenPort: 48484
 								pubnubSubscribeKey: '5678'
 								pubnubPublishKey: '1234'
 								mixpanelToken: 'asdf'
 								registered_at: 15000
 								username: 'johndoe'
-								appUpdatePollInterval: '60000'
+								appUpdatePollInterval: 60000
 								files:
 									'network/settings': '''
 										[global]
@@ -140,22 +277,24 @@ describe 'Device Config:', ->
 								wifiKey: 'bar'
 
 							m.chai.expect(promise).to.eventually.become
-								applicationId: '999'
+								applicationId: 999
+								applicationName: 'App1'
 								apiEndpoint: 'https://api.resin.io'
+								vpnPort: 1723
 								vpnEndpoint: 'vpn.resin.io'
 								registryEndpoint: 'registry.resin.io'
 								deviceId: 3
 								uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
 								apiKey: '1234'
 								deviceType: 'raspberry-pi'
-								userId: '13'
+								userId: 13
 								listenPort: 48484
 								pubnubSubscribeKey: '5678'
 								pubnubPublishKey: '1234'
 								mixpanelToken: 'asdf'
 								registered_at: 15000
 								username: 'johndoe'
-								appUpdatePollInterval: '60000'
+								appUpdatePollInterval: 60000
 								files:
 									'network/settings': '''
 										[global]

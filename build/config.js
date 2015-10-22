@@ -26,7 +26,9 @@ THE SOFTWARE.
 /**
  * @module deviceConfig
  */
-var Promise, errors, network, resin;
+var Promise, errors, network, resin, revalidator, schema, _;
+
+_ = require('lodash');
 
 Promise = require('bluebird');
 
@@ -34,7 +36,122 @@ resin = require('resin-sdk');
 
 errors = require('resin-errors');
 
+revalidator = require('revalidator');
+
 network = require('./network');
+
+schema = require('./schema');
+
+
+/**
+ * @summary Generate a basic config.json object
+ * @function
+ * @public
+ *
+ * @param {Object} options - options
+ * @param {Object} params - user params
+ *
+ * @returns {Object} config.json
+ *
+ * @example
+ * config = deviceConfig.generate
+ * 	application:
+ * 		app_name: 'HelloWorldApp'
+ * 		id: 18
+ * 		device_type: 'raspberry-pi'
+ * 	user:
+ * 		id: 7
+ * 		username: 'johndoe'
+ * 	pubnub:
+ * 		subscribe_key: 'demo'
+ * 		publish_key: 'demo'
+ * 	mixpanel:
+ * 		token: 'e3bc4100330c35722740fb8c6f5abddc'
+ * 	apiKey: 'asdf'
+ * 	vpnPort: 1723
+ * 	endpoints:
+ * 		api: 'https://api.resin.io'
+ * 		vpn: 'vpn.resin.io'
+ * 		registry: 'registry.resin.io'
+ * ,
+ * 	network: 'ethernet'
+ * 	appUpdatePollInterval: 50000
+ *
+ * console.log(config)
+ */
+
+exports.generate = function(options, params) {
+  if (params == null) {
+    params = {};
+  }
+  return {
+    applicationName: options.application.app_name,
+    applicationId: options.application.id,
+    deviceType: options.application.device_type,
+    userId: options.user.id,
+    username: options.user.username,
+    files: network.getFiles(params),
+    appUpdatePollInterval: params.appUpdatePollInterval || 60000,
+    listenPort: 48484,
+    vpnPort: options.vpnPort || 1723,
+    apiEndpoint: options.endpoints.api,
+    vpnEndpoint: options.endpoints.vpn,
+    registryEndpoint: options.endpoints.registry,
+    pubnubSubscribeKey: options.pubnub.subscribe_key,
+    pubnubPublishKey: options.pubnub.publish_key,
+    mixpanelToken: options.mixpanel.token,
+    apiKey: options.apiKey
+  };
+};
+
+
+/**
+ * @summary Validate a generated config.json object
+ * @function
+ * @public
+ *
+ * @param {Object} config - generated config object
+ * @throws Will throw if there is a validation error
+ *
+ * @example
+ * config = deviceConfig.generate
+ * 	application:
+ * 		app_name: 'HelloWorldApp'
+ * 		id: 18
+ * 		device_type: 'raspberry-pi'
+ * 	user:
+ * 		id: 7
+ * 		username: 'johndoe'
+ * 	pubnub:
+ * 		subscribe_key: 'demo'
+ * 		publish_key: 'demo'
+ * 	mixpanel:
+ * 		token: 'e3bc4100330c35722740fb8c6f5abddc'
+ * 	apiKey: 'asdf'
+ * 	vpnPort: 1723
+ * 	endpoints:
+ * 		api: 'https://api.resin.io'
+ * 		vpn: 'vpn.resin.io'
+ * 		registry: 'registry.resin.io'
+ * ,
+ * 	network: 'ethernet'
+ * 	appUpdatePollInterval: 50000
+ *
+ * deviceConfig.validate(config)
+ */
+
+exports.validate = function(config) {
+  var disallowedProperty, error, validation;
+  validation = revalidator.validate(config, schema);
+  if (!validation.valid) {
+    error = _.first(validation.errors);
+    throw new Error("Validation: " + error.property + " " + error.message);
+  }
+  disallowedProperty = _.chain(config).keys().difference(_.keys(schema.properties)).first().value();
+  if (disallowedProperty != null) {
+    throw new Error("Validation: " + disallowedProperty + " not recognized");
+  }
+};
 
 
 /**
@@ -48,6 +165,8 @@ network = require('./network');
  * @param {String} [options.wifiKey] - wifi key
  *
  * @returns {Promise<Object>} device configuration
+ *
+ * @todo Move this to the SDK
  *
  * @example
  * deviceConfig.get '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9',
@@ -73,28 +192,32 @@ exports.get = function(uuid, options) {
       pubNubKeys: resin.models.config.getPubNubKeys(),
       mixpanelToken: resin.models.config.getMixpanelToken()
     }).then(function(results) {
+      var config;
       if (results.username == null) {
         throw new errors.ResinNotLoggedIn();
       }
-      return {
-        applicationId: String(results.application.id),
+      config = exports.generate({
+        application: results.application,
+        user: {
+          id: results.userId,
+          username: results.username
+        },
+        pubnub: results.pubNubKeys,
+        mixpanel: {
+          token: results.mixpanelToken
+        },
         apiKey: results.apiKey,
-        apiEndpoint: results.apiUrl,
-        vpnEndpoint: results.vpnUrl,
-        registryEndpoint: results.registryUrl,
-        deviceType: device.device_type,
-        userId: String(results.userId),
-        username: results.username,
-        files: network.getFiles(options),
-        registered_at: Math.floor(Date.now() / 1000),
-        appUpdatePollInterval: '60000',
-        listenPort: 48484,
-        pubnubSubscribeKey: results.pubNubKeys.subscribe_key,
-        pubnubPublishKey: results.pubNubKeys.publish_key,
-        mixpanelToken: results.mixpanelToken,
-        deviceId: device.id,
-        uuid: device.uuid
-      };
+        endpoints: {
+          api: results.apiUrl,
+          vpn: results.vpnUrl,
+          registry: results.registryUrl
+        }
+      }, options);
+      config.registered_at = Math.floor(Date.now() / 1000);
+      config.deviceId = device.id;
+      config.uuid = uuid;
+      exports.validate(config);
+      return config;
     });
   });
 };

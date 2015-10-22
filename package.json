@@ -42,6 +42,7 @@
     "lodash": "^3.10.0",
     "resin-errors": "^1.0.2",
     "resin-sdk": "^3.0.0",
-    "resin-settings-client": "^3.0.0"
+    "resin-settings-client": "^3.0.0",
+    "revalidator": "^0.3.1"
   }
 }

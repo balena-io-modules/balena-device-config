@@ -62,6 +62,32 @@ describe 'Device Config:', ->
 
 			m.chai.expect(config.appUpdatePollInterval).to.equal(60000)
 
+		it 'should default appUpdatePollInterval to 1 second if NaN', ->
+			config = deviceConfig.generate
+				application:
+					app_name: 'HelloWorldApp'
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				vpnPort: 1723
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+			,
+				network: 'ethernet'
+				appUpdatePollInterval: NaN
+
+			m.chai.expect(config.appUpdatePollInterval).to.equal(60000)
+
 		it 'should default vpnPort to 1723', ->
 			config = deviceConfig.generate
 				application:

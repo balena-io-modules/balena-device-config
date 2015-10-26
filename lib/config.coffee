@@ -71,7 +71,7 @@ schema = require('./schema')
 # console.log(config)
 ###
 exports.generate = (options, params = {}) ->
-	return {
+	config =
 		applicationName: options.application.app_name
 		applicationId: options.application.id
 		deviceType: options.application.device_type
@@ -92,7 +92,9 @@ exports.generate = (options, params = {}) ->
 		pubnubPublishKey: options.pubnub.publish_key
 		mixpanelToken: options.mixpanel.token
 		apiKey: options.apiKey
-	}
+
+	exports.validate(config)
+	return config
 
 ###*
 # @summary Validate a generated config.json object

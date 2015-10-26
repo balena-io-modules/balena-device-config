@@ -89,28 +89,26 @@ describe 'Device Config:', ->
 	describe '.validate()', ->
 
 		it 'should throw an error for an invalid property', ->
-			config = deviceConfig.generate
-				application:
-					id: 18
-					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
-				apiKey: 'asdf'
-				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-			,
-				network: 'ethernet'
-
 			m.chai.expect ->
-				deviceConfig.validate(config)
+				deviceConfig.generate
+					application:
+						id: 18
+						device_type: 'raspberry-pi'
+					user:
+						id: 7
+						username: 'johndoe'
+					pubnub:
+						subscribe_key: 'demo'
+						publish_key: 'demo'
+					mixpanel:
+						token: 'e3bc4100330c35722740fb8c6f5abddc'
+					apiKey: 'asdf'
+					endpoints:
+						api: 'https://api.resin.io'
+						vpn: 'vpn.resin.io'
+						registry: 'registry.resin.io'
+				,
+					network: 'ethernet'
 			.to.throw('Validation: applicationName is required')
 
 		it 'should throw an error if the config json contains extra properties', ->

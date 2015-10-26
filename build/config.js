@@ -103,6 +103,10 @@ exports.generate = function(options, params) {
     mixpanelToken: options.mixpanel.token,
     apiKey: options.apiKey
   };
+  if (params.network === 'wifi') {
+    config.wifiSsid = params.wifiSsid;
+    config.wifiKey = params.wifiKey;
+  }
   exports.validate(config);
   return config;
 };

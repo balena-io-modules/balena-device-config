@@ -141,4 +141,11 @@ module.exports =
 			type: 'string'
 			allowEmpty: false
 			pattern: /^[0-9a-f]{62}$/
-
+		wifiSsid:
+			description: 'wifi ssid'
+			type: 'string'
+			allowEmpty: true
+		wifiKey:
+			description: 'wifi key'
+			type: 'string'
+			allowEmpty: true

@@ -86,6 +86,33 @@ describe 'Device Config:', ->
 
 			m.chai.expect(config.vpnPort).to.equal(1723)
 
+		it 'should handle wifi configuration', ->
+			config = deviceConfig.generate
+				application:
+					app_name: 'HelloWorldApp'
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+			,
+				network: 'wifi'
+				wifiSsid: 'mywifi'
+				wifiKey: 'secret'
+
+			m.chai.expect(config.wifiSsid).to.equal('mywifi')
+			m.chai.expect(config.wifiKey).to.equal('secret')
+
 	describe '.validate()', ->
 
 		it 'should throw an error for an invalid property', ->

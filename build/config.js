@@ -81,10 +81,11 @@ schema = require('./schema');
  */
 
 exports.generate = function(options, params) {
+  var config;
   if (params == null) {
     params = {};
   }
-  return {
+  config = {
     applicationName: options.application.app_name,
     applicationId: options.application.id,
     deviceType: options.application.device_type,
@@ -102,6 +103,8 @@ exports.generate = function(options, params) {
     mixpanelToken: options.mixpanel.token,
     apiKey: options.apiKey
   };
+  exports.validate(config);
+  return config;
 };
 
 

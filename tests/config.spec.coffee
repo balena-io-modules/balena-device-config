@@ -29,6 +29,7 @@ describe 'Device Config:', ->
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
 					registry: 'registry.resin.io'
+					delta: 'https://delta.resin.io'
 			,
 				network: 'ethernet'
 				appUpdatePollInterval: 50000
@@ -57,6 +58,7 @@ describe 'Device Config:', ->
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
 					registry: 'registry.resin.io'
+					delta: 'https://delta.resin.io'
 			,
 				network: 'ethernet'
 
@@ -82,6 +84,7 @@ describe 'Device Config:', ->
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
 					registry: 'registry.resin.io'
+					delta: 'https://delta.resin.io'
 			,
 				network: 'ethernet'
 				appUpdatePollInterval: NaN
@@ -107,6 +110,7 @@ describe 'Device Config:', ->
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
 					registry: 'registry.resin.io'
+					delta: 'https://delta.resin.io'
 			,
 				network: 'ethernet'
 
@@ -131,6 +135,7 @@ describe 'Device Config:', ->
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
 					registry: 'registry.resin.io'
+					delta: 'https://delta.resin.io'
 			,
 				network: 'wifi'
 				wifiSsid: 'mywifi'
@@ -160,6 +165,7 @@ describe 'Device Config:', ->
 						api: 'https://api.resin.io'
 						vpn: 'vpn.resin.io'
 						registry: 'registry.resin.io'
+						delta: 'https://delta.resin.io'
 				,
 					network: 'ethernet'
 			.to.throw('Validation: applicationName is required')
@@ -184,6 +190,7 @@ describe 'Device Config:', ->
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
 					registry: 'registry.resin.io'
+					delta: 'https://delta.resin.io'
 			,
 				network: 'ethernet'
 
@@ -287,6 +294,7 @@ describe 'Device Config:', ->
 								vpnPort: 1723
 								vpnEndpoint: 'vpn.resin.io'
 								registryEndpoint: 'registry.resin.io'
+								deltaEndpoint: 'https://delta.resin.io'
 								deviceId: 3
 								uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
 								apiKey: '1234'
@@ -330,6 +338,7 @@ describe 'Device Config:', ->
 							m.chai.expect(promise).to.eventually.become
 								applicationId: 999
 								applicationName: 'App1'
+								deltaEndpoint: 'https://delta.resin.io'
 								apiEndpoint: 'https://api.resin.io'
 								vpnPort: 1723
 								vpnEndpoint: 'vpn.resin.io'

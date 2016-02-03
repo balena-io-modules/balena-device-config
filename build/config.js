@@ -90,6 +90,7 @@ exports.generate = function(options, params) {
     apiEndpoint: options.endpoints.api,
     vpnEndpoint: options.endpoints.vpn,
     registryEndpoint: options.endpoints.registry,
+    deltaEndpoint: options.endpoints.delta,
     pubnubSubscribeKey: options.pubnub.subscribe_key,
     pubnubPublishKey: options.pubnub.publish_key,
     mixpanelToken: options.mixpanel.token,
@@ -189,6 +190,7 @@ exports.get = function(uuid, options) {
       apiUrl: resin.settings.get('apiUrl'),
       vpnUrl: resin.settings.get('vpnUrl'),
       registryUrl: resin.settings.get('registryUrl'),
+      deltaUrl: resin.settings.get('deltaUrl'),
       pubNubKeys: resin.models.config.getPubNubKeys(),
       mixpanelToken: resin.models.config.getMixpanelToken()
     }).then(function(results) {
@@ -210,7 +212,8 @@ exports.get = function(uuid, options) {
         endpoints: {
           api: results.apiUrl,
           vpn: results.vpnUrl,
-          registry: results.registryUrl
+          registry: results.registryUrl,
+          delta: results.deltaUrl
         }
       }, options);
       config.registered_at = Math.floor(Date.now() / 1000);

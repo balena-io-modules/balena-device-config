@@ -79,6 +79,7 @@ exports.generate = (options, params = {}) ->
 		apiEndpoint: options.endpoints.api
 		vpnEndpoint: options.endpoints.vpn
 		registryEndpoint: options.endpoints.registry
+		deltaEndpoint: options.endpoints.delta
 
 		pubnubSubscribeKey: options.pubnub.subscribe_key
 		pubnubPublishKey: options.pubnub.publish_key
@@ -174,6 +175,7 @@ exports.get = (uuid, options = {}) ->
 			apiUrl: resin.settings.get('apiUrl')
 			vpnUrl: resin.settings.get('vpnUrl')
 			registryUrl: resin.settings.get('registryUrl')
+			deltaUrl: resin.settings.get('deltaUrl')
 			pubNubKeys: resin.models.config.getPubNubKeys()
 			mixpanelToken: resin.models.config.getMixpanelToken()
 		.then (results) ->
@@ -192,6 +194,7 @@ exports.get = (uuid, options = {}) ->
 					api: results.apiUrl
 					vpn: results.vpnUrl
 					registry: results.registryUrl
+					delta: results.deltaUrl
 			, options
 
 			# Associate a device, to prevent the supervisor

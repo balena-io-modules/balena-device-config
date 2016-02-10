@@ -86,7 +86,7 @@ exports.generate = function(options, params) {
     files: network.getFiles(params),
     appUpdatePollInterval: params.appUpdatePollInterval || 60000,
     listenPort: 48484,
-    vpnPort: options.vpnPort || 1723,
+    vpnPort: _.parseInt(options.vpnPort) || 1723,
     apiEndpoint: options.endpoints.api,
     vpnEndpoint: options.endpoints.vpn,
     registryEndpoint: options.endpoints.registry,

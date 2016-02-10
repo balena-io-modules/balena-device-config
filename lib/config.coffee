@@ -74,7 +74,7 @@ exports.generate = (options, params = {}) ->
 		appUpdatePollInterval: params.appUpdatePollInterval or 60000
 
 		listenPort: 48484
-		vpnPort: options.vpnPort or 1723
+		vpnPort: _.parseInt(options.vpnPort) or 1723
 
 		apiEndpoint: options.endpoints.api
 		vpnEndpoint: options.endpoints.vpn

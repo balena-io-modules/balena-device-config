@@ -144,6 +144,62 @@ describe 'Device Config:', ->
 			m.chai.expect(config.wifiSsid).to.equal('mywifi')
 			m.chai.expect(config.wifiKey).to.equal('secret')
 
+		it 'should parse vpnPort as an integer automatically', ->
+			config = deviceConfig.generate
+				application:
+					app_name: 'HelloWorldApp'
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				vpnPort: '1234'
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+					delta: 'https://delta.resin.io'
+			,
+				network: 'wifi'
+				wifiSsid: 'mywifi'
+				wifiKey: 'secret'
+
+			m.chai.expect(config.vpnPort).to.equal(1234)
+
+		it 'should handle a NaN vpnPort', ->
+			config = deviceConfig.generate
+				application:
+					app_name: 'HelloWorldApp'
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				vpnPort: 'hello'
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+					delta: 'https://delta.resin.io'
+			,
+				network: 'wifi'
+				wifiSsid: 'mywifi'
+				wifiKey: 'secret'
+
+			m.chai.expect(config.vpnPort).to.equal(1723)
+
 	describe '.validate()', ->
 
 		it 'should throw an error for an invalid property', ->

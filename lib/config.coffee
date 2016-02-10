@@ -63,6 +63,10 @@ schema = require('./schema')
 # console.log(config)
 ###
 exports.generate = (options, params = {}) ->
+
+	_.defaults options,
+		vpnPort: 1723
+
 	config =
 		applicationName: options.application.app_name
 		applicationId: options.application.id
@@ -74,7 +78,7 @@ exports.generate = (options, params = {}) ->
 		appUpdatePollInterval: params.appUpdatePollInterval or 60000
 
 		listenPort: 48484
-		vpnPort: _.parseInt(options.vpnPort) or 1723
+		vpnPort: options.vpnPort
 
 		apiEndpoint: options.endpoints.api
 		vpnEndpoint: options.endpoints.vpn
@@ -128,7 +132,7 @@ exports.generate = (options, params = {}) ->
 # deviceConfig.validate(config)
 ###
 exports.validate = (config) ->
-	validation = revalidator.validate(config, schema)
+	validation = revalidator.validate(config, schema, cast: true)
 
 	if not validation.valid
 		error = _.first(validation.errors)

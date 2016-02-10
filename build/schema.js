@@ -14,6 +14,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
+var _;
+
+_ = require('lodash');
+
 
 /**
  * @summary config.json validation schema
@@ -25,6 +29,7 @@ limitations under the License.
  *
  *		https://github.com/flatiron/revalidator
  */
+
 module.exports = {
   properties: {
     applicationName: {
@@ -92,7 +97,11 @@ module.exports = {
       description: 'vpn port',
       type: 'number',
       minimum: 0,
-      required: true
+      required: true,
+      conform: _.negate(_.isNaN),
+      messages: {
+        conform: 'is NaN'
+      }
     },
     apiEndpoint: {
       description: 'api endpoint',

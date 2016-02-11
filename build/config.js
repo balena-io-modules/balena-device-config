@@ -77,6 +77,9 @@ exports.generate = function(options, params) {
   if (params == null) {
     params = {};
   }
+  _.defaults(options, {
+    vpnPort: 1723
+  });
   config = {
     applicationName: options.application.app_name,
     applicationId: options.application.id,
@@ -86,7 +89,7 @@ exports.generate = function(options, params) {
     files: network.getFiles(params),
     appUpdatePollInterval: params.appUpdatePollInterval || 60000,
     listenPort: 48484,
-    vpnPort: _.parseInt(options.vpnPort) || 1723,
+    vpnPort: options.vpnPort,
     apiEndpoint: options.endpoints.api,
     vpnEndpoint: options.endpoints.vpn,
     registryEndpoint: options.endpoints.registry,
@@ -142,7 +145,9 @@ exports.generate = function(options, params) {
 
 exports.validate = function(config) {
   var disallowedProperty, error, validation;
-  validation = revalidator.validate(config, schema);
+  validation = revalidator.validate(config, schema, {
+    cast: true
+  });
   if (!validation.valid) {
     error = _.first(validation.errors);
     throw new Error("Validation: " + error.property + " " + error.message);

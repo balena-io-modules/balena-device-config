@@ -172,33 +172,61 @@ describe 'Device Config:', ->
 
 			m.chai.expect(config.vpnPort).to.equal(1234)
 
-		it 'should handle a NaN vpnPort', ->
-			config = deviceConfig.generate
-				application:
-					app_name: 'HelloWorldApp'
-					id: 18
-					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
-				apiKey: 'asdf'
-				vpnPort: 'hello'
-				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
-			,
-				network: 'wifi'
-				wifiSsid: 'mywifi'
-				wifiKey: 'secret'
+		it 'should throw an error if vpnPort becomes NaN', ->
+			m.chai.expect ->
+				config = deviceConfig.generate
+					application:
+						app_name: 'HelloWorldApp'
+						id: 18
+						device_type: 'raspberry-pi'
+					user:
+						id: 7
+						username: 'johndoe'
+					pubnub:
+						subscribe_key: 'demo'
+						publish_key: 'demo'
+					mixpanel:
+						token: 'e3bc4100330c35722740fb8c6f5abddc'
+					apiKey: 'asdf'
+					vpnPort: 'hello'
+					endpoints:
+						api: 'https://api.resin.io'
+						vpn: 'vpn.resin.io'
+						registry: 'registry.resin.io'
+						delta: 'https://delta.resin.io'
+				,
+					network: 'wifi'
+					wifiSsid: 'mywifi'
+					wifiKey: 'secret'
+			.to.throw('Validation: vpnPort must be of number type')
 
-			m.chai.expect(config.vpnPort).to.equal(1723)
+		it 'should throw an error if vpnPort is NaN', ->
+			m.chai.expect ->
+				config = deviceConfig.generate
+					application:
+						app_name: 'HelloWorldApp'
+						id: 18
+						device_type: 'raspberry-pi'
+					user:
+						id: 7
+						username: 'johndoe'
+					pubnub:
+						subscribe_key: 'demo'
+						publish_key: 'demo'
+					mixpanel:
+						token: 'e3bc4100330c35722740fb8c6f5abddc'
+					apiKey: 'asdf'
+					vpnPort: NaN
+					endpoints:
+						api: 'https://api.resin.io'
+						vpn: 'vpn.resin.io'
+						registry: 'registry.resin.io'
+						delta: 'https://delta.resin.io'
+				,
+					network: 'wifi'
+					wifiSsid: 'mywifi'
+					wifiKey: 'secret'
+			.to.throw('Validation: vpnPort is NaN')
 
 		it 'should allow deltaEndpoint to be undefined', ->
 			config = null
@@ -217,7 +245,7 @@ describe 'Device Config:', ->
 					mixpanel:
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
-					vpnPort: 'hello'
+					vpnPort: '1234'
 					endpoints:
 						api: 'https://api.resin.io'
 						vpn: 'vpn.resin.io'

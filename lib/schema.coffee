@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ###
 
+_ = require('lodash')
+
 ###*
 # @summary config.json validation schema
 # @name schema
@@ -81,6 +83,9 @@ module.exports =
 			type: 'number'
 			minimum: 0
 			required: true
+			conform: _.negate(_.isNaN)
+			messages:
+				conform: 'is NaN'
 		apiEndpoint:
 			description: 'api endpoint'
 			type: 'string'

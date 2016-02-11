@@ -90,7 +90,7 @@ module.exports =
 		deltaEndpoint:
 			description: 'delta endpoint'
 			type: 'string'
-			required: true
+			required: false
 			allowEmpty: false
 			format: 'url'
 		vpnEndpoint:

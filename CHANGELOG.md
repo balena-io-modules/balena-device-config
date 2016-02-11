@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.5.2] - 2016-02-11
+
+### Changed
+
+- Make `deltaEndpoint` optional.
+- Throw an error if `vpnPort` becomes `NaN`.
+
 ## [2.5.1] - 2016-02-10
 
 ### Changed
@@ -100,6 +107,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Take a `uuid` instead of an application name.
 
+[2.5.2]: https://github.com/resin-io/resin-device-config/compare/v2.5.1...v2.5.2
 [2.5.1]: https://github.com/resin-io/resin-device-config/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/resin-io/resin-device-config/compare/v2.4.4...v2.5.0
 [2.4.4]: https://github.com/resin-io/resin-device-config/compare/v2.4.3...v2.4.4

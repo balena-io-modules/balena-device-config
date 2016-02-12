@@ -47,6 +47,10 @@ exports.main = '''
 # @param {Object} options - options
 # @param {String} [options.wifiSsid] - wifi ssid
 # @param {String} [options.wifiKey] - wifi key
+# @param {Boolean} [options.staticIp] - whether to use a static ip
+# @param {String} [options.ip] - static ip address
+# @param {String} [options.netmask] - static ip netmask
+# @param {String} [options.gateway] - static ip gateway
 #
 # @returns {String} Network configuration.
 #
@@ -57,11 +61,22 @@ exports.main = '''
 ###
 exports.getHomeSettings = (options) ->
 
+	_.defaults options,
+		netmask: '255.255.255.0'
+
 	config = '''
 		[service_home_ethernet]
 		Type = ethernet
 		Nameservers = 8.8.8.8,8.8.4.4
 	'''
+
+	if options.ip?
+
+		if not options.gateway?
+			throw new Error('Missing network gateway')
+
+		staticIpConfiguration = "\nIPv4 = #{options.ip}/#{options.netmask}/#{options.gateway}"
+		config += staticIpConfiguration
 
 	if not _.isEmpty(options.wifiSsid?.trim())
 		config += """\n
@@ -74,5 +89,8 @@ exports.getHomeSettings = (options) ->
 			config += "\nPassphrase = #{options.wifiKey}"
 
 		config += '\nNameservers = 8.8.8.8,8.8.4.4'
+
+		if staticIpConfiguration?
+			config += staticIpConfiguration
 
 	return config

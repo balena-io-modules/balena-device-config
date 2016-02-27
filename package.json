@@ -40,7 +40,7 @@
   "dependencies": {
     "bluebird": "^2.9.32",
     "lodash": "^3.10.0",
-    "resin-sdk": "^4.0.0",
+    "resin-sdk": "^5.1.0",
     "resin-errors": "^2.0.0",
     "resin-settings-client": "^3.4.2",
     "revalidator": "^0.3.1"

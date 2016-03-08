@@ -2,9 +2,9 @@ resin-device-config
 -------------------
 
 [![npm version](https://badge.fury.io/js/resin-device-config.svg)](http://badge.fury.io/js/resin-device-config)
-[![dependencies](https://david-dm.org/resin-io/resin-device-config.png)](https://david-dm.org/resin-io/resin-device-config.png)
-[![Build Status](https://travis-ci.org/resin-io/resin-device-config.svg?branch=master)](https://travis-ci.org/resin-io/resin-device-config)
-[![Build status](https://ci.appveyor.com/api/projects/status/im9y5jv9ml0fs8jo?svg=true)](https://ci.appveyor.com/project/jviotti/resin-device-config)
+[![dependencies](https://david-dm.org/resin-io-modules/resin-device-config.png)](https://david-dm.org/resin-io-modules/resin-device-config.png)
+[![Build Status](https://travis-ci.org/resin-io-modules/resin-device-config.svg?branch=master)](https://travis-ci.org/resin-io-modules/resin-device-config)
+[![Build status](https://ci.appveyor.com/api/projects/status/im9y5jv9ml0fs8jo/branch/master?svg=true)](https://ci.appveyor.com/project/resin-io/resin-device-config/branch/master)
 
 Join our online chat at [![Gitter chat](https://badges.gitter.im/resin-io/chat.png)](https://gitter.im/resin-io/chat)
 
@@ -146,7 +146,7 @@ deviceConfig.get '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9
 Support
 -------
 
-If you're having any problem, please [raise an issue](https://github.com/resin-io/resin-device-config/issues/new) on GitHub and the Resin.io team will be happy to help.
+If you're having any problem, please [raise an issue](https://github.com/resin-io-modules/resin-device-config/issues/new) on GitHub and the Resin.io team will be happy to help.
 
 Tests
 -----
@@ -160,8 +160,8 @@ $ gulp test
 Contribute
 ----------
 
-- Issue Tracker: [github.com/resin-io/resin-device-config/issues](https://github.com/resin-io/resin-device-config/issues)
-- Source Code: [github.com/resin-io/resin-device-config](https://github.com/resin-io/resin-device-config)
+- Issue Tracker: [github.com/resin-io-modules/resin-device-config/issues](https://github.com/resin-io-modules/resin-device-config/issues)
+- Source Code: [github.com/resin-io-modules/resin-device-config](https://github.com/resin-io-modules/resin-device-config)
 
 Before submitting a PR, please make sure that you include tests, and that [coffeelint](http://www.coffeelint.org/) runs without any warning:
 

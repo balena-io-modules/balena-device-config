@@ -119,19 +119,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Take a `uuid` instead of an application name.
 
-[2.6.1]: https://github.com/resin-io/resin-device-config/compare/v2.6.0...v2.6.1
-[2.6.0]: https://github.com/resin-io/resin-device-config/compare/v2.5.2...v2.6.0
-[2.5.2]: https://github.com/resin-io/resin-device-config/compare/v2.5.1...v2.5.2
-[2.5.1]: https://github.com/resin-io/resin-device-config/compare/v2.5.0...v2.5.1
-[2.5.0]: https://github.com/resin-io/resin-device-config/compare/v2.4.4...v2.5.0
-[2.4.4]: https://github.com/resin-io/resin-device-config/compare/v2.4.3...v2.4.4
-[2.4.3]: https://github.com/resin-io/resin-device-config/compare/v2.4.2...v2.4.3
-[2.4.2]: https://github.com/resin-io/resin-device-config/compare/v2.4.1...v2.4.2
-[2.4.1]: https://github.com/resin-io/resin-device-config/compare/v2.4.0...v2.4.1
-[2.4.0]: https://github.com/resin-io/resin-device-config/compare/v2.3.0...v2.4.0
-[2.3.0]: https://github.com/resin-io/resin-device-config/compare/v2.2.1...v2.3.0
-[2.2.1]: https://github.com/resin-io/resin-device-config/compare/v2.2.0...v2.2.1
-[2.2.0]: https://github.com/resin-io/resin-device-config/compare/v2.1.0...v2.2.0
-[2.1.0]: https://github.com/resin-io/resin-device-config/compare/v2.0.1...v2.1.0
-[2.0.1]: https://github.com/resin-io/resin-device-config/compare/v2.0.0...v2.0.1
-[2.0.0]: https://github.com/resin-io/resin-device-config/compare/v1.0.0...v2.0.0
+[2.6.1]: https://github.com/resin-io-modules/resin-device-config/compare/v2.6.0...v2.6.1
+[2.6.0]: https://github.com/resin-io-modules/resin-device-config/compare/v2.5.2...v2.6.0
+[2.5.2]: https://github.com/resin-io-modules/resin-device-config/compare/v2.5.1...v2.5.2
+[2.5.1]: https://github.com/resin-io-modules/resin-device-config/compare/v2.5.0...v2.5.1
+[2.5.0]: https://github.com/resin-io-modules/resin-device-config/compare/v2.4.4...v2.5.0
+[2.4.4]: https://github.com/resin-io-modules/resin-device-config/compare/v2.4.3...v2.4.4
+[2.4.3]: https://github.com/resin-io-modules/resin-device-config/compare/v2.4.2...v2.4.3
+[2.4.2]: https://github.com/resin-io-modules/resin-device-config/compare/v2.4.1...v2.4.2
+[2.4.1]: https://github.com/resin-io-modules/resin-device-config/compare/v2.4.0...v2.4.1
+[2.4.0]: https://github.com/resin-io-modules/resin-device-config/compare/v2.3.0...v2.4.0
+[2.3.0]: https://github.com/resin-io-modules/resin-device-config/compare/v2.2.1...v2.3.0
+[2.2.1]: https://github.com/resin-io-modules/resin-device-config/compare/v2.2.0...v2.2.1
+[2.2.0]: https://github.com/resin-io-modules/resin-device-config/compare/v2.1.0...v2.2.0
+[2.1.0]: https://github.com/resin-io-modules/resin-device-config/compare/v2.0.1...v2.1.0
+[2.0.1]: https://github.com/resin-io-modules/resin-device-config/compare/v2.0.0...v2.0.1
+[2.0.0]: https://github.com/resin-io-modules/resin-device-config/compare/v1.0.0...v2.0.0

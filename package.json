@@ -3,10 +3,10 @@
   "version": "2.6.1",
   "description": "Get device config.json configuration",
   "main": "build/config.js",
-  "homepage": "https://github.com/resin-io/resin-device-config",
+  "homepage": "https://github.com/resin-io-modules/resin-device-config",
   "repository": {
     "type": "git",
-    "url": "git://github.com/resin-io/resin-device-config.git"
+    "url": "git://github.com/resin-io-modules/resin-device-config.git"
   },
   "keywords": [
     "resin",

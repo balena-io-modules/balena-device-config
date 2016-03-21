@@ -313,7 +313,7 @@ describe 'Device Config:', ->
 				deviceConfig.validate(config)
 			.to.throw('Validation: foo not recognized')
 
-	describe '.get()', ->
+	describe '.getByDevice()', ->
 
 		describe 'given succesful responses', ->
 
@@ -365,7 +365,7 @@ describe 'Device Config:', ->
 						@applicationGetStub.restore()
 
 					it 'should reject with the error', ->
-						promise = deviceConfig.get('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', {})
+						promise = deviceConfig.getByDevice('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', {})
 						m.chai.expect(promise).to.be.rejectedWith(errors.ResinApplicationNotFound)
 
 			describe 'given a valid application', ->
@@ -399,7 +399,7 @@ describe 'Device Config:', ->
 							timekeeper.reset()
 
 						it 'should eventually become a valid configuration', ->
-							promise = deviceConfig.get('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', {})
+							promise = deviceConfig.getByDevice('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', {})
 							m.chai.expect(promise).to.eventually.become
 								applicationId: 999
 								applicationName: 'App1'
@@ -444,7 +444,7 @@ describe 'Device Config:', ->
 									'''
 
 						it 'should eventually become a valid wifi configuration', ->
-							promise = deviceConfig.get '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9',
+							promise = deviceConfig.getByDevice '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9',
 								wifiSsid: 'foo'
 								wifiKey: 'bar'
 
@@ -496,3 +496,137 @@ describe 'Device Config:', ->
 										Passphrase = bar
 										Nameservers = 8.8.8.8,8.8.4.4
 									'''
+
+	describe '.getByApplication()', ->
+
+		describe 'given succesful responses', ->
+
+			beforeEach ->
+				@applicationGetStub = m.sinon.stub(resin.models.application, 'get')
+				@applicationGetStub.returns Promise.resolve
+					id: 3
+					app_name: 'App1'
+					device_type: 'raspberry-pi'
+
+				@applicationGetApiKeyStub = m.sinon.stub(resin.models.application, 'getApiKey')
+				@applicationGetApiKeyStub.withArgs('App1').returns(Promise.resolve('1234'))
+
+				@authGetUserIdStub = m.sinon.stub(resin.auth, 'getUserId')
+				@authGetUserIdStub.returns(Promise.resolve(13))
+
+				@configGetPubNubKeysStub = m.sinon.stub(resin.models.config, 'getPubNubKeys')
+				@configGetPubNubKeysStub.returns Promise.resolve
+					publish_key: '1234'
+					subscribe_key: '5678'
+
+				@configGetMixpanelToken = m.sinon.stub(resin.models.config, 'getMixpanelToken')
+				@configGetMixpanelToken.returns(Promise.resolve('asdf'))
+
+			afterEach ->
+				@applicationGetStub.restore()
+				@applicationGetApiKeyStub.restore()
+				@authGetUserIdStub.restore()
+				@configGetPubNubKeysStub.restore()
+				@configGetMixpanelToken.restore()
+
+			describe 'given a username', ->
+
+				beforeEach ->
+					@authWhoamiStub = m.sinon.stub(resin.auth, 'whoami')
+					@authWhoamiStub.returns(Promise.resolve('johndoe'))
+
+				afterEach ->
+					@authWhoamiStub.restore()
+
+				it 'should eventually become a valid configuration', ->
+					promise = deviceConfig.getByApplication('App1', {})
+					m.chai.expect(promise).to.eventually.become
+						applicationId: 3
+						applicationName: 'App1'
+						apiEndpoint: 'https://api.resin.io'
+						vpnPort: 1723
+						vpnEndpoint: 'vpn.resin.io'
+						registryEndpoint: 'registry.resin.io'
+						deltaEndpoint: 'https://delta.resin.io'
+						apiKey: '1234'
+						deviceType: 'raspberry-pi'
+						userId: 13
+						listenPort: 48484
+						pubnubSubscribeKey: '5678'
+						pubnubPublishKey: '1234'
+						mixpanelToken: 'asdf'
+						username: 'johndoe'
+						appUpdatePollInterval: 60000
+						files:
+							'network/settings': '''
+								[global]
+								OfflineMode=false
+
+								[WiFi]
+								Enable=true
+								Tethering=false
+
+								[Wired]
+								Enable=true
+								Tethering=false
+
+								[Bluetooth]
+								Enable=true
+								Tethering=false
+							'''
+							'network/network.config': '''
+								[service_home_ethernet]
+								Type = ethernet
+								Nameservers = 8.8.8.8,8.8.4.4
+							'''
+
+				it 'should eventually become a valid wifi configuration', ->
+					promise = deviceConfig.getByApplication 'App1',
+						wifiSsid: 'foo'
+						wifiKey: 'bar'
+
+					m.chai.expect(promise).to.eventually.become
+						applicationId: 3
+						applicationName: 'App1'
+						deltaEndpoint: 'https://delta.resin.io'
+						apiEndpoint: 'https://api.resin.io'
+						vpnPort: 1723
+						vpnEndpoint: 'vpn.resin.io'
+						registryEndpoint: 'registry.resin.io'
+						apiKey: '1234'
+						deviceType: 'raspberry-pi'
+						userId: 13
+						listenPort: 48484
+						pubnubSubscribeKey: '5678'
+						pubnubPublishKey: '1234'
+						mixpanelToken: 'asdf'
+						username: 'johndoe'
+						appUpdatePollInterval: 60000
+						files:
+							'network/settings': '''
+								[global]
+								OfflineMode=false
+
+								[WiFi]
+								Enable=true
+								Tethering=false
+
+								[Wired]
+								Enable=true
+								Tethering=false
+
+								[Bluetooth]
+								Enable=true
+								Tethering=false
+							'''
+							'network/network.config': '''
+								[service_home_ethernet]
+								Type = ethernet
+								Nameservers = 8.8.8.8,8.8.4.4
+
+								[service_home_wifi]
+								Type = wifi
+								Name = foo
+								Passphrase = bar
+								Nameservers = 8.8.8.8,8.8.4.4
+							'''

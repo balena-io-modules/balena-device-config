@@ -33,7 +33,8 @@ Documentation
 * [deviceConfig](#module_deviceConfig)
   * [.generate(options, params)](#module_deviceConfig.generate) ⇒ <code>Object</code>
   * [.validate(config)](#module_deviceConfig.validate)
-  * [.get(uuid, [options])](#module_deviceConfig.get) ⇒ <code>Promise.&lt;Object&gt;</code>
+  * [.getByApplication(application, [options])](#module_deviceConfig.getByApplication) ⇒ <code>Promise.&lt;Object&gt;</code>
+  * [.getByDevice(uuid, [options])](#module_deviceConfig.getByDevice) ⇒ <code>Promise.&lt;Object&gt;</code>
 
 <a name="module_deviceConfig.generate"></a>
 ### deviceConfig.generate(options, params) ⇒ <code>Object</code>
@@ -115,10 +116,37 @@ config = deviceConfig.generate
 
 deviceConfig.validate(config)
 ```
-<a name="module_deviceConfig.get"></a>
-### deviceConfig.get(uuid, [options]) ⇒ <code>Promise.&lt;Object&gt;</code>
+<a name="module_deviceConfig.getByApplication"></a>
+### deviceConfig.getByApplication(application, [options]) ⇒ <code>Promise.&lt;Object&gt;</code>
 **Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
-**Summary**: Get a device configuration object  
+**Summary**: Get a device configuration object from an application  
+**Returns**: <code>Promise.&lt;Object&gt;</code> - device configuration  
+**Access:** public  
+**Todo**
+
+- [ ] Move this to the SDK
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| application | <code>String</code> |  | application name |
+| [options] | <code>Object</code> | <code>{}</code> | options |
+| [options.wifiSsid] | <code>String</code> |  | wifi ssid |
+| [options.wifiKey] | <code>String</code> |  | wifi key |
+
+**Example**  
+```js
+deviceConfig.getByApplication 'App1',
+	network: 'wifi'
+	wifiSsid: 'foobar'
+	wifiKey: 'hello'
+.then (configuration) ->
+	console.log(configuration)
+```
+<a name="module_deviceConfig.getByDevice"></a>
+### deviceConfig.getByDevice(uuid, [options]) ⇒ <code>Promise.&lt;Object&gt;</code>
+**Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
+**Summary**: Get a device configuration object from a device  
 **Returns**: <code>Promise.&lt;Object&gt;</code> - device configuration  
 **Access:** public  
 **Todo**
@@ -135,7 +163,7 @@ deviceConfig.validate(config)
 
 **Example**  
 ```js
-deviceConfig.get '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9',
+deviceConfig.getByDevice '7cf02a6',
 	network: 'wifi'
 	wifiSsid: 'foobar'
 	wifiKey: 'hello'

@@ -148,7 +148,64 @@ exports.validate = (config) ->
 		throw new Error("Validation: #{disallowedProperty} not recognized")
 
 ###*
-# @summary Get a device configuration object
+# @summary Get a device configuration object from an application
+# @public
+# @function
+#
+# @param {String} application - application name
+# @param {Object} [options={}] - options
+# @param {String} [options.wifiSsid] - wifi ssid
+# @param {String} [options.wifiKey] - wifi key
+#
+# @returns {Promise<Object>} device configuration
+#
+# @todo Move this to the SDK
+#
+# @example
+# deviceConfig.getByApplication 'App1',
+# 	network: 'wifi'
+# 	wifiSsid: 'foobar'
+# 	wifiKey: 'hello'
+# .then (configuration) ->
+# 	console.log(configuration)
+###
+exports.getByApplication = (application, options = {}) ->
+	Promise.props
+		application: resin.models.application.get(application)
+		apiKey: resin.models.application.getApiKey(application)
+		userId: resin.auth.getUserId()
+		username: resin.auth.whoami()
+		apiUrl: resin.settings.get('apiUrl')
+		vpnUrl: resin.settings.get('vpnUrl')
+		registryUrl: resin.settings.get('registryUrl')
+		deltaUrl: resin.settings.get('deltaUrl')
+		pubNubKeys: resin.models.config.getPubNubKeys()
+		mixpanelToken: resin.models.config.getMixpanelToken()
+	.then (results) ->
+		throw new errors.ResinNotLoggedIn() if not results.username?
+
+		config = exports.generate
+			application: results.application
+			user:
+				id: results.userId
+				username: results.username
+			pubnub: results.pubNubKeys
+			mixpanel:
+				token: results.mixpanelToken
+			apiKey: results.apiKey
+			endpoints:
+				api: results.apiUrl
+				vpn: results.vpnUrl
+				registry: results.registryUrl
+				delta: results.deltaUrl
+		, options
+
+		exports.validate(config)
+
+		return config
+
+###*
+# @summary Get a device configuration object from a device
 # @public
 # @function
 #
@@ -162,44 +219,16 @@ exports.validate = (config) ->
 # @todo Move this to the SDK
 #
 # @example
-# deviceConfig.get '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9',
+# deviceConfig.getByDevice '7cf02a6',
 # 	network: 'wifi'
 # 	wifiSsid: 'foobar'
 # 	wifiKey: 'hello'
 # .then (configuration) ->
 # 	console.log(configuration)
 ###
-exports.get = (uuid, options = {}) ->
+exports.getByDevice = (uuid, options = {}) ->
 	resin.models.device.get(uuid).then (device) ->
-		Promise.props
-			application: resin.models.application.get(device.application_name)
-			apiKey: resin.models.application.getApiKey(device.application_name)
-			userId: resin.auth.getUserId()
-			username: resin.auth.whoami()
-			apiUrl: resin.settings.get('apiUrl')
-			vpnUrl: resin.settings.get('vpnUrl')
-			registryUrl: resin.settings.get('registryUrl')
-			deltaUrl: resin.settings.get('deltaUrl')
-			pubNubKeys: resin.models.config.getPubNubKeys()
-			mixpanelToken: resin.models.config.getMixpanelToken()
-		.then (results) ->
-			throw new errors.ResinNotLoggedIn() if not results.username?
-
-			config = exports.generate
-				application: results.application
-				user:
-					id: results.userId
-					username: results.username
-				pubnub: results.pubNubKeys
-				mixpanel:
-					token: results.mixpanelToken
-				apiKey: results.apiKey
-				endpoints:
-					api: results.apiUrl
-					vpn: results.vpnUrl
-					registry: results.registryUrl
-					delta: results.deltaUrl
-			, options
+		return exports.getByApplication(device.application_name, options).then (config) ->
 
 			# Associate a device, to prevent the supervisor
 			# from creating another one on it's own.

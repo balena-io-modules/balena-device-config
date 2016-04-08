@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.1] - 2016-04-08
+
+### Changed
+
+- Expand shorter uuids in `.getByDevice()`.
+
 ## [3.0.0] - 2016-03-21
 
 ### Added
@@ -129,6 +135,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Take a `uuid` instead of an application name.
 
+[3.0.1]: https://github.com/resin-io-modules/resin-device-config/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/resin-io-modules/resin-device-config/compare/v2.6.1...v3.0.0
 [2.6.1]: https://github.com/resin-io-modules/resin-device-config/compare/v2.6.0...v2.6.1
 [2.6.0]: https://github.com/resin-io-modules/resin-device-config/compare/v2.5.2...v2.6.0

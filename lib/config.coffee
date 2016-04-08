@@ -234,7 +234,7 @@ exports.getByDevice = (uuid, options = {}) ->
 			# from creating another one on it's own.
 			config.registered_at = Math.floor(Date.now() / 1000)
 			config.deviceId = device.id
-			config.uuid = uuid
+			config.uuid = device.uuid
 
 			exports.validate(config)
 

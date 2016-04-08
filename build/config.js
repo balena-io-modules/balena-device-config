@@ -257,7 +257,7 @@ exports.getByDevice = function(uuid, options) {
     return exports.getByApplication(device.application_name, options).then(function(config) {
       config.registered_at = Math.floor(Date.now() / 1000);
       config.deviceId = device.id;
-      config.uuid = uuid;
+      config.uuid = device.uuid;
       exports.validate(config);
       return config;
     });

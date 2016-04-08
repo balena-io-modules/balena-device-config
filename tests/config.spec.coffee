@@ -497,6 +497,51 @@ describe 'Device Config:', ->
 										Nameservers = 8.8.8.8,8.8.4.4
 									'''
 
+						it 'should expand a shorter uuid by default', ->
+							promise = deviceConfig.getByDevice('7cf02a6', {})
+							m.chai.expect(promise).to.eventually.become
+								applicationId: 999
+								applicationName: 'App1'
+								apiEndpoint: 'https://api.resin.io'
+								vpnPort: 1723
+								vpnEndpoint: 'vpn.resin.io'
+								registryEndpoint: 'registry.resin.io'
+								deltaEndpoint: 'https://delta.resin.io'
+								deviceId: 3
+								uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
+								apiKey: '1234'
+								deviceType: 'raspberry-pi'
+								userId: 13
+								listenPort: 48484
+								pubnubSubscribeKey: '5678'
+								pubnubPublishKey: '1234'
+								mixpanelToken: 'asdf'
+								registered_at: 15000
+								username: 'johndoe'
+								appUpdatePollInterval: 60000
+								files:
+									'network/settings': '''
+										[global]
+										OfflineMode=false
+
+										[WiFi]
+										Enable=true
+										Tethering=false
+
+										[Wired]
+										Enable=true
+										Tethering=false
+
+										[Bluetooth]
+										Enable=true
+										Tethering=false
+									'''
+									'network/network.config': '''
+										[service_home_ethernet]
+										Type = ethernet
+										Nameservers = 8.8.8.8,8.8.4.4
+									'''
+
 	describe '.getByApplication()', ->
 
 		describe 'given succesful responses', ->

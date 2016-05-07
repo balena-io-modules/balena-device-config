@@ -90,6 +90,7 @@ describe 'Network:', ->
 					IPv4 = 192.168.1.100/255.255.255.0/192.168.1.1
 
 					[service_home_wifi]
+					Hidden = true
 					Type = wifi
 					Name = mynetwork
 					Passphrase = secret
@@ -124,6 +125,7 @@ describe 'Network:', ->
 						Nameservers = 8.8.8.8,8.8.4.4
 
 						[service_home_wifi]
+						Hidden = true
 						Type = wifi
 						Name = foobar
 						Nameservers = 8.8.8.8,8.8.4.4
@@ -159,6 +161,7 @@ describe 'Network:', ->
 						Nameservers = 8.8.8.8,8.8.4.4
 
 						[service_home_wifi]
+						Hidden = true
 						Type = wifi
 						Name = foobar
 						Passphrase = hello

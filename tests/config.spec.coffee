@@ -491,6 +491,7 @@ describe 'Device Config:', ->
 										Nameservers = 8.8.8.8,8.8.4.4
 
 										[service_home_wifi]
+										Hidden = true
 										Type = wifi
 										Name = foo
 										Passphrase = bar
@@ -670,6 +671,7 @@ describe 'Device Config:', ->
 								Nameservers = 8.8.8.8,8.8.4.4
 
 								[service_home_wifi]
+								Hidden = true
 								Type = wifi
 								Name = foo
 								Passphrase = bar

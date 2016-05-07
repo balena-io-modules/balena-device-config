@@ -81,6 +81,7 @@ exports.getHomeSettings = (options) ->
 	if not _.isEmpty(options.wifiSsid?.trim())
 		config += """\n
 			[service_home_wifi]
+			Hidden = true
 			Type = wifi
 			Name = #{options.wifiSsid}
 		"""

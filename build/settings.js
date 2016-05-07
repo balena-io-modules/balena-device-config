@@ -64,7 +64,7 @@ exports.getHomeSettings = function(options) {
     config += staticIpConfiguration;
   }
   if (!_.isEmpty((_ref = options.wifiSsid) != null ? _ref.trim() : void 0)) {
-    config += "\n\n[service_home_wifi]\nType = wifi\nName = " + options.wifiSsid;
+    config += "\n\n[service_home_wifi]\nHidden = true\nType = wifi\nName = " + options.wifiSsid;
     if (options.wifiKey) {
       config += "\nPassphrase = " + options.wifiKey;
     }

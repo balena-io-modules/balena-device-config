@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.1.0] - 2016-14-06
+
+#### Changed
+
+- Support for hidden wifi networks.
+
 ## [3.0.1] - 2016-04-08
 
 ### Changed

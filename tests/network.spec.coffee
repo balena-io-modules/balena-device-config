@@ -23,6 +23,7 @@ describe 'Network:', ->
 					'network/settings': '''
 						[global]
 						OfflineMode=false
+						TimeUpdates=manual
 
 						[WiFi]
 						Enable=true
@@ -106,6 +107,7 @@ describe 'Network:', ->
 					'network/settings': '''
 						[global]
 						OfflineMode=false
+						TimeUpdates=manual
 
 						[WiFi]
 						Enable=true
@@ -142,6 +144,7 @@ describe 'Network:', ->
 					'network/settings': '''
 						[global]
 						OfflineMode=false
+						TimeUpdates=manual
 
 						[WiFi]
 						Enable=true

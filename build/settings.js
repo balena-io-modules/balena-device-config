@@ -26,7 +26,7 @@ _ = require('lodash');
  * @type {String}
  */
 
-exports.main = '[global]\nOfflineMode=false\n\n[WiFi]\nEnable=true\nTethering=false\n\n[Wired]\nEnable=true\nTethering=false\n\n[Bluetooth]\nEnable=true\nTethering=false';
+exports.main = '[global]\nOfflineMode=false\nTimeUpdates=manual\n\n[WiFi]\nEnable=true\nTethering=false\n\n[Wired]\nEnable=true\nTethering=false\n\n[Bluetooth]\nEnable=true\nTethering=false';
 
 
 /**

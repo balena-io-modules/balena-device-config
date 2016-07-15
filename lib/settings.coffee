@@ -25,6 +25,7 @@ _ = require('lodash')
 exports.main = '''
 	[global]
 	OfflineMode=false
+	TimeUpdates=manual
 
 	[WiFi]
 	Enable=true

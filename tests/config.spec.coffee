@@ -424,6 +424,7 @@ describe 'Device Config:', ->
 									'network/settings': '''
 										[global]
 										OfflineMode=false
+										TimeUpdates=manual
 
 										[WiFi]
 										Enable=true
@@ -472,6 +473,7 @@ describe 'Device Config:', ->
 									'network/settings': '''
 										[global]
 										OfflineMode=false
+										TimeUpdates=manual
 
 										[WiFi]
 										Enable=true
@@ -524,6 +526,7 @@ describe 'Device Config:', ->
 									'network/settings': '''
 										[global]
 										OfflineMode=false
+										TimeUpdates=manual
 
 										[WiFi]
 										Enable=true
@@ -607,6 +610,7 @@ describe 'Device Config:', ->
 							'network/settings': '''
 								[global]
 								OfflineMode=false
+								TimeUpdates=manual
 
 								[WiFi]
 								Enable=true
@@ -652,6 +656,7 @@ describe 'Device Config:', ->
 							'network/settings': '''
 								[global]
 								OfflineMode=false
+								TimeUpdates=manual
 
 								[WiFi]
 								Enable=true

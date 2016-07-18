@@ -3,9 +3,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [3.1.0] - 2016-14-06
+## [3.2.0] - 2016-07-18
 
-#### Changed
+### Changed
+
+- Disable connman ntp as it is now handled by systemd-timesyncd.
+
+## [3.1.0] - 2016-06-14
+
+### Changed
 
 - Support for hidden wifi networks.
 

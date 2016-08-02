@@ -64,7 +64,7 @@ describe 'Device Config:', ->
 
 			m.chai.expect(config.appUpdatePollInterval).to.equal(60000)
 
-		it 'should include files section if no version is given', ->
+		it 'should include files and wifi section if no version is given', ->
 			config = deviceConfig.generate
 				application:
 					app_name: 'HelloWorldApp'
@@ -86,11 +86,15 @@ describe 'Device Config:', ->
 					registry: 'registry.resin.io'
 					delta: 'https://delta.resin.io'
 			,
-				network: 'ethernet'
+				network: 'wifi'
+				wifiSsid: 'ssid'
+				wifiKey: 'key'
 
 			m.chai.expect(config.files).to.exist
+			m.chai.expect(config.wifiSsid).to.exist
+			m.chai.expect(config.wifiKey).to.exist
 
-		it 'should include files section if the given version is < 2.0.0', ->
+		it 'should include files and wifi section if the given version is < 2.0.0', ->
 			config = deviceConfig.generate
 				application:
 					app_name: 'HelloWorldApp'
@@ -113,11 +117,15 @@ describe 'Device Config:', ->
 					delta: 'https://delta.resin.io'
 				version: '1.9.999'
 			,
-				network: 'ethernet'
+				network: 'wifi'
+				wifiSsid: 'ssid'
+				wifiKey: 'key'
 
 			m.chai.expect(config.files).to.exist
+			m.chai.expect(config.wifiSsid).to.exist
+			m.chai.expect(config.wifiKey).to.exist
 
-		it 'should not include files section if the given version is >= 2.0.0', ->
+		it 'should not include files or wifi section if the given version is >= 2.0.0', ->
 			config = deviceConfig.generate
 				application:
 					app_name: 'HelloWorldApp'
@@ -140,9 +148,13 @@ describe 'Device Config:', ->
 					delta: 'https://delta.resin.io'
 				version: '2.0.1'
 			,
-				network: 'ethernet'
+				network: 'wifi'
+				wifiSsid: 'ssid'
+				wifiKey: 'key'
 
 			m.chai.expect(config.files).to.not.exist
+			m.chai.expect(config.wifiSsid).to.not.exist
+			m.chai.expect(config.wifiKey).to.not.exist
 
 		it 'should default appUpdatePollInterval to 1 second if NaN', ->
 			config = deviceConfig.generate
@@ -218,11 +230,6 @@ describe 'Device Config:', ->
 					delta: 'https://delta.resin.io'
 			,
 				network: 'wifi'
-				wifiSsid: 'mywifi'
-				wifiKey: 'secret'
-
-			m.chai.expect(config.wifiSsid).to.equal('mywifi')
-			m.chai.expect(config.wifiKey).to.equal('secret')
 
 		it 'should parse vpnPort as an integer automatically', ->
 			config = deviceConfig.generate

@@ -420,6 +420,7 @@ describe 'Device Config:', ->
 								registered_at: 15000
 								username: 'johndoe'
 								appUpdatePollInterval: 60000
+								connectivity: 'ConnMan'
 								files:
 									'network/settings': '''
 										[global]
@@ -469,6 +470,7 @@ describe 'Device Config:', ->
 								registered_at: 15000
 								username: 'johndoe'
 								appUpdatePollInterval: 60000
+								connectivity: 'ConnMan'
 								files:
 									'network/settings': '''
 										[global]
@@ -522,6 +524,7 @@ describe 'Device Config:', ->
 								registered_at: 15000
 								username: 'johndoe'
 								appUpdatePollInterval: 60000
+								connectivity: 'ConnMan'
 								files:
 									'network/settings': '''
 										[global]
@@ -606,6 +609,7 @@ describe 'Device Config:', ->
 						mixpanelToken: 'asdf'
 						username: 'johndoe'
 						appUpdatePollInterval: 60000
+						connectivity: 'ConnMan'
 						files:
 							'network/settings': '''
 								[global]
@@ -652,6 +656,7 @@ describe 'Device Config:', ->
 						mixpanelToken: 'asdf'
 						username: 'johndoe'
 						appUpdatePollInterval: 60000
+						connectivity: 'ConnMan'
 						files:
 							'network/settings': '''
 								[global]

@@ -157,3 +157,4 @@ module.exports =
 			type: 'string'
 			allowEmpty: false
 			pattern: /^(NetworkManager)|(ConnMan)$/
+			default: 'ConnMan'

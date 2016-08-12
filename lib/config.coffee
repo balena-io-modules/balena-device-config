@@ -90,7 +90,7 @@ exports.generate = (options, params = {}) ->
 		mixpanelToken: options.mixpanel.token
 		apiKey: options.apiKey
 
-		connectivity: params.connectivity
+		connectivity: params.connectivity or 'ConnMan'
 	if params.network is 'wifi'
 		config.wifiSsid = params.wifiSsid
 		config.wifiKey = params.wifiKey

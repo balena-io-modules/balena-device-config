@@ -152,3 +152,8 @@ module.exports =
 			description: 'wifi key'
 			type: 'string'
 			allowEmpty: true
+		connectivity:
+			description: 'network management software'
+			type: 'string'
+			allowEmpty: false
+			pattern: /^(NetworkManager)|(ConnMan)$/

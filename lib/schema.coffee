@@ -156,5 +156,5 @@ module.exports =
 			description: 'network management software'
 			type: 'string'
 			allowEmpty: false
-			pattern: /^(NetworkManager)|(ConnMan)$/
-			default: 'ConnMan'
+			pattern: /^(networkmanager)|(connman)$/
+			default: 'connman'

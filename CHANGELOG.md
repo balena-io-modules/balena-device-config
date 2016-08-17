@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.3.0] - 2016-08-12
+
+### Added
+
+- Add `connectivity` property.
+
 ## [3.2.0] - 2016-07-18
 
 ### Changed
@@ -147,6 +153,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Take a `uuid` instead of an application name.
 
+[3.3.0]: https://github.com/resin-io-modules/resin-device-config/compare/v3.2.0...v3.3.0
+[3.2.0]: https://github.com/resin-io-modules/resin-device-config/compare/v3.1.0...v3.2.0
+[3.1.0]: https://github.com/resin-io-modules/resin-device-config/compare/v3.0.1...v3.1.0
 [3.0.1]: https://github.com/resin-io-modules/resin-device-config/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/resin-io-modules/resin-device-config/compare/v2.6.1...v3.0.0
 [2.6.1]: https://github.com/resin-io-modules/resin-device-config/compare/v2.6.0...v2.6.1

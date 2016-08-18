@@ -97,7 +97,8 @@ exports.generate = function(options, params) {
     pubnubSubscribeKey: options.pubnub.subscribe_key,
     pubnubPublishKey: options.pubnub.publish_key,
     mixpanelToken: options.mixpanel.token,
-    apiKey: options.apiKey
+    apiKey: options.apiKey,
+    connectivity: params.connectivity || 'connman'
   };
   if (params.network === 'wifi') {
     config.wifiSsid = params.wifiSsid;

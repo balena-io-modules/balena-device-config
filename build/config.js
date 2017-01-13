@@ -24,7 +24,7 @@ _ = require('lodash');
 
 Promise = require('bluebird');
 
-resin = require('resin-sdk');
+resin = require('resin-sdk-preconfigured');
 
 errors = require('resin-errors');
 

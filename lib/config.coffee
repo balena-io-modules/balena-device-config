@@ -20,7 +20,7 @@ limitations under the License.
 
 _ = require('lodash')
 Promise = require('bluebird')
-resin = require('resin-sdk')
+resin = require('resin-sdk-preconfigured')
 errors = require('resin-errors')
 revalidator = require('revalidator')
 network = require('./network')

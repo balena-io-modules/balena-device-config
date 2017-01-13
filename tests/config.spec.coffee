@@ -1,7 +1,7 @@
 m = require('mochainon')
 Promise = require('bluebird')
 timekeeper = require('timekeeper')
-resin = require('resin-sdk')
+resin = require('resin-sdk-preconfigured')
 errors = require('resin-errors')
 deviceConfig = require('../lib/config')
 

@@ -73,7 +73,7 @@ schema = require('./schema');
  */
 
 exports.generate = function(options, params) {
-  var config;
+  var config, majorVersion;
   if (params == null) {
     params = {};
   }
@@ -86,7 +86,6 @@ exports.generate = function(options, params) {
     deviceType: options.application.device_type,
     userId: options.user.id,
     username: options.user.username,
-    files: network.getFiles(params),
     appUpdatePollInterval: params.appUpdatePollInterval || 60000,
     listenPort: 48484,
     vpnPort: options.vpnPort,
@@ -100,6 +99,12 @@ exports.generate = function(options, params) {
     apiKey: options.apiKey,
     connectivity: params.connectivity || 'connman'
   };
+  if (options.version) {
+    majorVersion = parseInt(options.version.split('.', 1)[0]);
+  }
+  if (!majorVersion || majorVersion < 2) {
+    config.files = network.getFiles(params);
+  }
   if (params.network === 'wifi') {
     config.wifiSsid = params.wifiSsid;
     config.wifiKey = params.wifiKey;

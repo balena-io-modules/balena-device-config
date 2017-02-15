@@ -56,7 +56,7 @@ module.exports =
 		files:
 			description: 'files'
 			type: 'object'
-			required: true
+			required: false
 			properties:
 				'network/settings':
 					description: 'network settings'

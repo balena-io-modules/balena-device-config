@@ -64,6 +64,86 @@ describe 'Device Config:', ->
 
 			m.chai.expect(config.appUpdatePollInterval).to.equal(60000)
 
+		it 'should include files section if no version is given', ->
+			config = deviceConfig.generate
+				application:
+					app_name: 'HelloWorldApp'
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				vpnPort: 1723
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+					delta: 'https://delta.resin.io'
+			,
+				network: 'ethernet'
+
+			m.chai.expect(config.files).to.exist
+
+		it 'should include files section if the given version is < 2.0.0', ->
+			config = deviceConfig.generate
+				application:
+					app_name: 'HelloWorldApp'
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				vpnPort: 1723
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+					delta: 'https://delta.resin.io'
+				version: '1.9.999'
+			,
+				network: 'ethernet'
+
+			m.chai.expect(config.files).to.exist
+
+		it 'should not include files section if the given version is >= 2.0.0', ->
+			config = deviceConfig.generate
+				application:
+					app_name: 'HelloWorldApp'
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				vpnPort: 1723
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+					delta: 'https://delta.resin.io'
+				version: '2.0.1'
+			,
+				network: 'ethernet'
+
+			m.chai.expect(config.files).to.not.exist
+
 		it 'should default appUpdatePollInterval to 1 second if NaN', ->
 			config = deviceConfig.generate
 				application:

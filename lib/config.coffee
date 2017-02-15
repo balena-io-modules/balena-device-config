@@ -74,7 +74,6 @@ exports.generate = (options, params = {}) ->
 		userId: options.user.id
 		username: options.user.username
 
-		files: network.getFiles(params)
 		appUpdatePollInterval: params.appUpdatePollInterval or 60000
 
 		listenPort: 48484
@@ -91,6 +90,11 @@ exports.generate = (options, params = {}) ->
 		apiKey: options.apiKey
 
 		connectivity: params.connectivity or 'connman'
+
+	majorVersion = parseInt(options.version.split('.', 1)[0]) if options.version
+	if not majorVersion or majorVersion < 2
+		config.files = network.getFiles(params)
+
 	if params.network is 'wifi'
 		config.wifiSsid = params.wifiSsid
 		config.wifiKey = params.wifiKey

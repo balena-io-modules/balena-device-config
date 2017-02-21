@@ -94,10 +94,9 @@ exports.generate = (options, params = {}) ->
 	majorVersion = parseInt(options.version.split('.', 1)[0]) if options.version
 	if not majorVersion or majorVersion < 2
 		config.files = network.getFiles(params)
-
-	if params.network is 'wifi'
-		config.wifiSsid = params.wifiSsid
-		config.wifiKey = params.wifiKey
+		if params.network is 'wifi'
+			config.wifiSsid = params.wifiSsid
+			config.wifiKey = params.wifiKey
 
 	exports.validate(config)
 	return config

@@ -90,7 +90,7 @@ describe 'Device Config:', ->
 
 			m.chai.expect(config.files).to.exist
 
-		it 'should include files section if the given version is < 2.0.0', ->
+		it 'should include files and connectivity sections if the given version is < 2.0.0', ->
 			config = deviceConfig.generate
 				application:
 					app_name: 'HelloWorldApp'
@@ -112,12 +112,14 @@ describe 'Device Config:', ->
 					registry: 'registry.resin.io'
 					delta: 'https://delta.resin.io'
 				version: '1.9.999'
+				connectivity: 'connman'
 			,
 				network: 'ethernet'
 
 			m.chai.expect(config.files).to.exist
+			m.chai.expect(config.connectivity).to.exist
 
-		it 'should not include files section if the given version is >= 2.0.0', ->
+		it 'should not include files or connectivity sections if the given version is >= 2.0.0', ->
 			config = deviceConfig.generate
 				application:
 					app_name: 'HelloWorldApp'
@@ -139,10 +141,12 @@ describe 'Device Config:', ->
 					registry: 'registry.resin.io'
 					delta: 'https://delta.resin.io'
 				version: '2.0.1'
+				connectivity: 'connman'
 			,
 				network: 'ethernet'
 
 			m.chai.expect(config.files).to.not.exist
+			m.chai.expect(config.connectivity).to.not.exist
 
 		it 'should default appUpdatePollInterval to 1 second if NaN', ->
 			config = deviceConfig.generate

@@ -89,11 +89,10 @@ exports.generate = (options, params = {}) ->
 		mixpanelToken: options.mixpanel.token
 		apiKey: options.apiKey
 
-		connectivity: params.connectivity or 'connman'
-
 	majorVersion = parseInt(options.version.split('.', 1)[0]) if options.version
 	if not majorVersion or majorVersion < 2
 		config.files = network.getFiles(params)
+		config.connectivity = params.connectivity or 'connman'
 
 	if params.network is 'wifi'
 		config.wifiSsid = params.wifiSsid

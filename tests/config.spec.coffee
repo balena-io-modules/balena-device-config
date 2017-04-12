@@ -4,6 +4,7 @@ timekeeper = require('timekeeper')
 resin = require('resin-sdk-preconfigured')
 errors = require('resin-errors')
 deviceConfig = require('../lib/config')
+_ = require('lodash')
 
 describe 'Device Config:', ->
 
@@ -399,7 +400,7 @@ describe 'Device Config:', ->
 
 	describe '.getByDevice()', ->
 
-		describe 'given succesful responses', ->
+		describe 'given successful responses', ->
 
 			beforeEach ->
 				@deviceGetStub = m.sinon.stub(resin.models.device, 'get')
@@ -449,8 +450,14 @@ describe 'Device Config:', ->
 						@applicationGetStub.restore()
 
 					it 'should reject with the error', ->
-						promise = deviceConfig.getByDevice('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', {})
+						promise = deviceConfig.getByDevice('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', '4321', {})
 						m.chai.expect(promise).to.be.rejectedWith(errors.ResinApplicationNotFound)
+
+				describe 'given an invalid device api key', ->
+
+					it 'should reject with the error', ->
+						promise = deviceConfig.getByDevice('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9')
+						m.chai.expect(promise).to.eventually.rejectedWith(Error)
 
 			describe 'given a valid application', ->
 
@@ -482,79 +489,61 @@ describe 'Device Config:', ->
 						afterEach ->
 							timekeeper.reset()
 
-						it 'should eventually become a valid configuration', ->
-							promise = deviceConfig.getByDevice('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', {})
-							m.chai.expect(promise).to.eventually.become
-								applicationId: 999
-								applicationName: 'App1'
-								apiEndpoint: 'https://api.resin.io'
-								vpnPort: 1723
-								vpnEndpoint: 'vpn.resin.io'
-								registryEndpoint: 'registry.resin.io'
-								deltaEndpoint: 'https://delta.resin.io'
-								deviceId: 3
-								uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
-								apiKey: '1234'
-								deviceType: 'raspberry-pi'
-								userId: 13
-								listenPort: 48484
-								pubnubSubscribeKey: '5678'
-								pubnubPublishKey: '1234'
-								mixpanelToken: 'asdf'
-								registered_at: 15000
-								username: 'johndoe'
-								appUpdatePollInterval: 60000
-								connectivity: 'connman'
-								files:
-									'network/settings': '''
-										[global]
-										OfflineMode=false
-										TimeUpdates=manual
+						config =
+							applicationId: 999
+							applicationName: 'App1'
+							apiEndpoint: 'https://api.resin.io'
+							vpnPort: 1723
+							vpnEndpoint: 'vpn.resin.io'
+							registryEndpoint: 'registry.resin.io'
+							deltaEndpoint: 'https://delta.resin.io'
+							deviceId: 3
+							uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
+							deviceApiKey: '4321'
+							deviceType: 'raspberry-pi'
+							userId: 13
+							listenPort: 48484
+							pubnubSubscribeKey: '5678'
+							pubnubPublishKey: '1234'
+							mixpanelToken: 'asdf'
+							registered_at: 15000
+							username: 'johndoe'
+							appUpdatePollInterval: 60000
+							connectivity: 'connman'
+							files:
+								'network/settings': '''
+									[global]
+									OfflineMode=false
+									TimeUpdates=manual
 
-										[WiFi]
-										Enable=true
-										Tethering=false
+									[WiFi]
+									Enable=true
+									Tethering=false
 
-										[Wired]
-										Enable=true
-										Tethering=false
+									[Wired]
+									Enable=true
+									Tethering=false
 
-										[Bluetooth]
-										Enable=true
-										Tethering=false
-									'''
-									'network/network.config': '''
-										[service_home_ethernet]
-										Type = ethernet
-										Nameservers = 8.8.8.8,8.8.4.4
-									'''
+									[Bluetooth]
+									Enable=true
+									Tethering=false
+								'''
+								'network/network.config': '''
+									[service_home_ethernet]
+									Type = ethernet
+									Nameservers = 8.8.8.8,8.8.4.4
+								'''
+
+						it 'should eventually become a valid device key configuration', ->
+							promise = deviceConfig.getByDevice('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', '4321', {})
+							m.chai.expect(promise).to.eventually.become config
 
 						it 'should eventually become a valid wifi configuration', ->
-							promise = deviceConfig.getByDevice '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9',
+							promise = deviceConfig.getByDevice '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', '4321',
 								wifiSsid: 'foo'
 								wifiKey: 'bar'
 
-							m.chai.expect(promise).to.eventually.become
-								applicationId: 999
-								applicationName: 'App1'
-								deltaEndpoint: 'https://delta.resin.io'
-								apiEndpoint: 'https://api.resin.io'
-								vpnPort: 1723
-								vpnEndpoint: 'vpn.resin.io'
-								registryEndpoint: 'registry.resin.io'
-								deviceId: 3
-								uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
-								apiKey: '1234'
-								deviceType: 'raspberry-pi'
-								userId: 13
-								listenPort: 48484
-								pubnubSubscribeKey: '5678'
-								pubnubPublishKey: '1234'
-								mixpanelToken: 'asdf'
-								registered_at: 15000
-								username: 'johndoe'
-								appUpdatePollInterval: 60000
-								connectivity: 'connman'
+							m.chai.expect(promise).to.eventually.become _.assign {}, config,
 								files:
 									'network/settings': '''
 										[global]
@@ -587,55 +576,12 @@ describe 'Device Config:', ->
 									'''
 
 						it 'should expand a shorter uuid by default', ->
-							promise = deviceConfig.getByDevice('7cf02a6', {})
-							m.chai.expect(promise).to.eventually.become
-								applicationId: 999
-								applicationName: 'App1'
-								apiEndpoint: 'https://api.resin.io'
-								vpnPort: 1723
-								vpnEndpoint: 'vpn.resin.io'
-								registryEndpoint: 'registry.resin.io'
-								deltaEndpoint: 'https://delta.resin.io'
-								deviceId: 3
-								uuid: '7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9'
-								apiKey: '1234'
-								deviceType: 'raspberry-pi'
-								userId: 13
-								listenPort: 48484
-								pubnubSubscribeKey: '5678'
-								pubnubPublishKey: '1234'
-								mixpanelToken: 'asdf'
-								registered_at: 15000
-								username: 'johndoe'
-								appUpdatePollInterval: 60000
-								connectivity: 'connman'
-								files:
-									'network/settings': '''
-										[global]
-										OfflineMode=false
-										TimeUpdates=manual
-
-										[WiFi]
-										Enable=true
-										Tethering=false
-
-										[Wired]
-										Enable=true
-										Tethering=false
-
-										[Bluetooth]
-										Enable=true
-										Tethering=false
-									'''
-									'network/network.config': '''
-										[service_home_ethernet]
-										Type = ethernet
-										Nameservers = 8.8.8.8,8.8.4.4
-									'''
+							promise = deviceConfig.getByDevice('7cf02a6', '4321', {})
+							m.chai.expect(promise).to.eventually.become config
 
 	describe '.getByApplication()', ->
 
-		describe 'given succesful responses', ->
+		describe 'given successful responses', ->
 
 			beforeEach ->
 				@applicationGetStub = m.sinon.stub(resin.models.application, 'get')

@@ -87,7 +87,9 @@ exports.generate = (options, params = {}) ->
 		pubnubSubscribeKey: options.pubnub.subscribe_key
 		pubnubPublishKey: options.pubnub.publish_key
 		mixpanelToken: options.mixpanel.token
-		apiKey: options.apiKey
+
+	if options.apiKey?
+		config.apiKey = options.apiKey
 
 	majorVersion = parseInt(options.version.split('.', 1)[0]) if options.version
 	if not majorVersion or majorVersion < 2
@@ -151,8 +153,39 @@ exports.validate = (config) ->
 	if disallowedProperty?
 		throw new Error("Validation: #{disallowedProperty} not recognized")
 
+getApplicationConfig = (application, options = {}) ->
+	Promise.props
+		application: resin.models.application.get(application)
+		userId: resin.auth.getUserId()
+		username: resin.auth.whoami()
+		apiUrl: resin.settings.get('apiUrl')
+		vpnUrl: resin.settings.get('vpnUrl')
+		registryUrl: resin.settings.get('registryUrl')
+		deltaUrl: resin.settings.get('deltaUrl')
+		pubNubKeys: resin.models.config.getPubNubKeys()
+		mixpanelToken: resin.models.config.getMixpanelToken()
+	.then (results) ->
+		throw new errors.ResinNotLoggedIn() if not results.username?
+
+		config = exports.generate
+			application: results.application
+			user:
+				id: results.userId
+				username: results.username
+			pubnub: results.pubNubKeys
+			mixpanel:
+				token: results.mixpanelToken
+			endpoints:
+				api: results.apiUrl
+				vpn: results.vpnUrl
+				registry: results.registryUrl
+				delta: results.deltaUrl
+		, options
+
+		return config
+
 ###*
-# @summary Get a device configuration object from an application
+# @summary Get a device configuration object for provisioning from an application
 # @public
 # @function
 #
@@ -174,46 +207,24 @@ exports.validate = (config) ->
 # 	console.log(configuration)
 ###
 exports.getByApplication = (application, options = {}) ->
-	Promise.props
-		application: resin.models.application.get(application)
-		apiKey: resin.models.application.getApiKey(application)
-		userId: resin.auth.getUserId()
-		username: resin.auth.whoami()
-		apiUrl: resin.settings.get('apiUrl')
-		vpnUrl: resin.settings.get('vpnUrl')
-		registryUrl: resin.settings.get('registryUrl')
-		deltaUrl: resin.settings.get('deltaUrl')
-		pubNubKeys: resin.models.config.getPubNubKeys()
-		mixpanelToken: resin.models.config.getMixpanelToken()
-	.then (results) ->
-		throw new errors.ResinNotLoggedIn() if not results.username?
+	Promise.join(
+		resin.models.application.getApiKey(application)
+		getApplicationConfig(application, options)
+		(apiKey, config) ->
+			config.apiKey = apiKey
 
-		config = exports.generate
-			application: results.application
-			user:
-				id: results.userId
-				username: results.username
-			pubnub: results.pubNubKeys
-			mixpanel:
-				token: results.mixpanelToken
-			apiKey: results.apiKey
-			endpoints:
-				api: results.apiUrl
-				vpn: results.vpnUrl
-				registry: results.registryUrl
-				delta: results.deltaUrl
-		, options
+			exports.validate(config)
 
-		exports.validate(config)
-
-		return config
+			return config
+	)
 
 ###*
-# @summary Get a device configuration object from a device
+# @summary Get a device configuration object for a provisioned device
 # @public
 # @function
 #
 # @param {String} uuid - device uuid
+# @param {String} [deviceApiKey] - device api key
 # @param {Object} [options={}] - options
 # @param {String} [options.wifiSsid] - wifi ssid
 # @param {String} [options.wifiKey] - wifi key
@@ -221,25 +232,29 @@ exports.getByApplication = (application, options = {}) ->
 # @returns {Promise<Object>} device configuration
 #
 # @todo Move this to the SDK
+# @todo Require device api key to be provided
 #
 # @example
-# deviceConfig.getByDevice '7cf02a6',
+# deviceConfig.getByDevice '7cf02a6', '4321'
 # 	network: 'wifi'
 # 	wifiSsid: 'foobar'
 # 	wifiKey: 'hello'
 # .then (configuration) ->
 # 	console.log(configuration)
 ###
-exports.getByDevice = (uuid, options = {}) ->
+exports.getByDevice = Promise.method (uuid, deviceApiKey, options = {}) ->
+	if not _.isString(deviceApiKey)
+		throw new Error('deviceApiKey must be a string')
+
 	resin.models.device.get(uuid).then (device) ->
-		return exports.getByApplication(device.application_name, options).then (config) ->
+		return getApplicationConfig(device.application_name, options).then (config) ->
 
 			# Associate a device, to prevent the supervisor
 			# from creating another one on it's own.
 			config.registered_at = Math.floor(Date.now() / 1000)
 			config.deviceId = device.id
 			config.uuid = device.uuid
+			config.deviceApiKey = deviceApiKey
 
 			exports.validate(config)
-
 			return config

@@ -125,10 +125,17 @@ module.exports =
 			type: 'string'
 			required: true
 			allowEmpty: false
+		# An api key is required, but it can be either apiKey or deviceApiKey (not both)
 		apiKey:
 			description: 'api key'
 			type: 'string'
-			required: true
+			required: false
+			allowEmpty: false
+		# The device api key is only useful if coupled with a uuid
+		deviceApiKey:
+			description: 'device api key'
+			type: 'string'
+			required: false
 			allowEmpty: false
 		registered_at:
 			description: 'registered at'

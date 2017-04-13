@@ -7,6 +7,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Added a required `deviceApiKey` parameter to `getByDevice`.
 
+### Changed
+
+- Updated bluebird to ^3.5.0
+- Updated lodash to ^4.17.4
+- Updated resin-sdk-preconfigured to ^6.0.0
+- Updated coffee-script to ~1.12.5
+
 ## [3.3.3] - 2017-03-03
 
 ### Changed

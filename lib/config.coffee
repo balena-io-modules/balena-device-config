@@ -141,13 +141,13 @@ exports.validate = (config) ->
 	validation = revalidator.validate(config, schema, cast: true)
 
 	if not validation.valid
-		error = _.first(validation.errors)
+		error = _.head(validation.errors)
 		throw new Error("Validation: #{error.property} #{error.message}")
 
 	disallowedProperty = _.chain(config)
 		.keys()
 		.difference(_.keys(schema.properties))
-		.first()
+		.head()
 		.value()
 
 	if disallowedProperty?

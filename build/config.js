@@ -18,7 +18,7 @@ limitations under the License.
 /**
  * @module deviceConfig
  */
-var Promise, errors, network, resin, revalidator, schema, _;
+var Promise, _, errors, getApplicationConfig, network, resin, revalidator, schema;
 
 _ = require('lodash');
 
@@ -95,9 +95,11 @@ exports.generate = function(options, params) {
     deltaEndpoint: options.endpoints.delta,
     pubnubSubscribeKey: options.pubnub.subscribe_key,
     pubnubPublishKey: options.pubnub.publish_key,
-    mixpanelToken: options.mixpanel.token,
-    apiKey: options.apiKey
+    mixpanelToken: options.mixpanel.token
   };
+  if (options.apiKey != null) {
+    config.apiKey = options.apiKey;
+  }
   if (options.version) {
     majorVersion = parseInt(options.version.split('.', 1)[0]);
   }
@@ -164,9 +166,49 @@ exports.validate = function(config) {
   }
 };
 
+getApplicationConfig = function(application, options) {
+  if (options == null) {
+    options = {};
+  }
+  return Promise.props({
+    application: resin.models.application.get(application),
+    userId: resin.auth.getUserId(),
+    username: resin.auth.whoami(),
+    apiUrl: resin.settings.get('apiUrl'),
+    vpnUrl: resin.settings.get('vpnUrl'),
+    registryUrl: resin.settings.get('registryUrl'),
+    deltaUrl: resin.settings.get('deltaUrl'),
+    pubNubKeys: resin.models.config.getPubNubKeys(),
+    mixpanelToken: resin.models.config.getMixpanelToken()
+  }).then(function(results) {
+    var config;
+    if (results.username == null) {
+      throw new errors.ResinNotLoggedIn();
+    }
+    config = exports.generate({
+      application: results.application,
+      user: {
+        id: results.userId,
+        username: results.username
+      },
+      pubnub: results.pubNubKeys,
+      mixpanel: {
+        token: results.mixpanelToken
+      },
+      endpoints: {
+        api: results.apiUrl,
+        vpn: results.vpnUrl,
+        registry: results.registryUrl,
+        delta: results.deltaUrl
+      }
+    }, options);
+    return config;
+  });
+};
+
 
 /**
- * @summary Get a device configuration object from an application
+ * @summary Get a device configuration object for provisioning from an application
  * @public
  * @function
  *
@@ -192,40 +234,8 @@ exports.getByApplication = function(application, options) {
   if (options == null) {
     options = {};
   }
-  return Promise.props({
-    application: resin.models.application.get(application),
-    apiKey: resin.models.application.getApiKey(application),
-    userId: resin.auth.getUserId(),
-    username: resin.auth.whoami(),
-    apiUrl: resin.settings.get('apiUrl'),
-    vpnUrl: resin.settings.get('vpnUrl'),
-    registryUrl: resin.settings.get('registryUrl'),
-    deltaUrl: resin.settings.get('deltaUrl'),
-    pubNubKeys: resin.models.config.getPubNubKeys(),
-    mixpanelToken: resin.models.config.getMixpanelToken()
-  }).then(function(results) {
-    var config;
-    if (results.username == null) {
-      throw new errors.ResinNotLoggedIn();
-    }
-    config = exports.generate({
-      application: results.application,
-      user: {
-        id: results.userId,
-        username: results.username
-      },
-      pubnub: results.pubNubKeys,
-      mixpanel: {
-        token: results.mixpanelToken
-      },
-      apiKey: results.apiKey,
-      endpoints: {
-        api: results.apiUrl,
-        vpn: results.vpnUrl,
-        registry: results.registryUrl,
-        delta: results.deltaUrl
-      }
-    }, options);
+  return Promise.join(resin.models.application.getApiKey(application), getApplicationConfig(application, options), function(apiKey, config) {
+    config.apiKey = apiKey;
     exports.validate(config);
     return config;
   });
@@ -233,11 +243,12 @@ exports.getByApplication = function(application, options) {
 
 
 /**
- * @summary Get a device configuration object from a device
+ * @summary Get a device configuration object for a provisioned device
  * @public
  * @function
  *
  * @param {String} uuid - device uuid
+ * @param {String} [deviceApiKey] - device api key
  * @param {Object} [options={}] - options
  * @param {String} [options.wifiSsid] - wifi ssid
  * @param {String} [options.wifiKey] - wifi key
@@ -245,9 +256,10 @@ exports.getByApplication = function(application, options) {
  * @returns {Promise<Object>} device configuration
  *
  * @todo Move this to the SDK
+ * @todo Require device api key to be provided
  *
  * @example
- * deviceConfig.getByDevice '7cf02a6',
+ * deviceConfig.getByDevice '7cf02a6', '4321'
  * 	network: 'wifi'
  * 	wifiSsid: 'foobar'
  * 	wifiKey: 'hello'
@@ -255,17 +267,21 @@ exports.getByApplication = function(application, options) {
  * 	console.log(configuration)
  */
 
-exports.getByDevice = function(uuid, options) {
+exports.getByDevice = Promise.method(function(uuid, deviceApiKey, options) {
   if (options == null) {
     options = {};
   }
+  if (!_.isString(deviceApiKey)) {
+    throw new Error('deviceApiKey must be a string');
+  }
   return resin.models.device.get(uuid).then(function(device) {
-    return exports.getByApplication(device.application_name, options).then(function(config) {
+    return getApplicationConfig(device.application_name, options).then(function(config) {
       config.registered_at = Math.floor(Date.now() / 1000);
       config.deviceId = device.id;
       config.uuid = device.uuid;
+      config.deviceApiKey = deviceApiKey;
       exports.validate(config);
       return config;
     });
   });
-};
+});

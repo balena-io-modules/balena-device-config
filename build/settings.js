@@ -51,7 +51,7 @@ exports.main = '[global]\nOfflineMode=false\nTimeUpdates=manual\n\n[WiFi]\nEnabl
  */
 
 exports.getHomeSettings = function(options) {
-  var config, staticIpConfiguration, _ref;
+  var config, ref, staticIpConfiguration;
   _.defaults(options, {
     netmask: '255.255.255.0'
   });
@@ -63,7 +63,7 @@ exports.getHomeSettings = function(options) {
     staticIpConfiguration = "\nIPv4 = " + options.ip + "/" + options.netmask + "/" + options.gateway;
     config += staticIpConfiguration;
   }
-  if (!_.isEmpty((_ref = options.wifiSsid) != null ? _ref.trim() : void 0)) {
+  if (!_.isEmpty((ref = options.wifiSsid) != null ? ref.trim() : void 0)) {
     config += "\n\n[service_home_wifi]\nHidden = true\nType = wifi\nName = " + options.wifiSsid;
     if (options.wifiKey) {
       config += "\nPassphrase = " + options.wifiKey;

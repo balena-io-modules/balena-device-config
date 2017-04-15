@@ -152,7 +152,13 @@ module.exports = {
     apiKey: {
       description: 'api key',
       type: 'string',
-      required: true,
+      required: false,
+      allowEmpty: false
+    },
+    deviceApiKey: {
+      description: 'device api key',
+      type: 'string',
+      required: false,
       allowEmpty: false
     },
     registered_at: {

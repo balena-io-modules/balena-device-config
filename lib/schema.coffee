@@ -150,7 +150,7 @@ module.exports =
 			description: 'uuid'
 			type: 'string'
 			allowEmpty: false
-			pattern: /^[0-9a-f]{16,62}$/
+			pattern: /^[0-9a-f]{32,62}$/
 		wifiSsid:
 			description: 'wifi ssid'
 			type: 'string'

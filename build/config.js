@@ -18,7 +18,7 @@ limitations under the License.
 /**
  * @module deviceConfig
  */
-var Promise, _, errors, getApplicationConfig, network, resin, revalidator, schema;
+var Promise, errors, getApplicationConfig, network, resin, revalidator, schema, _;
 
 _ = require('lodash');
 
@@ -157,10 +157,10 @@ exports.validate = function(config) {
     cast: true
   });
   if (!validation.valid) {
-    error = _.first(validation.errors);
+    error = _.head(validation.errors);
     throw new Error("Validation: " + error.property + " " + error.message);
   }
-  disallowedProperty = _.chain(config).keys().difference(_.keys(schema.properties)).first().value();
+  disallowedProperty = _.chain(config).keys().difference(_.keys(schema.properties)).head().value();
   if (disallowedProperty != null) {
     throw new Error("Validation: " + disallowedProperty + " not recognized");
   }

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Changed
+
+- Make UUID validation more flexible to support new 16 byte UUID format
+
 ## [4.0.0] - 2017-04-15
 
 ### Added

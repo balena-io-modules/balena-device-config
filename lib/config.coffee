@@ -258,3 +258,72 @@ exports.getByDevice = Promise.method (uuid, deviceApiKey, options = {}) ->
 
 			exports.validate(config)
 			return config
+
+###*
+# @summary Generate and add an application key to this configuration
+# @public
+# @function
+# @description
+# This should only be used for devices that do not support provisioning keys
+# All devices that do should instead use authenticateWithProvisioningKey
+#
+# @param {String} config - a previously generated device configuration
+# @param {String} applicationNameOrId - the application name or id
+#
+# @returns {Promise<Object>} device configuration
+#
+# @example
+# deviceConfig.authenticateWithApplicationKey config, 'appName'
+# .then (configuration) ->
+# 	console.log(configuration)
+###
+exports.authenticateWithApplicationKey = (config, applicationNameOrId) ->
+	resin.models.application.getApiKey(applicationNameOrId)
+	.then (apiKey) ->
+		config.apiKey = apiKey
+		return config
+
+###*
+# @summary Generate and add a provisioning key to this configuration
+# @public
+# @function
+#
+# @param {String} config - a previously generated device configuration
+# @param {String} applicationNameOrId - the application name or id
+#
+# @returns {Promise<Object>} device configuration
+#
+# @example
+# deviceConfig.authenticateWithProvisioningKey config, 'appName'
+# .then (configuration) ->
+# 	console.log(configuration)
+###
+exports.authenticateWithProvisioningKey = (config, applicationNameOrId) ->
+	resin.models.application.generateProvisioningKey(applicationNameOrId)
+	.then (apiKey) ->
+		config.apiKey = apiKey
+		return config
+
+###*
+# @summary Add a custom or generated device key to this configuration
+# @public
+# @function
+#
+# @param {String} config - a previously generated device configuration
+# @param {String} uuid - the device uuid
+# @param {String} [customDeviceApiKey] - an optional pregenerated device key
+#
+# @returns {Promise<Object>} device configuration
+#
+# @example
+# deviceConfig.authenticateWithDeviceKey config, '12341234abcdabcd'
+# .then (configuration) ->
+# 	console.log(configuration)
+###
+exports.authenticateWithDeviceKey = (config, uuid, customDeviceApiKey) ->
+	Promise.try ->
+		customDeviceApiKey || resin.models.device.generateDeviceKey(uuid)
+	.then (deviceApiKey) ->
+		config.uuid = uuid
+		config.deviceApiKey = deviceApiKey
+		return config

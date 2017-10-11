@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "bluebird": "^3.5.0",
-    "coffee-script": "^1.12.5",
     "lodash": "^4.17.4",
     "resin-errors": "^2.0.0",
     "resin-sdk-preconfigured": "^6.0.0",

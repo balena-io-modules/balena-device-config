@@ -444,20 +444,20 @@ describe 'Device Config:', ->
 
 					beforeEach ->
 						@applicationGetStub = m.sinon.stub(resin.models.application, 'get')
-						@applicationGetStub.withArgs('App1').returns(Promise.reject(new errors.ResinApplicationNotFound('foo')))
+						@applicationGetStub.withArgs('App1').returns(Promise.delay(1).throw(new errors.ResinApplicationNotFound('foo')))
 
 					afterEach ->
 						@applicationGetStub.restore()
 
 					it 'should reject with the error', ->
 						promise = deviceConfig.getByDevice('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9', '4321', {})
-						m.chai.expect(promise).to.be.rejectedWith(errors.ResinApplicationNotFound)
+						m.chai.expect(promise).to.eventually.be.rejectedWith(errors.ResinApplicationNotFound)
 
 				describe 'given an invalid device api key', ->
 
 					it 'should reject with the error', ->
 						promise = deviceConfig.getByDevice('7cf02a62a3a84440b1bb5579a3d57469148943278630b17e7fc6c4f7b465c9')
-						m.chai.expect(promise).to.eventually.rejectedWith(Error)
+						m.chai.expect(promise).to.eventually.be.rejectedWith(Error)
 
 			describe 'given a valid application', ->
 

@@ -100,6 +100,9 @@ exports.generate = (options, params = {}) ->
 		config.wifiSsid = params.wifiSsid
 		config.wifiKey = params.wifiKey
 
+	if _.isArray(params.network)
+		config.network = params.network
+
 	exports.validate(config)
 	return config
 

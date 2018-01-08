@@ -165,3 +165,22 @@ module.exports =
 			allowEmpty: false
 			enum: ['NetworkManager', 'connman']
 			default: 'connman'
+		network:
+			description: 'network configurations'
+			type: 'array'
+			required: false
+			items:
+				type: 'object'
+				properties:
+					wifiSsid:
+						description: 'wifi ssid'
+						type: 'string'
+						allowEmpty: true
+					wifiKey:
+						description: 'wifi key'
+						type: 'string'
+						allowEmpty: true
+					configuration:
+						description: 'configuration'
+						type: 'string'
+						allowEmpty: true

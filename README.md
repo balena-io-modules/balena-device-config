@@ -31,12 +31,13 @@ Documentation
 
 
 * [deviceConfig](#module_deviceConfig)
-  * [.generate(options, params)](#module_deviceConfig.generate) ⇒ <code>Object</code>
-  * [.validate(config)](#module_deviceConfig.validate)
-  * [.getByApplication(application, [options])](#module_deviceConfig.getByApplication) ⇒ <code>Promise.&lt;Object&gt;</code>
-  * [.getByDevice(uuid, [options])](#module_deviceConfig.getByDevice) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.generate(options, params)](#module_deviceConfig.generate) ⇒ <code>Object</code>
+    * [.validate(config)](#module_deviceConfig.validate)
+    * [.getByApplication(application, [options])](#module_deviceConfig.getByApplication) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.getByDevice(uuid, [deviceApiKey], [options])](#module_deviceConfig.getByDevice) ⇒ <code>Promise.&lt;Object&gt;</code>
 
 <a name="module_deviceConfig.generate"></a>
+
 ### deviceConfig.generate(options, params) ⇒ <code>Object</code>
 **Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
 **Summary**: Generate a basic config.json object  
@@ -76,6 +77,7 @@ config = deviceConfig.generate
 console.log(config)
 ```
 <a name="module_deviceConfig.validate"></a>
+
 ### deviceConfig.validate(config)
 **Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
 **Summary**: Validate a generated config.json object  
@@ -117,9 +119,10 @@ config = deviceConfig.generate
 deviceConfig.validate(config)
 ```
 <a name="module_deviceConfig.getByApplication"></a>
+
 ### deviceConfig.getByApplication(application, [options]) ⇒ <code>Promise.&lt;Object&gt;</code>
 **Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
-**Summary**: Get a device configuration object from an application  
+**Summary**: Get a device configuration object for provisioning from an application  
 **Returns**: <code>Promise.&lt;Object&gt;</code> - device configuration  
 **Access:** public  
 **Todo**
@@ -144,26 +147,29 @@ deviceConfig.getByApplication 'App1',
 	console.log(configuration)
 ```
 <a name="module_deviceConfig.getByDevice"></a>
-### deviceConfig.getByDevice(uuid, [options]) ⇒ <code>Promise.&lt;Object&gt;</code>
+
+### deviceConfig.getByDevice(uuid, [deviceApiKey], [options]) ⇒ <code>Promise.&lt;Object&gt;</code>
 **Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
-**Summary**: Get a device configuration object from a device  
+**Summary**: Get a device configuration object for a provisioned device  
 **Returns**: <code>Promise.&lt;Object&gt;</code> - device configuration  
 **Access:** public  
 **Todo**
 
 - [ ] Move this to the SDK
+- [ ] Require device api key to be provided
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | uuid | <code>String</code> |  | device uuid |
+| [deviceApiKey] | <code>String</code> |  | device api key |
 | [options] | <code>Object</code> | <code>{}</code> | options |
 | [options.wifiSsid] | <code>String</code> |  | wifi ssid |
 | [options.wifiKey] | <code>String</code> |  | wifi key |
 
 **Example**  
 ```js
-deviceConfig.getByDevice '7cf02a6',
+deviceConfig.getByDevice '7cf02a6', '4321'
 	network: 'wifi'
 	wifiSsid: 'foobar'
 	wifiKey: 'hello'

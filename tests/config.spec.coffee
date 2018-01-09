@@ -229,6 +229,43 @@ describe 'Device Config:', ->
 			m.chai.expect(config.wifiSsid).to.equal('mywifi')
 			m.chai.expect(config.wifiKey).to.equal('secret')
 
+		it 'should handle multiple network configurations', ->
+			config = deviceConfig.generate
+				application:
+					app_name: 'HelloWorldApp'
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+					delta: 'https://delta.resin.io'
+			,
+				network: [
+						wifiSsid: 'mywifi1'
+						wifiKey: 'secret1'
+					,
+						wifiSsid: 'mywifi2'
+						wifiKey: 'secret2'
+					,
+						configuration: 'Lorem ipsum dolor sit amet'
+				]
+
+			m.chai.expect(config.network[0].wifiSsid).to.equal('mywifi1')
+			m.chai.expect(config.network[0].wifiKey).to.equal('secret1')
+			m.chai.expect(config.network[1].wifiSsid).to.equal('mywifi2')
+			m.chai.expect(config.network[1].wifiKey).to.equal('secret2')
+			m.chai.expect(config.network[2].configuration).to.equal('Lorem ipsum dolor sit amet')
+
 		it 'should parse vpnPort as an integer automatically', ->
 			config = deviceConfig.generate
 				application:

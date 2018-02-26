@@ -114,12 +114,12 @@ module.exports =
 			description: 'pubnub subscribe key'
 			type: 'string'
 			required: true
-			allowEmpty: false
+			allowEmpty: true
 		pubnubPublishKey:
 			description: 'pubnub publish key'
 			type: 'string'
 			required: true
-			allowEmpty: false
+			allowEmpty: true
 		mixpanelToken:
 			description: 'mixpanel token'
 			type: 'string'

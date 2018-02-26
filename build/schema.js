@@ -136,13 +136,13 @@ module.exports = {
       description: 'pubnub subscribe key',
       type: 'string',
       required: true,
-      allowEmpty: false
+      allowEmpty: true
     },
     pubnubPublishKey: {
       description: 'pubnub publish key',
       type: 'string',
       required: true,
-      allowEmpty: false
+      allowEmpty: true
     },
     mixpanelToken: {
       description: 'mixpanel token',
@@ -195,6 +195,31 @@ module.exports = {
       allowEmpty: false,
       "enum": ['NetworkManager', 'connman'],
       "default": 'connman'
+    },
+    network: {
+      description: 'network configurations',
+      type: 'array',
+      required: false,
+      items: {
+        type: 'object',
+        properties: {
+          wifiSsid: {
+            description: 'wifi ssid',
+            type: 'string',
+            allowEmpty: true
+          },
+          wifiKey: {
+            description: 'wifi key',
+            type: 'string',
+            allowEmpty: true
+          },
+          configuration: {
+            description: 'configuration',
+            type: 'string',
+            allowEmpty: true
+          }
+        }
+      }
     }
   }
 };

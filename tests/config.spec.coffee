@@ -25,7 +25,7 @@ describe 'Device Config:', ->
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
-				vpnPort: 1723
+				vpnPort: 443
 				endpoints:
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
@@ -54,7 +54,7 @@ describe 'Device Config:', ->
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
-				vpnPort: 1723
+				vpnPort: 443
 				endpoints:
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
@@ -80,7 +80,7 @@ describe 'Device Config:', ->
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
-				vpnPort: 1723
+				vpnPort: 443
 				endpoints:
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
@@ -106,7 +106,7 @@ describe 'Device Config:', ->
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
-				vpnPort: 1723
+				vpnPort: 443
 				endpoints:
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
@@ -135,7 +135,7 @@ describe 'Device Config:', ->
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
-				vpnPort: 1723
+				vpnPort: 443
 				endpoints:
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
@@ -164,7 +164,7 @@ describe 'Device Config:', ->
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
-				vpnPort: 1723
+				vpnPort: 443
 				endpoints:
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
@@ -176,7 +176,7 @@ describe 'Device Config:', ->
 
 			m.chai.expect(config.appUpdatePollInterval).to.equal(60000)
 
-		it 'should default vpnPort to 1723', ->
+		it 'should default vpnPort to 443', ->
 			config = deviceConfig.generate
 				application:
 					app_name: 'HelloWorldApp'
@@ -199,7 +199,7 @@ describe 'Device Config:', ->
 			,
 				network: 'ethernet'
 
-			m.chai.expect(config.vpnPort).to.equal(1723)
+			m.chai.expect(config.vpnPort).to.equal(443)
 
 		it 'should handle wifi configuration', ->
 			config = deviceConfig.generate
@@ -420,7 +420,7 @@ describe 'Device Config:', ->
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
-				vpnPort: 1723
+				vpnPort: 443
 				endpoints:
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
@@ -450,7 +450,7 @@ describe 'Device Config:', ->
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
-				vpnPort: 1723
+				vpnPort: 443
 				endpoints:
 					api: 'https://api.resin.io'
 					vpn: 'vpn.resin.io'
@@ -559,7 +559,7 @@ describe 'Device Config:', ->
 							applicationId: 999
 							applicationName: 'App1'
 							apiEndpoint: 'https://api.resin.io'
-							vpnPort: 1723
+							vpnPort: 443
 							vpnEndpoint: 'vpn.resin.io'
 							registryEndpoint: 'registry.resin.io'
 							deltaEndpoint: 'https://delta.resin.io'
@@ -692,7 +692,7 @@ describe 'Device Config:', ->
 						applicationId: 3
 						applicationName: 'App1'
 						apiEndpoint: 'https://api.resin.io'
-						vpnPort: 1723
+						vpnPort: 443
 						vpnEndpoint: 'vpn.resin.io'
 						registryEndpoint: 'registry.resin.io'
 						deltaEndpoint: 'https://delta.resin.io'
@@ -740,7 +740,7 @@ describe 'Device Config:', ->
 						applicationName: 'App1'
 						deltaEndpoint: 'https://delta.resin.io'
 						apiEndpoint: 'https://api.resin.io'
-						vpnPort: 1723
+						vpnPort: 443
 						vpnEndpoint: 'vpn.resin.io'
 						registryEndpoint: 'registry.resin.io'
 						apiKey: '1234'

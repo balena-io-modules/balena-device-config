@@ -65,7 +65,7 @@ config = deviceConfig.generate
 	mixpanel:
 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 	apiKey: 'asdf'
-	vpnPort: 1723
+	vpnPort: 443
 	endpoints:
 		api: 'https://api.resin.io'
 		vpn: 'vpn.resin.io'
@@ -107,7 +107,7 @@ config = deviceConfig.generate
 	mixpanel:
 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 	apiKey: 'asdf'
-	vpnPort: 1723
+	vpnPort: 443
 	endpoints:
 		api: 'https://api.resin.io'
 		vpn: 'vpn.resin.io'

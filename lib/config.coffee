@@ -51,7 +51,7 @@ schema = require('./schema')
 # 	mixpanel:
 # 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 # 	apiKey: 'asdf'
-# 	vpnPort: 1723
+# 	vpnPort: 443
 # 	endpoints:
 # 		api: 'https://api.resin.io'
 # 		vpn: 'vpn.resin.io'
@@ -65,7 +65,7 @@ schema = require('./schema')
 exports.generate = (options, params = {}) ->
 
 	_.defaults options,
-		vpnPort: 1723
+		vpnPort: 443
 
 	config =
 		applicationName: options.application.app_name
@@ -129,7 +129,7 @@ exports.generate = (options, params = {}) ->
 # 	mixpanel:
 # 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 # 	apiKey: 'asdf'
-# 	vpnPort: 1723
+# 	vpnPort: 443
 # 	endpoints:
 # 		api: 'https://api.resin.io'
 # 		vpn: 'vpn.resin.io'

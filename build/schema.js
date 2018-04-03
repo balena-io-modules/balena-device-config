@@ -150,6 +150,12 @@ module.exports = {
       required: true,
       allowEmpty: false
     },
+    balenaRootCA: {
+      description: 'balena root CA',
+      type: 'string',
+      required: false,
+      allowEmpty: false
+    },
     apiKey: {
       description: 'api key',
       type: 'string',

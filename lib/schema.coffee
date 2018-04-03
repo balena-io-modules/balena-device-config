@@ -125,6 +125,11 @@ module.exports =
 			type: 'string'
 			required: true
 			allowEmpty: false
+		balenaRootCA:
+			description: 'balena root CA'
+			type: 'string'
+			required: false
+			allowEmpty: false
 		# An api key is required, but it can be either apiKey or deviceApiKey (not both)
 		apiKey:
 			description: 'api key'

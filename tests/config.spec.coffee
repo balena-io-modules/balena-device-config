@@ -34,6 +34,7 @@ describe 'Device Config:', ->
 			,
 				network: 'ethernet'
 				appUpdatePollInterval: 50000
+				balenaRootCA: 'abcdef1234567890'
 
 			m.chai.expect ->
 				deviceConfig.validate(config)
@@ -463,6 +464,32 @@ describe 'Device Config:', ->
 			m.chai.expect ->
 				deviceConfig.validate(config)
 			.to.not.throw(Error)
+
+		it 'should allow balenaRootCA to be undefined', ->
+			config = deviceConfig.generate
+				application:
+					app_name: 'HelloWorldApp'
+					id: 18
+					device_type: 'raspberry-pi'
+				user:
+					id: 7
+					username: 'johndoe'
+				pubnub:
+					subscribe_key: 'demo'
+					publish_key: 'demo'
+				mixpanel:
+					token: 'e3bc4100330c35722740fb8c6f5abddc'
+				apiKey: 'asdf'
+				vpnPort: '1234'
+				endpoints:
+					api: 'https://api.resin.io'
+					vpn: 'vpn.resin.io'
+					registry: 'registry.resin.io'
+			,
+				network: 'wifi'
+				wifiSsid: 'mywifi'
+				wifiKey: 'secret'
+			m.chai.expect(config.balenaRootCA).to.not.exist
 
 	describe '.getByDevice()', ->
 

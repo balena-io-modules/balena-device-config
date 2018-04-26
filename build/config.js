@@ -19,13 +19,11 @@ limitations under the License.
 /**
  * @module deviceConfig
  */
-var Promise, _, errors, getApplicationConfig, network, resin, revalidator, schema;
+var Promise, _, errors, getApplicationConfig, network, revalidator, schema;
 
 _ = require('lodash');
 
 Promise = require('bluebird');
-
-resin = require('resin-sdk-preconfigured');
 
 errors = require('resin-errors');
 
@@ -171,9 +169,11 @@ exports.validate = function(config) {
 };
 
 getApplicationConfig = function(application, options) {
+  var resin;
   if (options == null) {
     options = {};
   }
+  resin = require('resin-sdk-preconfigured');
   return Promise.props({
     application: resin.models.application.get(application),
     userId: resin.auth.getUserId(),
@@ -235,9 +235,11 @@ getApplicationConfig = function(application, options) {
  */
 
 exports.getByApplication = function(application, options) {
+  var resin;
   if (options == null) {
     options = {};
   }
+  resin = require('resin-sdk-preconfigured');
   return Promise.join(resin.models.application.getApiKey(application), getApplicationConfig(application, options), function(apiKey, config) {
     config.apiKey = apiKey;
     exports.validate(config);
@@ -272,12 +274,14 @@ exports.getByApplication = function(application, options) {
  */
 
 exports.getByDevice = Promise.method(function(uuid, deviceApiKey, options) {
+  var resin;
   if (options == null) {
     options = {};
   }
   if (!_.isString(deviceApiKey)) {
     throw new Error('deviceApiKey must be a string');
   }
+  resin = require('resin-sdk-preconfigured');
   return resin.models.device.get(uuid).then(function(device) {
     return getApplicationConfig(device.application_name, options).then(function(config) {
       config.registered_at = Math.floor(Date.now() / 1000);

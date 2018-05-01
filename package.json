@@ -1,6 +1,6 @@
 {
   "name": "resin-device-config",
-  "version": "4.1.4",
+  "version": "4.1.5",
   "description": "Get device config.json configuration",
   "main": "build/config.js",
   "homepage": "https://github.com/resin-io-modules/resin-device-config",
@@ -20,7 +20,8 @@
   },
   "scripts": {
     "test": "gulp test",
-    "prepublish": "gulp build",
+    "prepublish": "require-npm4-to-publish",
+    "prepublishOnly": "gulp build",
     "readme": "jsdoc2md --template doc/README.hbs build/config.js > README.md"
   },
   "author": "Juan Cruz Viotti <juan@resin.io>",
@@ -41,6 +42,7 @@
     "bluebird": "3.5.0",
     "coffee-script": "^1.12.5",
     "lodash": "^4.17.4",
+    "require-npm4-to-publish": "^1.0.0",
     "resin-errors": "^2.0.0",
     "resin-sdk-preconfigured": "^6.0.0",
     "resin-settings-client": "^3.4.2",

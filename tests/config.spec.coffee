@@ -537,7 +537,8 @@ describe 'Device Config:', ->
 
 					beforeEach ->
 						@applicationGetStub = m.sinon.stub(resin.models.application, 'get')
-						@applicationGetStub.withArgs('App1').returns(Promise.reject(new errors.ResinApplicationNotFound('foo')))
+						@applicationGetStub.withArgs('App1').callsFake ->
+							Promise.reject(new errors.ResinApplicationNotFound('foo'))
 
 					afterEach ->
 						@applicationGetStub.restore()

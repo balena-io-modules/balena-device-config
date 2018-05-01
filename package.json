@@ -1,6 +1,6 @@
 {
   "name": "resin-device-config",
-  "version": "4.1.5",
+  "version": "4.1.6",
   "description": "Get device config.json configuration",
   "main": "build/config.js",
   "homepage": "https://github.com/resin-io-modules/resin-device-config",
@@ -35,11 +35,11 @@
     "gulp-util": "~3.0.1",
     "jsdoc-to-markdown": "^1.1.1",
     "mocha": "~2.0.1",
-    "mochainon": "^1.0.0",
+    "mochainon": "^2.0.0",
     "timekeeper": "0.0.5"
   },
   "dependencies": {
-    "bluebird": "3.5.0",
+    "bluebird": "^3.5.0",
     "coffee-script": "^1.12.5",
     "lodash": "^4.17.4",
     "require-npm4-to-publish": "^1.0.0",

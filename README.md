@@ -76,6 +76,34 @@ config = deviceConfig.generate
 
 console.log(config)
 ```
+**Example**  
+```js
+config = deviceConfig.generate
+	application:
+		app_name: 'HelloWorldApp'
+		id: 18
+		device_type: 'raspberry-pi2'
+	deviceType: 'raspberrypi3'
+	user:
+		id: 7
+		username: 'johndoe'
+	pubnub:
+		subscribe_key: 'demo'
+		publish_key: 'demo'
+	mixpanel:
+		token: 'e3bc4100330c35722740fb8c6f5abddc'
+	apiKey: 'asdf'
+	vpnPort: 443
+	endpoints:
+		api: 'https://api.resin.io'
+		vpn: 'vpn.resin.io'
+		registry: 'registry.resin.io'
+,
+	network: 'ethernet'
+	appUpdatePollInterval: 50000
+
+console.log(config)
+```
 <a name="module_deviceConfig.validate"></a>
 
 ### deviceConfig.validate(config)

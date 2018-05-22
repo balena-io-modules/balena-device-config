@@ -69,6 +69,33 @@ schema = require('./schema');
  * 	appUpdatePollInterval: 50000
  *
  * console.log(config)
+ *
+ * @example
+ * config = deviceConfig.generate
+ * 	application:
+ * 		app_name: 'HelloWorldApp'
+ * 		id: 18
+ * 		device_type: 'raspberry-pi2'
+ * 	deviceType: 'raspberrypi3'
+ * 	user:
+ * 		id: 7
+ * 		username: 'johndoe'
+ * 	pubnub:
+ * 		subscribe_key: 'demo'
+ * 		publish_key: 'demo'
+ * 	mixpanel:
+ * 		token: 'e3bc4100330c35722740fb8c6f5abddc'
+ * 	apiKey: 'asdf'
+ * 	vpnPort: 443
+ * 	endpoints:
+ * 		api: 'https://api.resin.io'
+ * 		vpn: 'vpn.resin.io'
+ * 		registry: 'registry.resin.io'
+ * ,
+ * 	network: 'ethernet'
+ * 	appUpdatePollInterval: 50000
+ *
+ * console.log(config)
  */
 
 exports.generate = function(options, params) {
@@ -82,7 +109,7 @@ exports.generate = function(options, params) {
   config = {
     applicationName: options.application.app_name,
     applicationId: options.application.id,
-    deviceType: options.application.device_type,
+    deviceType: options.deviceType || options.application.device_type,
     userId: options.user.id,
     username: options.user.username,
     appUpdatePollInterval: params.appUpdatePollInterval || 60000,
@@ -288,6 +315,7 @@ exports.getByDevice = Promise.method(function(uuid, deviceApiKey, options) {
       config.deviceId = device.id;
       config.uuid = device.uuid;
       config.deviceApiKey = deviceApiKey;
+      config.deviceType = device.device_type;
       exports.validate(config);
       return config;
     });

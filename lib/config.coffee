@@ -183,7 +183,7 @@ exports.validate = (config) ->
 		throw new Error("Validation: #{disallowedProperty} not recognized")
 
 getApplicationConfig = (application, options = {}) ->
-	resin = require('resin-sdk-preconfigured')
+	resin = require('resin-sdk').fromSharedOptions()
 	Promise.props
 		application: resin.models.application.get(application)
 		userId: resin.auth.getUserId()
@@ -237,9 +237,9 @@ getApplicationConfig = (application, options = {}) ->
 # 	console.log(configuration)
 ###
 exports.getByApplication = (application, options = {}) ->
-	resin = require('resin-sdk-preconfigured')
+	resin = require('resin-sdk').fromSharedOptions()
 	Promise.join(
-		resin.models.application.getApiKey(application)
+		resin.models.application.generateApiKey(application)
 		getApplicationConfig(application, options)
 		(apiKey, config) ->
 			config.apiKey = apiKey
@@ -277,7 +277,7 @@ exports.getByDevice = Promise.method (uuid, deviceApiKey, options = {}) ->
 	if not _.isString(deviceApiKey)
 		throw new Error('deviceApiKey must be a string')
 
-	resin = require('resin-sdk-preconfigured')
+	resin = require('resin-sdk').fromSharedOptions()
 	resin.models.device.get(uuid).then (device) ->
 		return getApplicationConfig(device.application_name, options).then (config) ->
 

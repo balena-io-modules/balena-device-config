@@ -200,7 +200,7 @@ getApplicationConfig = function(application, options) {
   if (options == null) {
     options = {};
   }
-  resin = require('resin-sdk-preconfigured');
+  resin = require('resin-sdk').fromSharedOptions();
   return Promise.props({
     application: resin.models.application.get(application),
     userId: resin.auth.getUserId(),
@@ -266,7 +266,7 @@ exports.getByApplication = function(application, options) {
   if (options == null) {
     options = {};
   }
-  resin = require('resin-sdk-preconfigured');
+  resin = require('resin-sdk').fromSharedOptions();
   return Promise.join(resin.models.application.getApiKey(application), getApplicationConfig(application, options), function(apiKey, config) {
     config.apiKey = apiKey;
     exports.validate(config);
@@ -308,7 +308,7 @@ exports.getByDevice = Promise.method(function(uuid, deviceApiKey, options) {
   if (!_.isString(deviceApiKey)) {
     throw new Error('deviceApiKey must be a string');
   }
-  resin = require('resin-sdk-preconfigured');
+  resin = require('resin-sdk').fromSharedOptions();
   return resin.models.device.get(uuid).then(function(device) {
     return getApplicationConfig(device.application_name, options).then(function(config) {
       config.registered_at = Math.floor(Date.now() / 1000);

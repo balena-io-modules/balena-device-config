@@ -1,6 +1,6 @@
 m = require('mochainon')
 _ = require('lodash')
-schema = require('../lib/schema')
+schema = require('../build/schema')
 
 describe 'Schema:', ->
 

@@ -33,16 +33,14 @@ Documentation
 * [deviceConfig](#module_deviceConfig)
     * [.generate(options, params)](#module_deviceConfig.generate) ⇒ <code>Object</code>
     * [.validate(config)](#module_deviceConfig.validate)
-    * [.getByApplication(application, [options])](#module_deviceConfig.getByApplication) ⇒ <code>Promise.&lt;Object&gt;</code>
-    * [.getByDevice(uuid, [deviceApiKey], [options])](#module_deviceConfig.getByDevice) ⇒ <code>Promise.&lt;Object&gt;</code>
 
 <a name="module_deviceConfig.generate"></a>
 
 ### deviceConfig.generate(options, params) ⇒ <code>Object</code>
-**Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
+**Kind**: static method of [<code>deviceConfig</code>](#module_deviceConfig)  
 **Summary**: Generate a basic config.json object  
 **Returns**: <code>Object</code> - config.json  
-**Access:** public  
+**Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -107,13 +105,13 @@ console.log(config)
 <a name="module_deviceConfig.validate"></a>
 
 ### deviceConfig.validate(config)
-**Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
+**Kind**: static method of [<code>deviceConfig</code>](#module_deviceConfig)  
 **Summary**: Validate a generated config.json object  
 **Throws**:
 
 - Will throw if there is a validation error
 
-**Access:** public  
+**Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -145,64 +143,6 @@ config = deviceConfig.generate
 	appUpdatePollInterval: 50000
 
 deviceConfig.validate(config)
-```
-<a name="module_deviceConfig.getByApplication"></a>
-
-### deviceConfig.getByApplication(application, [options]) ⇒ <code>Promise.&lt;Object&gt;</code>
-**Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
-**Summary**: Get a device configuration object for provisioning from an application  
-**Returns**: <code>Promise.&lt;Object&gt;</code> - device configuration  
-**Access:** public  
-**Todo**
-
-- [ ] Move this to the SDK
-
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| application | <code>String</code> |  | application name |
-| [options] | <code>Object</code> | <code>{}</code> | options |
-| [options.wifiSsid] | <code>String</code> |  | wifi ssid |
-| [options.wifiKey] | <code>String</code> |  | wifi key |
-
-**Example**  
-```js
-deviceConfig.getByApplication 'App1',
-	network: 'wifi'
-	wifiSsid: 'foobar'
-	wifiKey: 'hello'
-.then (configuration) ->
-	console.log(configuration)
-```
-<a name="module_deviceConfig.getByDevice"></a>
-
-### deviceConfig.getByDevice(uuid, [deviceApiKey], [options]) ⇒ <code>Promise.&lt;Object&gt;</code>
-**Kind**: static method of <code>[deviceConfig](#module_deviceConfig)</code>  
-**Summary**: Get a device configuration object for a provisioned device  
-**Returns**: <code>Promise.&lt;Object&gt;</code> - device configuration  
-**Access:** public  
-**Todo**
-
-- [ ] Move this to the SDK
-- [ ] Require device api key to be provided
-
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| uuid | <code>String</code> |  | device uuid |
-| [deviceApiKey] | <code>String</code> |  | device api key |
-| [options] | <code>Object</code> | <code>{}</code> | options |
-| [options.wifiSsid] | <code>String</code> |  | wifi ssid |
-| [options.wifiKey] | <code>String</code> |  | wifi key |
-
-**Example**  
-```js
-deviceConfig.getByDevice '7cf02a6', '4321'
-	network: 'wifi'
-	wifiSsid: 'foobar'
-	wifiKey: 'hello'
-.then (configuration) ->
-	console.log(configuration)
 ```
 
 Support

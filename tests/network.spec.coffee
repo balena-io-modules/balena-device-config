@@ -1,6 +1,6 @@
 m = require('mochainon')
 _ = require('lodash')
-network = require('../lib/network')
+network = require('../build/network')
 
 describe 'Network:', ->
 

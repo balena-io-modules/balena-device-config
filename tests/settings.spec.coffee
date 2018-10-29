@@ -1,5 +1,5 @@
 m = require('mochainon')
-settings = require('../lib/settings')
+settings = require('../build/settings')
 
 describe 'Settings:', ->
 

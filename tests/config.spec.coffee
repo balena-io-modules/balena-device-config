@@ -1,5 +1,5 @@
 m = require('mochainon')
-deviceConfig = require('../lib/config')
+deviceConfig = require('../build/config')
 
 describe 'Device Config:', ->
 

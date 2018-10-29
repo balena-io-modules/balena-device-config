@@ -21,7 +21,7 @@
   "scripts": {
     "lint": "resin-lint lib/ tests/",
     "pretest": "npm run lint",
-    "test": "gulp test",
+    "test": "npm run prepare && gulp test",
     "prepublish": "require-npm4-to-publish",
     "prepare": "gulp build",
     "readme": "npm run prepare && jsdoc2md --template doc/README.hbs build/config.js > README.md"

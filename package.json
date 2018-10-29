@@ -29,9 +29,9 @@
   "author": "Juan Cruz Viotti <juan@resin.io>",
   "license": "Apache-2.0",
   "devDependencies": {
-    "coffeescript": "^1.12.7",
+    "coffeescript": "^2.3.2",
     "gulp": "^3.9.1",
-    "gulp-coffee": "^2.3.5",
+    "gulp-coffee": "^3.0.2",
     "gulp-mocha": "^6.0.0",
     "gulp-util": "^3.0.8",
     "jsdoc-to-markdown": "^4.0.1",

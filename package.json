@@ -19,6 +19,8 @@
     "test": "tests"
   },
   "scripts": {
+    "lint": "resin-lint lib/ tests/",
+    "pretest": "npm run lint",
     "test": "gulp test",
     "prepublish": "require-npm4-to-publish",
     "prepare": "gulp build",
@@ -35,7 +37,8 @@
     "gulp-util": "~3.0.1",
     "jsdoc-to-markdown": "^1.1.1",
     "mocha": "~2.0.1",
-    "mochainon": "^2.0.0"
+    "mochainon": "^2.0.0",
+    "resin-lint": "^2.0.1"
   },
   "dependencies": {
     "coffee-script": "^1.12.5",

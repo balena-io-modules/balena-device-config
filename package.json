@@ -21,8 +21,8 @@
   "scripts": {
     "test": "gulp test",
     "prepublish": "require-npm4-to-publish",
-    "prepublishOnly": "gulp build",
-    "readme": "jsdoc2md --template doc/README.hbs build/config.js > README.md"
+    "prepare": "gulp build",
+    "readme": "npm run prepare && jsdoc2md --template doc/README.hbs build/config.js > README.md"
   },
   "author": "Juan Cruz Viotti <juan@resin.io>",
   "license": "Apache-2.0",

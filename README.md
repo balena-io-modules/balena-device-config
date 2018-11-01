@@ -57,9 +57,6 @@ config = deviceConfig.generate
 	user:
 		id: 7
 		username: 'johndoe'
-	pubnub:
-		subscribe_key: 'demo'
-		publish_key: 'demo'
 	mixpanel:
 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 	apiKey: 'asdf'
@@ -85,9 +82,6 @@ config = deviceConfig.generate
 	user:
 		id: 7
 		username: 'johndoe'
-	pubnub:
-		subscribe_key: 'demo'
-		publish_key: 'demo'
 	mixpanel:
 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 	apiKey: 'asdf'
@@ -127,9 +121,6 @@ config = deviceConfig.generate
 	user:
 		id: 7
 		username: 'johndoe'
-	pubnub:
-		subscribe_key: 'demo'
-		publish_key: 'demo'
 	mixpanel:
 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 	apiKey: 'asdf'

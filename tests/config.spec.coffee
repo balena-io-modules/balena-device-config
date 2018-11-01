@@ -14,9 +14,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -44,9 +41,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -70,9 +64,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -99,9 +90,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -127,9 +115,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -153,9 +138,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -182,9 +164,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -211,9 +190,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -238,9 +214,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -263,9 +236,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -291,9 +261,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -328,9 +295,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -357,9 +321,6 @@ describe 'Device Config:', ->
 					user:
 						id: 7
 						username: 'johndoe'
-					pubnub:
-						subscribe_key: 'demo'
-						publish_key: 'demo'
 					mixpanel:
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
@@ -385,9 +346,6 @@ describe 'Device Config:', ->
 					user:
 						id: 7
 						username: 'johndoe'
-					pubnub:
-						subscribe_key: 'demo'
-						publish_key: 'demo'
 					mixpanel:
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
@@ -414,9 +372,6 @@ describe 'Device Config:', ->
 					user:
 						id: 7
 						username: 'johndoe'
-					pubnub:
-						subscribe_key: 'demo'
-						publish_key: 'demo'
 					mixpanel:
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
@@ -443,9 +398,6 @@ describe 'Device Config:', ->
 					user:
 						id: 7
 						username: 'johndoe'
-					pubnub:
-						subscribe_key: 'demo'
-						publish_key: 'demo'
 					mixpanel:
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
@@ -467,9 +419,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -488,35 +437,6 @@ describe 'Device Config:', ->
 				deviceConfig.validate(config)
 			.to.throw('Validation: foo not recognized')
 
-		it 'should allow empty values for pubnub keys', ->
-			config = deviceConfig.generate
-				application:
-					app_name: 'HelloWorldApp'
-					id: 18
-					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
-				pubnub:
-					subscribe_key: ''
-					publish_key: ''
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
-				apiKey: 'asdf'
-				vpnPort: 443
-				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
-			,
-				network: 'ethernet'
-				appUpdatePollInterval: 50000
-
-			m.chai.expect ->
-				deviceConfig.validate(config)
-			.to.not.throw(Error)
-
 		it 'should allow balenaRootCA to be undefined', ->
 			config = deviceConfig.generate
 				application:
@@ -526,9 +446,6 @@ describe 'Device Config:', ->
 				user:
 					id: 7
 					username: 'johndoe'
-				pubnub:
-					subscribe_key: 'demo'
-					publish_key: 'demo'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'

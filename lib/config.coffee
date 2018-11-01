@@ -42,9 +42,6 @@ schema = require('./schema')
 # 	user:
 # 		id: 7
 # 		username: 'johndoe'
-# 	pubnub:
-# 		subscribe_key: 'demo'
-# 		publish_key: 'demo'
 # 	mixpanel:
 # 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 # 	apiKey: 'asdf'
@@ -69,9 +66,6 @@ schema = require('./schema')
 # 	user:
 # 		id: 7
 # 		username: 'johndoe'
-# 	pubnub:
-# 		subscribe_key: 'demo'
-# 		publish_key: 'demo'
 # 	mixpanel:
 # 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 # 	apiKey: 'asdf'
@@ -108,8 +102,6 @@ exports.generate = (options, params = {}) ->
 		registryEndpoint: options.endpoints.registry
 		deltaEndpoint: options.endpoints.delta
 
-		pubnubSubscribeKey: options.pubnub.subscribe_key
-		pubnubPublishKey: options.pubnub.publish_key
 		mixpanelToken: options.mixpanel.token
 
 	if options.apiKey?
@@ -147,9 +139,6 @@ exports.generate = (options, params = {}) ->
 # 	user:
 # 		id: 7
 # 		username: 'johndoe'
-# 	pubnub:
-# 		subscribe_key: 'demo'
-# 		publish_key: 'demo'
 # 	mixpanel:
 # 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 # 	apiKey: 'asdf'

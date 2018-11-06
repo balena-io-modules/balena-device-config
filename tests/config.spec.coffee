@@ -459,3 +459,47 @@ describe 'Device Config:', ->
 				wifiSsid: 'mywifi'
 				wifiKey: 'secret'
 			m.chai.expect(config.balenaRootCA).to.not.exist
+
+		it 'should allow config without pubnub keys', ->
+			config = {
+				applicationName: 'app',
+				applicationId: 123,
+				deviceType: 'devicetype',
+				userId: 123,
+				username: 'username',
+				appUpdatePollInterval: 60000,
+				listenPort: 48484,
+				vpnPort: 443,
+				apiEndpoint: 'https://api.com',
+				vpnEndpoint: 'https://vpn.com',
+				registryEndpoint: 'https://registry.com',
+				deltaEndpoint: undefined,
+				mixpanelToken: 'mixpanel'
+			}
+
+			m.chai.expect ->
+				deviceConfig.validate(config)
+			.to.not.throw(Error)
+
+		it 'should allow config with empty pubnub keys', ->
+			config = {
+				applicationName: 'app',
+				applicationId: 123,
+				deviceType: 'devicetype',
+				userId: 123,
+				username: 'username',
+				appUpdatePollInterval: 60000,
+				listenPort: 48484,
+				vpnPort: 443,
+				apiEndpoint: 'https://api.com',
+				vpnEndpoint: 'https://vpn.com',
+				registryEndpoint: 'https://registry.com',
+				deltaEndpoint: undefined,
+				pubnubSubscribeKey: '',
+				pubnubPublishKey: '',
+				mixpanelToken: 'mixpanel'
+			}
+
+			m.chai.expect ->
+				deviceConfig.validate(config)
+			.to.not.throw(Error)

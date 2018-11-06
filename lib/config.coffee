@@ -102,6 +102,10 @@ exports.generate = (options, params = {}) ->
 		registryEndpoint: options.endpoints.registry
 		deltaEndpoint: options.endpoints.delta
 
+		# Included for backwards compatibility with older CLIs
+		pubnubSubscribeKey: ''
+		pubnubPublishKey: ''
+
 		mixpanelToken: options.mixpanel.token
 
 	if options.apiKey?

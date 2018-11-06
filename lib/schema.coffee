@@ -110,6 +110,16 @@ module.exports =
 			required: true
 			allowEmpty: false
 			format: 'host-name'
+		pubnubSubscribeKey:
+			description: 'pubnub subscribe key'
+			type: 'string'
+			required: false
+			allowEmpty: true
+		pubnubPublishKey:
+			description: 'pubnub publish key'
+			type: 'string'
+			required: false
+			allowEmpty: true
 		mixpanelToken:
 			description: 'mixpanel token'
 			type: 'string'

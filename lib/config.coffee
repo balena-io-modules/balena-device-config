@@ -89,8 +89,6 @@ exports.generate = (options, params = {}) ->
 		applicationName: options.application.app_name
 		applicationId: options.application.id
 		deviceType: options.deviceType or options.application.device_type
-		userId: options.user.id
-		username: options.user.username
 
 		appUpdatePollInterval: params.appUpdatePollInterval or 60000
 

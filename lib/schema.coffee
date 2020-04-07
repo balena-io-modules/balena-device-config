@@ -47,11 +47,11 @@ module.exports =
 			description: 'user id'
 			type: 'number'
 			minimum: 0
-			required: true
+			required: false
 		username:
 			description: 'username'
 			type: 'string'
-			required: true
+			required: false
 			allowEmpty: false
 		files:
 			description: 'files'

@@ -8,21 +8,17 @@ describe 'Device Config:', ->
 		it 'should pass validation', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'ethernet'
 				appUpdatePollInterval: 50000
@@ -35,21 +31,17 @@ describe 'Device Config:', ->
 		it 'should default appUpdatePollInterval to 1 second', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'ethernet'
 
@@ -58,21 +50,17 @@ describe 'Device Config:', ->
 		it 'should default to the application device type when an explicit one is not provided', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi2'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 				version: '1.9.999'
 				connectivity: 'connman'
 			,
@@ -83,22 +71,18 @@ describe 'Device Config:', ->
 		it 'should use the provided device type instead of the application one', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi2'
 				deviceType: 'raspberrypi3'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 				version: '1.9.999'
 				connectivity: 'connman'
 			,
@@ -109,21 +93,17 @@ describe 'Device Config:', ->
 		it 'should include files section if no version is given', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'ethernet'
 
@@ -132,21 +112,17 @@ describe 'Device Config:', ->
 		it 'should include files and connectivity sections if the given version is < 2.0.0', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 				version: '1.9.999'
 				connectivity: 'connman'
 			,
@@ -158,21 +134,17 @@ describe 'Device Config:', ->
 		it 'should not include files or connectivity sections if the given version is >= 2.0.0', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 				version: '2.0.1'
 				connectivity: 'connman'
 			,
@@ -184,21 +156,17 @@ describe 'Device Config:', ->
 		it 'should default appUpdatePollInterval to 1 second if NaN', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'ethernet'
 				appUpdatePollInterval: NaN
@@ -208,20 +176,16 @@ describe 'Device Config:', ->
 		it 'should default vpnPort to 443', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'ethernet'
 
@@ -230,20 +194,16 @@ describe 'Device Config:', ->
 		it 'should handle wifi configuration', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'wifi'
 				wifiSsid: 'mywifi'
@@ -255,20 +215,16 @@ describe 'Device Config:', ->
 		it 'should handle multiple network configurations', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: [
 						wifiSsid: 'mywifi1'
@@ -289,21 +245,17 @@ describe 'Device Config:', ->
 		it 'should parse vpnPort as an integer automatically', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: '1234'
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'wifi'
 				wifiSsid: 'mywifi'
@@ -315,21 +267,17 @@ describe 'Device Config:', ->
 			m.chai.expect ->
 				deviceConfig.generate
 					application:
-						app_name: 'HelloWorldApp'
 						id: 18
 						device_type: 'raspberry-pi'
-					user:
-						id: 7
-						username: 'johndoe'
 					mixpanel:
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
 					vpnPort: 'hello'
 					endpoints:
-						api: 'https://api.resin.io'
-						vpn: 'vpn.resin.io'
-						registry: 'registry.resin.io'
-						delta: 'https://delta.resin.io'
+						api: 'https://api.balena-cloud.com'
+						vpn: 'vpn.balena-cloud.com'
+						registry: 'registry.balena-cloud.com'
+						delta: 'https://delta.balena-cloud.com'
 				,
 					network: 'wifi'
 					wifiSsid: 'mywifi'
@@ -340,21 +288,17 @@ describe 'Device Config:', ->
 			m.chai.expect ->
 				deviceConfig.generate
 					application:
-						app_name: 'HelloWorldApp'
 						id: 18
 						device_type: 'raspberry-pi'
-					user:
-						id: 7
-						username: 'johndoe'
 					mixpanel:
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
 					vpnPort: NaN
 					endpoints:
-						api: 'https://api.resin.io'
-						vpn: 'vpn.resin.io'
-						registry: 'registry.resin.io'
-						delta: 'https://delta.resin.io'
+						api: 'https://api.balena-cloud.com'
+						vpn: 'vpn.balena-cloud.com'
+						registry: 'registry.balena-cloud.com'
+						delta: 'https://delta.balena-cloud.com'
 				,
 					network: 'wifi'
 					wifiSsid: 'mywifi'
@@ -366,20 +310,16 @@ describe 'Device Config:', ->
 			m.chai.expect ->
 				config = deviceConfig.generate
 					application:
-						app_name: 'HelloWorldApp'
 						id: 18
 						device_type: 'raspberry-pi'
-					user:
-						id: 7
-						username: 'johndoe'
 					mixpanel:
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
 					vpnPort: '1234'
 					endpoints:
-						api: 'https://api.resin.io'
-						vpn: 'vpn.resin.io'
-						registry: 'registry.resin.io'
+						api: 'https://api.balena-cloud.com'
+						vpn: 'vpn.balena-cloud.com'
+						registry: 'registry.balena-cloud.com'
 				,
 					network: 'wifi'
 					wifiSsid: 'mywifi'
@@ -393,41 +333,33 @@ describe 'Device Config:', ->
 			m.chai.expect ->
 				deviceConfig.generate
 					application:
-						id: 18
 						device_type: 'raspberry-pi'
-					user:
-						id: 7
-						username: 'johndoe'
 					mixpanel:
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
 					endpoints:
-						api: 'https://api.resin.io'
-						vpn: 'vpn.resin.io'
-						registry: 'registry.resin.io'
-						delta: 'https://delta.resin.io'
+						api: 'https://api.balena-cloud.com'
+						vpn: 'vpn.balena-cloud.com'
+						registry: 'registry.balena-cloud.com'
+						delta: 'https://delta.balena-cloud.com'
 				,
 					network: 'ethernet'
-			.to.throw('Validation: applicationName is required')
+			.to.throw('Validation: applicationId is required')
 
 		it 'should throw an error if the config json contains extra properties', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'ethernet'
 
@@ -440,20 +372,16 @@ describe 'Device Config:', ->
 		it 'should allow balenaRootCA to be undefined', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: '1234'
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
 			,
 				network: 'wifi'
 				wifiSsid: 'mywifi'

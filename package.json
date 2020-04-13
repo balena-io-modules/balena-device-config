@@ -1,15 +1,15 @@
 {
-  "name": "resin-device-config",
+  "name": "balena-device-config",
   "version": "5.1.1",
   "description": "Get device config.json configuration",
   "main": "build/config.js",
-  "homepage": "https://github.com/resin-io-modules/resin-device-config",
+  "homepage": "https://github.com/balena-io-modules/balena-device-config",
   "repository": {
     "type": "git",
-    "url": "git://github.com/resin-io-modules/resin-device-config.git"
+    "url": "git://github.com/balena-io-modules/balena-device-config.git"
   },
   "keywords": [
-    "resin",
+    "balena",
     "image",
     "device",
     "config.json",
@@ -19,29 +19,29 @@
     "test": "tests"
   },
   "scripts": {
-    "lint": "resin-lint lib/ tests/",
+    "lint": "balena-lint lib/ tests/",
     "pretest": "npm run lint",
     "test": "npm run prepare && gulp test",
     "prepublish": "require-npm4-to-publish",
     "prepare": "gulp build",
     "readme": "npm run prepare && jsdoc2md --template doc/README.hbs build/config.js > README.md"
   },
-  "author": "Juan Cruz Viotti <juan@resin.io>",
+  "author": "Juan Cruz Viotti <juan@balena.io>",
   "license": "Apache-2.0",
   "devDependencies": {
-    "coffeescript": "^2.3.2",
-    "gulp": "^3.9.1",
-    "gulp-coffee": "^3.0.2",
+    "@balena/lint": "^5.0.2",
+    "coffeescript": "^2.5.1",
+    "gulp": "^4.0.2",
+    "gulp-coffee": "^3.0.3",
     "gulp-mocha": "^6.0.0",
     "gulp-util": "^3.0.8",
-    "jsdoc-to-markdown": "^4.0.1",
+    "jsdoc-to-markdown": "^5.0.3",
     "mocha": "^5.2.0",
     "mochainon": "^2.0.0",
-    "require-npm4-to-publish": "^1.0.0",
-    "resin-lint": "^2.0.1"
+    "require-npm4-to-publish": "^1.0.0"
   },
   "dependencies": {
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "revalidator": "^0.3.1"
   }
 }

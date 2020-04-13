@@ -1,5 +1,5 @@
 ###
-Copyright 2016 Resin.io
+Copyright 2016 Balena
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -36,20 +36,16 @@ schema = require('./schema')
 # @example
 # config = deviceConfig.generate
 # 	application:
-# 		app_name: 'HelloWorldApp'
 # 		id: 18
 # 		device_type: 'raspberry-pi'
-# 	user:
-# 		id: 7
-# 		username: 'johndoe'
 # 	mixpanel:
 # 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 # 	apiKey: 'asdf'
 # 	vpnPort: 443
 # 	endpoints:
-# 		api: 'https://api.resin.io'
-# 		vpn: 'vpn.resin.io'
-# 		registry: 'registry.resin.io'
+# 		api: 'https://api.balena-cloud.com'
+# 		vpn: 'vpn.balena-cloud.com'
+# 		registry: 'registry.balena-cloud.com'
 # ,
 # 	network: 'ethernet'
 # 	appUpdatePollInterval: 50000
@@ -59,21 +55,17 @@ schema = require('./schema')
 # @example
 # config = deviceConfig.generate
 # 	application:
-# 		app_name: 'HelloWorldApp'
 # 		id: 18
 # 		device_type: 'raspberry-pi2'
 # 	deviceType: 'raspberrypi3'
-# 	user:
-# 		id: 7
-# 		username: 'johndoe'
 # 	mixpanel:
 # 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 # 	apiKey: 'asdf'
 # 	vpnPort: 443
 # 	endpoints:
-# 		api: 'https://api.resin.io'
-# 		vpn: 'vpn.resin.io'
-# 		registry: 'registry.resin.io'
+# 		api: 'https://api.balena-cloud.com'
+# 		vpn: 'vpn.balena-cloud.com'
+# 		registry: 'registry.balena-cloud.com'
 # ,
 # 	network: 'ethernet'
 # 	appUpdatePollInterval: 50000
@@ -86,7 +78,6 @@ exports.generate = (options, params = {}) ->
 		vpnPort: 443
 
 	config =
-		applicationName: options.application.app_name
 		applicationId: options.application.id
 		deviceType: options.deviceType or options.application.device_type
 
@@ -99,10 +90,6 @@ exports.generate = (options, params = {}) ->
 		vpnEndpoint: options.endpoints.vpn
 		registryEndpoint: options.endpoints.registry
 		deltaEndpoint: options.endpoints.delta
-
-		# Included for backwards compatibility with older CLIs
-		pubnubSubscribeKey: ''
-		pubnubPublishKey: ''
 
 		mixpanelToken: options.mixpanel.token
 
@@ -135,20 +122,16 @@ exports.generate = (options, params = {}) ->
 # @example
 # config = deviceConfig.generate
 # 	application:
-# 		app_name: 'HelloWorldApp'
 # 		id: 18
 # 		device_type: 'raspberry-pi'
-# 	user:
-# 		id: 7
-# 		username: 'johndoe'
 # 	mixpanel:
 # 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 # 	apiKey: 'asdf'
 # 	vpnPort: 443
 # 	endpoints:
-# 		api: 'https://api.resin.io'
-# 		vpn: 'vpn.resin.io'
-# 		registry: 'registry.resin.io'
+# 		api: 'https://api.balena-cloud.com'
+# 		vpn: 'vpn.balena-cloud.com'
+# 		registry: 'registry.balena-cloud.com'
 # ,
 # 	network: 'ethernet'
 # 	appUpdatePollInterval: 50000

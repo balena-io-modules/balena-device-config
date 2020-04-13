@@ -22,10 +22,10 @@ gulp.task 'test', ->
 			reporter: 'min'
 		}))
 
-gulp.task 'build', [
-	'test'
+gulp.task 'build', gulp.series [
 	'coffee'
+	'test'
 ]
 
-gulp.task 'watch', [ 'build' ], ->
+gulp.task 'watch', gulp.series 'build', ->
 	gulp.watch(OPTIONS.files.coffee, [ 'build' ])

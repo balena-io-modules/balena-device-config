@@ -1,15 +1,15 @@
 {
-  "name": "resin-device-config",
+  "name": "balena-device-config",
   "version": "5.1.1",
   "description": "Get device config.json configuration",
   "main": "build/config.js",
-  "homepage": "https://github.com/resin-io-modules/resin-device-config",
+  "homepage": "https://github.com/balena-io-modules/balena-device-config",
   "repository": {
     "type": "git",
-    "url": "git://github.com/resin-io-modules/resin-device-config.git"
+    "url": "git://github.com/balena-io-modules/balena-device-config.git"
   },
   "keywords": [
-    "resin",
+    "balena",
     "image",
     "device",
     "config.json",
@@ -26,7 +26,7 @@
     "prepare": "gulp build",
     "readme": "npm run prepare && jsdoc2md --template doc/README.hbs build/config.js > README.md"
   },
-  "author": "Juan Cruz Viotti <juan@resin.io>",
+  "author": "Juan Cruz Viotti <juan@balena.io>",
   "license": "Apache-2.0",
   "devDependencies": {
     "@balena/lint": "^5.0.2",

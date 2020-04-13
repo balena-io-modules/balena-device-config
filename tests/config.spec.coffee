@@ -15,10 +15,10 @@ describe 'Device Config:', ->
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'ethernet'
 				appUpdatePollInterval: 50000
@@ -38,10 +38,10 @@ describe 'Device Config:', ->
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'ethernet'
 
@@ -57,10 +57,10 @@ describe 'Device Config:', ->
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 				version: '1.9.999'
 				connectivity: 'connman'
 			,
@@ -79,10 +79,10 @@ describe 'Device Config:', ->
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 				version: '1.9.999'
 				connectivity: 'connman'
 			,
@@ -100,10 +100,10 @@ describe 'Device Config:', ->
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'ethernet'
 
@@ -119,10 +119,10 @@ describe 'Device Config:', ->
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 				version: '1.9.999'
 				connectivity: 'connman'
 			,
@@ -141,10 +141,10 @@ describe 'Device Config:', ->
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 				version: '2.0.1'
 				connectivity: 'connman'
 			,
@@ -163,10 +163,10 @@ describe 'Device Config:', ->
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'ethernet'
 				appUpdatePollInterval: NaN
@@ -182,10 +182,10 @@ describe 'Device Config:', ->
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'ethernet'
 
@@ -200,10 +200,10 @@ describe 'Device Config:', ->
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'wifi'
 				wifiSsid: 'mywifi'
@@ -221,10 +221,10 @@ describe 'Device Config:', ->
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: [
 						wifiSsid: 'mywifi1'
@@ -252,10 +252,10 @@ describe 'Device Config:', ->
 				apiKey: 'asdf'
 				vpnPort: '1234'
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'wifi'
 				wifiSsid: 'mywifi'
@@ -274,10 +274,10 @@ describe 'Device Config:', ->
 					apiKey: 'asdf'
 					vpnPort: 'hello'
 					endpoints:
-						api: 'https://api.resin.io'
-						vpn: 'vpn.resin.io'
-						registry: 'registry.resin.io'
-						delta: 'https://delta.resin.io'
+						api: 'https://api.balena-cloud.com'
+						vpn: 'vpn.balena-cloud.com'
+						registry: 'registry.balena-cloud.com'
+						delta: 'https://delta.balena-cloud.com'
 				,
 					network: 'wifi'
 					wifiSsid: 'mywifi'
@@ -295,10 +295,10 @@ describe 'Device Config:', ->
 					apiKey: 'asdf'
 					vpnPort: NaN
 					endpoints:
-						api: 'https://api.resin.io'
-						vpn: 'vpn.resin.io'
-						registry: 'registry.resin.io'
-						delta: 'https://delta.resin.io'
+						api: 'https://api.balena-cloud.com'
+						vpn: 'vpn.balena-cloud.com'
+						registry: 'registry.balena-cloud.com'
+						delta: 'https://delta.balena-cloud.com'
 				,
 					network: 'wifi'
 					wifiSsid: 'mywifi'
@@ -317,9 +317,9 @@ describe 'Device Config:', ->
 					apiKey: 'asdf'
 					vpnPort: '1234'
 					endpoints:
-						api: 'https://api.resin.io'
-						vpn: 'vpn.resin.io'
-						registry: 'registry.resin.io'
+						api: 'https://api.balena-cloud.com'
+						vpn: 'vpn.balena-cloud.com'
+						registry: 'registry.balena-cloud.com'
 				,
 					network: 'wifi'
 					wifiSsid: 'mywifi'
@@ -338,10 +338,10 @@ describe 'Device Config:', ->
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
 					endpoints:
-						api: 'https://api.resin.io'
-						vpn: 'vpn.resin.io'
-						registry: 'registry.resin.io'
-						delta: 'https://delta.resin.io'
+						api: 'https://api.balena-cloud.com'
+						vpn: 'vpn.balena-cloud.com'
+						registry: 'registry.balena-cloud.com'
+						delta: 'https://delta.balena-cloud.com'
 				,
 					network: 'ethernet'
 			.to.throw('Validation: applicationId is required')
@@ -356,10 +356,10 @@ describe 'Device Config:', ->
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
-					delta: 'https://delta.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
 			,
 				network: 'ethernet'
 
@@ -379,9 +379,9 @@ describe 'Device Config:', ->
 				apiKey: 'asdf'
 				vpnPort: '1234'
 				endpoints:
-					api: 'https://api.resin.io'
-					vpn: 'vpn.resin.io'
-					registry: 'registry.resin.io'
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
 			,
 				network: 'wifi'
 				wifiSsid: 'mywifi'

@@ -43,11 +43,13 @@ module.exports =
 			type: 'string'
 			required: true
 			allowEmpty: false
+		# Included for backwards compatibility - it does not exist in modern config files
 		userId:
 			description: 'user id'
 			type: 'number'
 			minimum: 0
 			required: false
+		# Included for backwards compatibility - it does not exist in modern config files
 		username:
 			description: 'username'
 			type: 'string'
@@ -110,11 +112,13 @@ module.exports =
 			required: true
 			allowEmpty: false
 			format: 'host-name'
+		# Included for backwards compatibility - it does not exist in modern config files
 		pubnubSubscribeKey:
 			description: 'pubnub subscribe key'
 			type: 'string'
 			required: false
 			allowEmpty: true
+		# Included for backwards compatibility - it does not exist in modern config files
 		pubnubPublishKey:
 			description: 'pubnub publish key'
 			type: 'string'

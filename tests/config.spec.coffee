@@ -8,7 +8,6 @@ describe 'Device Config:', ->
 		it 'should pass validation', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
 				user:
@@ -35,7 +34,6 @@ describe 'Device Config:', ->
 		it 'should default appUpdatePollInterval to 1 second', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
 				user:
@@ -58,7 +56,6 @@ describe 'Device Config:', ->
 		it 'should default to the application device type when an explicit one is not provided', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi2'
 				user:
@@ -83,7 +80,6 @@ describe 'Device Config:', ->
 		it 'should use the provided device type instead of the application one', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi2'
 				deviceType: 'raspberrypi3'
@@ -109,7 +105,6 @@ describe 'Device Config:', ->
 		it 'should include files section if no version is given', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
 				user:
@@ -132,7 +127,6 @@ describe 'Device Config:', ->
 		it 'should include files and connectivity sections if the given version is < 2.0.0', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
 				user:
@@ -158,7 +152,6 @@ describe 'Device Config:', ->
 		it 'should not include files or connectivity sections if the given version is >= 2.0.0', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
 				user:
@@ -184,7 +177,6 @@ describe 'Device Config:', ->
 		it 'should default appUpdatePollInterval to 1 second if NaN', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
 				user:
@@ -208,7 +200,6 @@ describe 'Device Config:', ->
 		it 'should default vpnPort to 443', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
 				user:
@@ -230,7 +221,6 @@ describe 'Device Config:', ->
 		it 'should handle wifi configuration', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
 				user:
@@ -255,7 +245,6 @@ describe 'Device Config:', ->
 		it 'should handle multiple network configurations', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
 				user:
@@ -289,7 +278,6 @@ describe 'Device Config:', ->
 		it 'should parse vpnPort as an integer automatically', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
 				user:
@@ -315,7 +303,6 @@ describe 'Device Config:', ->
 			m.chai.expect ->
 				deviceConfig.generate
 					application:
-						app_name: 'HelloWorldApp'
 						id: 18
 						device_type: 'raspberry-pi'
 					user:
@@ -340,7 +327,6 @@ describe 'Device Config:', ->
 			m.chai.expect ->
 				deviceConfig.generate
 					application:
-						app_name: 'HelloWorldApp'
 						id: 18
 						device_type: 'raspberry-pi'
 					user:
@@ -366,7 +352,6 @@ describe 'Device Config:', ->
 			m.chai.expect ->
 				config = deviceConfig.generate
 					application:
-						app_name: 'HelloWorldApp'
 						id: 18
 						device_type: 'raspberry-pi'
 					user:
@@ -393,7 +378,6 @@ describe 'Device Config:', ->
 			m.chai.expect ->
 				deviceConfig.generate
 					application:
-						id: 18
 						device_type: 'raspberry-pi'
 					user:
 						id: 7
@@ -408,12 +392,11 @@ describe 'Device Config:', ->
 						delta: 'https://delta.resin.io'
 				,
 					network: 'ethernet'
-			.to.throw('Validation: applicationName is required')
+			.to.throw('Validation: applicationId is required')
 
 		it 'should throw an error if the config json contains extra properties', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
 				user:
@@ -440,7 +423,6 @@ describe 'Device Config:', ->
 		it 'should allow balenaRootCA to be undefined', ->
 			config = deviceConfig.generate
 				application:
-					app_name: 'HelloWorldApp'
 					id: 18
 					device_type: 'raspberry-pi'
 				user:

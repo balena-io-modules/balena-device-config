@@ -28,10 +28,11 @@ _ = require('lodash')
 ###
 module.exports =
 	properties:
+		# Included for backwards compatibility - it does not exist in modern config files
 		applicationName:
 			description: 'application name'
 			type: 'string'
-			required: true
+			required: false
 			allowEmpty: false
 		applicationId:
 			description: 'application id'

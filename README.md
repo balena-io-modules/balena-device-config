@@ -51,7 +51,6 @@ Documentation
 ```js
 config = deviceConfig.generate
 	application:
-		app_name: 'HelloWorldApp'
 		id: 18
 		device_type: 'raspberry-pi'
 	user:
@@ -75,7 +74,6 @@ console.log(config)
 ```js
 config = deviceConfig.generate
 	application:
-		app_name: 'HelloWorldApp'
 		id: 18
 		device_type: 'raspberry-pi2'
 	deviceType: 'raspberrypi3'
@@ -115,7 +113,6 @@ console.log(config)
 ```js
 config = deviceConfig.generate
 	application:
-		app_name: 'HelloWorldApp'
 		id: 18
 		device_type: 'raspberry-pi'
 	user:

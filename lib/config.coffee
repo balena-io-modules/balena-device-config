@@ -36,7 +36,6 @@ schema = require('./schema')
 # @example
 # config = deviceConfig.generate
 # 	application:
-# 		app_name: 'HelloWorldApp'
 # 		id: 18
 # 		device_type: 'raspberry-pi'
 # 	user:
@@ -59,7 +58,6 @@ schema = require('./schema')
 # @example
 # config = deviceConfig.generate
 # 	application:
-# 		app_name: 'HelloWorldApp'
 # 		id: 18
 # 		device_type: 'raspberry-pi2'
 # 	deviceType: 'raspberrypi3'
@@ -86,7 +84,6 @@ exports.generate = (options, params = {}) ->
 		vpnPort: 443
 
 	config =
-		applicationName: options.application.app_name
 		applicationId: options.application.id
 		deviceType: options.deviceType or options.application.device_type
 
@@ -131,7 +128,6 @@ exports.generate = (options, params = {}) ->
 # @example
 # config = deviceConfig.generate
 # 	application:
-# 		app_name: 'HelloWorldApp'
 # 		id: 18
 # 		device_type: 'raspberry-pi'
 # 	user:

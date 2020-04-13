@@ -53,9 +53,6 @@ config = deviceConfig.generate
 	application:
 		id: 18
 		device_type: 'raspberry-pi'
-	user:
-		id: 7
-		username: 'johndoe'
 	mixpanel:
 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 	apiKey: 'asdf'
@@ -77,9 +74,6 @@ config = deviceConfig.generate
 		id: 18
 		device_type: 'raspberry-pi2'
 	deviceType: 'raspberrypi3'
-	user:
-		id: 7
-		username: 'johndoe'
 	mixpanel:
 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 	apiKey: 'asdf'
@@ -115,9 +109,6 @@ config = deviceConfig.generate
 	application:
 		id: 18
 		device_type: 'raspberry-pi'
-	user:
-		id: 7
-		username: 'johndoe'
 	mixpanel:
 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 	apiKey: 'asdf'

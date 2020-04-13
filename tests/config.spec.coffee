@@ -10,9 +10,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -36,9 +33,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -58,9 +52,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi2'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -83,9 +74,6 @@ describe 'Device Config:', ->
 					id: 18
 					device_type: 'raspberry-pi2'
 				deviceType: 'raspberrypi3'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -107,9 +95,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -129,9 +114,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -154,9 +136,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -179,9 +158,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -202,9 +178,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -223,9 +196,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -247,9 +217,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -280,9 +247,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -305,9 +269,6 @@ describe 'Device Config:', ->
 					application:
 						id: 18
 						device_type: 'raspberry-pi'
-					user:
-						id: 7
-						username: 'johndoe'
 					mixpanel:
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
@@ -329,9 +290,6 @@ describe 'Device Config:', ->
 					application:
 						id: 18
 						device_type: 'raspberry-pi'
-					user:
-						id: 7
-						username: 'johndoe'
 					mixpanel:
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
@@ -354,9 +312,6 @@ describe 'Device Config:', ->
 					application:
 						id: 18
 						device_type: 'raspberry-pi'
-					user:
-						id: 7
-						username: 'johndoe'
 					mixpanel:
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
@@ -379,9 +334,6 @@ describe 'Device Config:', ->
 				deviceConfig.generate
 					application:
 						device_type: 'raspberry-pi'
-					user:
-						id: 7
-						username: 'johndoe'
 					mixpanel:
 						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
@@ -399,9 +351,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
@@ -425,9 +374,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				user:
-					id: 7
-					username: 'johndoe'
 				mixpanel:
 					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'

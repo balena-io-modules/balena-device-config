@@ -38,8 +38,6 @@ schema = require('./schema')
 # 	application:
 # 		id: 18
 # 		device_type: 'raspberry-pi'
-# 	mixpanel:
-# 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 # 	apiKey: 'asdf'
 # 	vpnPort: 443
 # 	endpoints:
@@ -58,8 +56,6 @@ schema = require('./schema')
 # 		id: 18
 # 		device_type: 'raspberry-pi2'
 # 	deviceType: 'raspberrypi3'
-# 	mixpanel:
-# 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 # 	apiKey: 'asdf'
 # 	vpnPort: 443
 # 	endpoints:
@@ -90,8 +86,6 @@ exports.generate = (options, params = {}) ->
 		vpnEndpoint: options.endpoints.vpn
 		registryEndpoint: options.endpoints.registry
 		deltaEndpoint: options.endpoints.delta
-
-		mixpanelToken: options.mixpanel.token
 
 	if options.apiKey?
 		config.apiKey = options.apiKey
@@ -124,8 +118,6 @@ exports.generate = (options, params = {}) ->
 # 	application:
 # 		id: 18
 # 		device_type: 'raspberry-pi'
-# 	mixpanel:
-# 		token: 'e3bc4100330c35722740fb8c6f5abddc'
 # 	apiKey: 'asdf'
 # 	vpnPort: 443
 # 	endpoints:

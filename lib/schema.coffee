@@ -125,10 +125,11 @@ module.exports =
 			type: 'string'
 			required: false
 			allowEmpty: true
+		# Included for backwards compatibility - it does not exist in modern config files
 		mixpanelToken:
 			description: 'mixpanel token'
 			type: 'string'
-			required: true
+			required: false
 			allowEmpty: false
 		balenaRootCA:
 			description: 'balena root CA'

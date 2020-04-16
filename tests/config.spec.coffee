@@ -10,8 +10,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
@@ -33,8 +31,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
@@ -52,8 +48,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi2'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
@@ -74,8 +68,6 @@ describe 'Device Config:', ->
 					id: 18
 					device_type: 'raspberry-pi2'
 				deviceType: 'raspberrypi3'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
@@ -95,8 +87,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
@@ -114,8 +104,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
@@ -136,8 +124,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
@@ -158,8 +144,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
@@ -178,8 +162,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				endpoints:
 					api: 'https://api.balena-cloud.com'
@@ -196,8 +178,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				endpoints:
 					api: 'https://api.balena-cloud.com'
@@ -217,8 +197,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				endpoints:
 					api: 'https://api.balena-cloud.com'
@@ -247,8 +225,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: '1234'
 				endpoints:
@@ -269,8 +245,6 @@ describe 'Device Config:', ->
 					application:
 						id: 18
 						device_type: 'raspberry-pi'
-					mixpanel:
-						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
 					vpnPort: 'hello'
 					endpoints:
@@ -290,8 +264,6 @@ describe 'Device Config:', ->
 					application:
 						id: 18
 						device_type: 'raspberry-pi'
-					mixpanel:
-						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
 					vpnPort: NaN
 					endpoints:
@@ -312,8 +284,6 @@ describe 'Device Config:', ->
 					application:
 						id: 18
 						device_type: 'raspberry-pi'
-					mixpanel:
-						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
 					vpnPort: '1234'
 					endpoints:
@@ -334,8 +304,6 @@ describe 'Device Config:', ->
 				deviceConfig.generate
 					application:
 						device_type: 'raspberry-pi'
-					mixpanel:
-						token: 'e3bc4100330c35722740fb8c6f5abddc'
 					apiKey: 'asdf'
 					endpoints:
 						api: 'https://api.balena-cloud.com'
@@ -351,8 +319,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: 443
 				endpoints:
@@ -374,8 +340,6 @@ describe 'Device Config:', ->
 				application:
 					id: 18
 					device_type: 'raspberry-pi'
-				mixpanel:
-					token: 'e3bc4100330c35722740fb8c6f5abddc'
 				apiKey: 'asdf'
 				vpnPort: '1234'
 				endpoints:

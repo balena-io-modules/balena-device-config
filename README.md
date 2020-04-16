@@ -53,8 +53,6 @@ config = deviceConfig.generate
 	application:
 		id: 18
 		device_type: 'raspberry-pi'
-	mixpanel:
-		token: 'e3bc4100330c35722740fb8c6f5abddc'
 	apiKey: 'asdf'
 	vpnPort: 443
 	endpoints:
@@ -74,8 +72,6 @@ config = deviceConfig.generate
 		id: 18
 		device_type: 'raspberry-pi2'
 	deviceType: 'raspberrypi3'
-	mixpanel:
-		token: 'e3bc4100330c35722740fb8c6f5abddc'
 	apiKey: 'asdf'
 	vpnPort: 443
 	endpoints:
@@ -109,8 +105,6 @@ config = deviceConfig.generate
 	application:
 		id: 18
 		device_type: 'raspberry-pi'
-	mixpanel:
-		token: 'e3bc4100330c35722740fb8c6f5abddc'
 	apiKey: 'asdf'
 	vpnPort: 443
 	endpoints:

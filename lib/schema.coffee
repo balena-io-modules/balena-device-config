@@ -81,11 +81,12 @@ module.exports =
 			type: 'number'
 			minimum: 0
 			required: true
+		# Included for backwards compatibility - it does not exist in modern config files
 		vpnPort:
 			description: 'vpn port'
 			type: 'number'
 			minimum: 0
-			required: true
+			required: false
 			conform: _.negate(_.isNaN)
 			messages:
 				conform: 'is NaN'
@@ -101,10 +102,11 @@ module.exports =
 			required: false
 			allowEmpty: false
 			format: 'url'
+		# Included for backwards compatibility - it does not exist in modern config files
 		vpnEndpoint:
 			description: 'vpn endpoint'
 			type: 'string'
-			required: true
+			required: false
 			allowEmpty: false
 			format: 'host-name'
 		registryEndpoint:

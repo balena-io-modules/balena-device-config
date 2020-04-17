@@ -76,6 +76,7 @@ exports.generate = (options, params = {}) ->
 	config =
 		applicationId: options.application.id
 		deviceType: options.deviceType or options.application.device_type
+		userId: options.user?.id
 
 		appUpdatePollInterval: params.appUpdatePollInterval or 60000
 
@@ -86,6 +87,8 @@ exports.generate = (options, params = {}) ->
 		vpnEndpoint: options.endpoints.vpn
 		registryEndpoint: options.endpoints.registry
 		deltaEndpoint: options.endpoints.delta
+
+		mixpanelToken: options.mixpanel?.token
 
 	if options.apiKey?
 		config.apiKey = options.apiKey

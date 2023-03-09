@@ -115,6 +115,12 @@ module.exports =
 			required: true
 			allowEmpty: false
 			format: 'host-name'
+		logsEndpoint:
+			description: 'logs endpoint'
+			type: 'string'
+			required: false
+			allowEmpty: false
+			format: 'url'
 		# Included for backwards compatibility - it does not exist in modern config files
 		pubnubSubscribeKey:
 			description: 'pubnub subscribe key'

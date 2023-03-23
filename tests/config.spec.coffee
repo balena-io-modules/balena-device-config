@@ -17,6 +17,7 @@ describe 'Device Config:', ->
 					vpn: 'vpn.balena-cloud.com'
 					registry: 'registry.balena-cloud.com'
 					delta: 'https://delta.balena-cloud.com'
+					logs: 'https://logs.balena-cloud.com'
 			,
 				network: 'ethernet'
 				appUpdatePollInterval: 50000
@@ -61,6 +62,45 @@ describe 'Device Config:', ->
 				network: 'ethernet'
 
 			m.chai.expect(config.deviceType).to.equal('raspberry-pi2')
+
+		it 'should add logsEndpoint if it exists', ->
+			config = deviceConfig.generate
+				application:
+					id: 18
+					device_type: 'raspberry-pi2'
+				apiKey: 'asdf'
+				vpnPort: 443
+				endpoints:
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
+					logs: 'https://logs.balena-cloud.com'
+				version: '1.9.999'
+				connectivity: 'connman'
+			,
+				network: 'ethernet'
+
+			m.chai.expect(config.logsEndpoint).to.equal('https://logs.balena-cloud.com')
+
+		it 'should not include logsEndpoint if url is not provided', ->
+			config = deviceConfig.generate
+				application:
+					id: 18
+					device_type: 'raspberry-pi2'
+				apiKey: 'asdf'
+				vpnPort: 443
+				endpoints:
+					api: 'https://api.balena-cloud.com'
+					vpn: 'vpn.balena-cloud.com'
+					registry: 'registry.balena-cloud.com'
+					delta: 'https://delta.balena-cloud.com'
+				version: '1.9.999'
+				connectivity: 'connman'
+			,
+				network: 'ethernet'
+
+			m.chai.expect(config.logsEndpoint).to.not.exist
 
 		it 'should use the provided device type instead of the application one', ->
 			config = deviceConfig.generate

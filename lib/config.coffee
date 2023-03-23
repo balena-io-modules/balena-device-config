@@ -93,6 +93,9 @@ exports.generate = (options, params = {}) ->
 	if options.apiKey?
 		config.apiKey = options.apiKey
 
+	if options.endpoints.logs?
+		config.logsEndpoint = options.endpoints.logs
+
 	majorVersion = parseInt(options.version.split('.', 1)[0]) if options.version
 	if not majorVersion or majorVersion < 2
 		config.files = network.getFiles(params)

@@ -1,6 +1,6 @@
 {
   "name": "balena-device-config",
-  "version": "6.2.0",
+  "version": "6.2.1",
   "description": "Get device config.json configuration",
   "main": "build/config.js",
   "homepage": "https://github.com/balena-io-modules/balena-device-config",
@@ -43,5 +43,8 @@
   "dependencies": {
     "lodash": "^4.17.15",
     "revalidator": "^0.3.1"
+  },
+  "versionist": {
+    "publishedAt": "2023-03-23T20:13:13.970Z"
   }
 }

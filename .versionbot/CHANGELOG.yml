@@ -1,4 +1,17 @@
 - commits:
+    - subject: Add optional logs endpoint
+      hash: 4ef6c533e2341cd23770db1f08f578e5083298d0
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Christina Ying Wang <cywang117@outlook.com>
+        signed-off-by: Christina Ying Wang <cywang117@outlook.com>
+      author: Christina Ying Wang
+  version: 6.3.0
+  title: ""
+  date: 2023-03-23T21:19:55.626Z
+- commits:
     - subject: Move to Flowzone
       hash: 6d302a80e6bd47069b95508992cd31859cbd3c2b
       body: ""

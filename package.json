@@ -31,7 +31,7 @@
   "devDependencies": {
     "@balena/lint": "^5.0.2",
     "coffeescript": "^2.5.1",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-coffee": "^3.0.3",
     "gulp-mocha": "^6.0.0",
     "gulp-util": "^3.0.8",

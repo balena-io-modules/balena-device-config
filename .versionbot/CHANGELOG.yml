@@ -1,4 +1,17 @@
 - commits:
+    - subject: "Add id-token: write permission for NPM OIDC publishing"
+      hash: f9a2dd56a799a8d50eb4c54e717701b072002a57
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+  version: 6.3.1
+  title: ""
+  date: 2026-02-19T01:56:42.572Z
+- commits:
     - subject: Add optional logs endpoint
       hash: 4ef6c533e2341cd23770db1f08f578e5083298d0
       body: ""
@@ -534,11 +547,9 @@
 - commits:
     - subject: Support hidden wifi networks.
 - commits:
-    - body: >-
+    - body: |-
         This should not affect non-hidden networks.
-
         See https://github.com/aldebaran/connman/blob/0f92a0cd3e156d2de438eea210a439bfec17fa75/doc/config-format.txt#L83
-
         for a reference to the option on connman documentation.
 - version: 3.0.1
 - date: 2016-04-08T16:05:11Z

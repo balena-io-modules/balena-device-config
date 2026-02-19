@@ -29,7 +29,7 @@
   "author": "Juan Cruz Viotti <juan@balena.io>",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@balena/lint": "^5.0.2",
+    "@balena/lint": "^9.0.0",
     "coffeescript": "^2.5.1",
     "gulp": "^4.0.2",
     "gulp-coffee": "^3.0.3",

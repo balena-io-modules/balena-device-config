@@ -30,15 +30,15 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@balena/lint": "^5.0.2",
-    "coffeescript": "^2.5.1",
-    "gulp": "^4.0.2",
-    "gulp-coffee": "^3.0.3",
-    "gulp-mocha": "^6.0.0",
-    "gulp-util": "^3.0.8",
-    "jsdoc-to-markdown": "^5.0.3",
-    "mocha": "^5.2.0",
-    "mochainon": "^2.0.0",
-    "require-npm4-to-publish": "^1.0.0"
+    "coffeescript": "2.7.0",
+    "gulp": "4.0.2",
+    "gulp-coffee": "3.0.3",
+    "gulp-mocha": "6.0.0",
+    "gulp-util": "3.0.8",
+    "jsdoc-to-markdown": "5.0.3",
+    "mocha": "5.2.0",
+    "mochainon": "2.0.0",
+    "require-npm4-to-publish": "1.0.0"
   },
   "dependencies": {
     "lodash": "^4.17.15",

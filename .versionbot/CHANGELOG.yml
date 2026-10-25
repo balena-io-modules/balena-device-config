@@ -1,4 +1,16 @@
 - commits:
+    - subject: Pin dependencies
+      hash: 1f359fe9d600da27b05184c7546605b691f89496
+      body: |
+        Update coffeescript
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+  version: 6.3.2
+  title: ""
+  date: 2026-10-25T17:53:11.192Z
+- commits:
     - subject: "Add id-token: write permission for NPM OIDC publishing"
       hash: f9a2dd56a799a8d50eb4c54e717701b072002a57
       body: ""
